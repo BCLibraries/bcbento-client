@@ -32,7 +32,7 @@ class AppContainer extends Component {
                                      handleInput={this.handleInput}
                                      handleSubmit={this.handleSubmit}/>;
 
-        return <App searchBox={searchBox} resultsBoxContainer={resultsBoxContainer} bookResults={this.bookResults}/>;
+        return <App searchBox={searchBox} searchString={this.state.searchString} resultsBoxContainer={resultsBoxContainer}/>;
     }
 }
 
