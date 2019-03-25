@@ -15,7 +15,7 @@ function PhysicalAvailability({item}) {
 }
 
 function avaiabilityLine(availability, link) {
-    const availClass = availability.on_shelf ? 'available' : 'unavailable';
+    const availClass = availability.on_shelf ? 'item-info--available' : 'item-info--unavailable';
     const key = availability.library + '-' + availability.loc_display;
 
     return <li className={['item-info', availClass]} key={key}>

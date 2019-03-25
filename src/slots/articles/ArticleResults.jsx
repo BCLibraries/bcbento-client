@@ -1,15 +1,18 @@
 import React from 'react';
 import useFetchResultList from "../UseFetchResultList";
+import ArticleResult from "./ArticleResult";
 
 function ArticleResults({searchString, numResults}) {
-    const {data, loading} = useFetchResultList(searchString, 'http://localhost:8080/search-services/articles');
+    const {data, loading} = useFetchResultList(searchString, 'http://localhost:8080/search-services/catalog');
 
-    const items = loading ? <span>Loading</span> : data.items.map((item) => <li key={item.id}>{item.title}</li>);
+    const loadingNotice = loading ? <div className='loading-notice'>Loading</div> : <span/>;
+    const loadingClass = loading ? 'article-results-list--loading' : '';
 
-    return <div>
-        <h2>Article results for {searchString}</h2>
-        <ul>
-            {items}
+    return <div className="article-results-box">
+        <h2>Article results</h2>
+        {loadingNotice}
+        <ul className={["article-results-list", loadingClass]}>
+            {data.items.map((item) => <ArticleResult key={item.id} article={item}/>)}
         </ul>
     </div>;
 }

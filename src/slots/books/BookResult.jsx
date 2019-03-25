@@ -3,21 +3,20 @@ import PhysicalAvailability from "./PhysicalAvailability";
 
 function BookResult({item}) {
     return <div className="catalog-result-item media">
-        <h3 className="media-heading">
+
+        <h3 className="catalog-result-item__media-heading">
             <a href={item.link} className="catalog-result-item__title">
                 {item.title}
             </a>
         </h3>
 
-        <div className="catalog-metadata">
-            <div className="creator">{creatorName(item)}</div>
-        </div>
+        <div className="catalog-result-item__creator">{creatorName(item)}</div>
 
-        <div className="publisher">
+        <div className="catalog-result-item__publisher">
             {item.publisher} {item.date}
         </div>
 
-        <div className="type">{item.type}</div>
+        <div className="catalog-result-item__type">{item.type}</div>
 
         <PhysicalAvailability item={item}/>
 

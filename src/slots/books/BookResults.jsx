@@ -11,7 +11,7 @@ function BookResults({searchString, numResults}) {
         <h2>Catalog results</h2>
         {loadingNotice}
         <ul className={["catalog-results-list", loadingClass]}>
-            {data.items.map((item) => <BookResult key={`book-result-${item.id}`} item={item}/>)}
+            {data.items.map((item) => <BookResult key={item.id} item={item}/>)}
         </ul>
     </div>;
 }
