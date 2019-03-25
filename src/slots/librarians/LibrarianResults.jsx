@@ -7,7 +7,7 @@ function LibrarianResults({searchString, numResults}) {
     const body = loading ? <div className='loading-notice'>Loading</div> : librarianList(data.items);
 
     return <div className="librarian-results-box">
-        <h2>Librarian results</h2>
+        <h2 className="librarian-results-box__header">Librarians</h2>
         {body}
     </div>;
 }
@@ -19,9 +19,9 @@ function librarianList(librarians) {
         </div>
     }
 
-    return <ul className="librarian-results-list">
+    return <ol className="librarian-results-list">
         {librarians.map((librarian) => <LibrarianResult key={librarian.id} librarian={librarian}/>)}
-    </ul>;
+    </ol>;
 }
 
 export default LibrarianResults;

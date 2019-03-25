@@ -8,7 +8,7 @@ function VideoResults({searchString, numResults}) {
     const body = loading ? <div className='loading-notice'>Loading</div> : videoList(data.items);
 
     return <div className="video-results-box">
-        <h2>Video results</h2>
+        <h2 className="video-results-box__header">Video</h2>
         {body}
     </div>;
 }
@@ -20,9 +20,9 @@ function videoList(videos) {
         </div>
     }
 
-    return <ul className="video-results-list">
+    return <ol className="video-results-list row">
         {videos.map((video) => videoResult(video))}
-    </ul>;
+    </ol>;
 }
 
 function videoResult(video) {

@@ -10,15 +10,15 @@ function PhysicalAvailability({item}) {
     const availabilities = item.avail.filter(avail => avail.on_shelf);
 
     return <ul className='available-items-list'>
-        {availabilities.map((avail) => avaiabilityLine(avail, item.link))}
+        {availabilities.map((avail) => availabilityLine(avail, item.link))}
     </ul>
 }
 
-function avaiabilityLine(availability, link) {
+function availabilityLine(availability, link) {
     const availClass = availability.on_shelf ? 'item-info--available' : 'item-info--unavailable';
     const key = availability.library + '-' + availability.loc_display;
 
-    return <li className={['item-info', availClass]} key={key}>
+    return <li className={`item-info ${availClass}`} key={key}>
         <a href={link}>
             <span className="item-info__library">Find in {availability.lib_display}</span>
             <span className="item-info__location">{availability.loc_display}</span>

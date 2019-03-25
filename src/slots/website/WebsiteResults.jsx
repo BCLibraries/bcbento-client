@@ -7,10 +7,10 @@ function WebsiteResults({searchString, numResults}) {
 
     data.items = data.items.slice(0, 4);
 
-    const body = loading ? <div className='loading-notice'>Loading</div> : websiteHitsList(data.items);
+    const body = loading ? <div className="loading-notice">Loading</div> : websiteHitsList(data.items);
 
     return <div className="website-results-box">
-        <h2>Website results</h2>
+        <h2 className="website-results-box__header">Our website</h2>
         {body}
     </div>;
 }

@@ -9,12 +9,12 @@ function FaqResults({searchString, numResults}) {
     // Only use first 4 results.
     data.items = data.items.slice(0, 4);
 
-    return <div>
-        <h2>FAQ results for {searchString}</h2>
+    return <div className="faq-results-box">
+        <h2 className="faq-results-box__header">Frequently asked questions</h2>
         {loadingNotice}
-        <ul>
+        <ol className="faq-results-list">
             {data.items.map((item) => <FaqResult key={`faq-result-${item.id}`} result={item}/>)}
-        </ul>
+        </ol>
     </div>;
 }
 

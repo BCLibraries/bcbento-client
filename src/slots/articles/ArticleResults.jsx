@@ -9,11 +9,11 @@ function ArticleResults({searchString, numResults}) {
     const loadingClass = loading ? 'article-results-list--loading' : '';
 
     return <div className="article-results-box">
-        <h2>Article results</h2>
+        <h2 className="article-results-box__header">Articles</h2>
         {loadingNotice}
-        <ul className={["article-results-list", loadingClass]}>
+        <ol className={`article-results-list ${loadingClass}`}>
             {data.items.map((item) => <ArticleResult key={item.id} article={item}/>)}
-        </ul>
+        </ol>
     </div>;
 }
 

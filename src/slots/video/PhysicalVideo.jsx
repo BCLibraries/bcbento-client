@@ -7,12 +7,12 @@ import PhysicalAvailability from "../books/PhysicalAvailability";
 function PhysicalVideo({video}) {
     const cover = getCover(video);
 
-    return <div className="physical-video">
+    return <li className="physical-video col-md-4">
         <a href={video.link}>
             <img src={cover} alt="video cover" className={coverClass(video)}/>
         </a>
 
-        <h3 className="media-heading">
+        <h3 className="physical-video__media-heading media-heading">
             <a href={video.link} className="physical-video__title">
                 {video.title}
             </a>
@@ -26,7 +26,7 @@ function PhysicalVideo({video}) {
 
         <PhysicalAvailability item={video}/>
 
-    </div>
+    </li>
 }
 
 function coverClass(video) {
