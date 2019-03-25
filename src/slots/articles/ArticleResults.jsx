@@ -1,5 +1,5 @@
 import React from 'react';
-import useFetchResultList from "./UseFetchResultList";
+import useFetchResultList from "../UseFetchResultList";
 
 function ArticleResults({searchString, numResults}) {
     const {data, loading} = useFetchResultList(searchString, 'http://localhost:8080/search-services/articles');
