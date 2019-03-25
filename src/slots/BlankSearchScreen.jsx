@@ -1,6 +1,6 @@
 import React from 'react';
 
-function BlankSearchScreen({}) {
+function BlankSearchScreen() {
     return <div>Search for just about anything in or about the Libraries.</div>;
 }
 

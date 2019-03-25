@@ -13,8 +13,4 @@ function App({searchBox, searchString, resultsBoxContainer}) {
     );
 }
 
-function noSearchYet() {
-    return <div>Please enter a search</div>
-}
-
 export default App;
