@@ -1,8 +1,8 @@
 import React from 'react';
 
 function SearchBox({inputValue, handleInput, handleSubmit}) {
-    return <form onSubmit={handleSubmit}>
-        <input type={'text'} value={inputValue} onChange={handleInput}/>
+    return <form method="get" action=".">
+        <input type={'text'} value={inputValue} onChange={handleInput} name="any"/>
     </form>;
 }
 

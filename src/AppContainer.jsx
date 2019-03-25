@@ -6,10 +6,14 @@ import SearchBox from './SearchBox.jsx';
 class AppContainer extends Component {
     constructor(props) {
         super(props);
+
+        const searchString = getUrlParameter('any');
+
         this.state = {
-            searchString: '',
+            searchString: searchString,
             inputValue: ''
         };
+
 
         this.handleInput = this.handleInput.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -20,7 +24,6 @@ class AppContainer extends Component {
     }
 
     handleSubmit(event) {
-        console.log('submitted');
         this.setState({searchString: this.state.inputValue});
         event.preventDefault();
     }
@@ -28,12 +31,21 @@ class AppContainer extends Component {
     render() {
         const resultsBoxContainer = buildResultsBoxes(this.state.searchString);
 
+
+
         const searchBox = <SearchBox searchString={this.state.searchString}
                                      handleInput={this.handleInput}
                                      handleSubmit={this.handleSubmit}/>;
 
         return <App searchBox={searchBox} searchString={this.state.searchString} resultsBoxContainer={resultsBoxContainer}/>;
     }
+}
+
+function getUrlParameter(name) {
+    name = name.replace(/[[]/, '\\[').replace(/[\]]/, '\\]');
+    const regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+    const results = regex.exec(window.location.search);
+    return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
 }
 
 export default AppContainer;
