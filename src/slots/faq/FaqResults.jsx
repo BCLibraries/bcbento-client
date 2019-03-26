@@ -1,6 +1,7 @@
 import React from 'react';
 import useFetchResultList from '../UseFetchResultList';
 import FaqResult from "./FaqResult";
+import BentoResultError from "../BentoResultError";
 
 function FaqResults({searchString}) {
     const {data, loading} = useFetchResultList(searchString, 'http://libdev.bc.edu/search-services/faq');
@@ -12,8 +13,7 @@ function FaqResults({searchString}) {
 
     return <div className="faq-results-box">
         <h2 className="faq-results-box__header">Frequently asked questions</h2>
-        {body}
-
+        {data.error ? <BentoResultError message="There was an error searching the FAQ."/> : body}
     </div>;
 }
 

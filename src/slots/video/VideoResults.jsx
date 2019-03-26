@@ -2,6 +2,7 @@ import React from 'react';
 import useFetchResultList from '../UseFetchResultList';
 import OnlineVideo from "./OnlineVideo";
 import PhysicalVideo from "./PhysicalVideo";
+import BentoResultError from "../BentoResultError";
 
 function VideoResults({searchString, numResults}) {
     const {data, loading} = useFetchResultList(searchString, 'http://libdev.bc.edu/search-services/video');
@@ -9,7 +10,7 @@ function VideoResults({searchString, numResults}) {
 
     return <div className="video-results-box">
         <h2 className="video-results-box__header">Video</h2>
-        {body}
+        {data.error ? <BentoResultError message="There was an error searching videos."/> : body}
     </div>;
 }
 

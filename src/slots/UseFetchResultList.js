@@ -1,16 +1,22 @@
 import {useEffect, useState} from 'react';
 
 function useFetchResultList(searchString, baseUrl) {
-    const [data, setData] = useState({items: []});
+    const [data, setData] = useState({error: false, items: []});
     const [loading, setLoading] = useState(false);
 
     async function fetchData(url) {
+        let json = {};
+
         if (searchString === '') {
             return;
         }
         setLoading(true);
-        const response = await fetch(url);
-        const json = await response.json();
+        try {
+            const response = await fetch(url);
+            json = await response.json();
+        } catch (err) {
+            json = {error: true, items: []}
+        }
         setData(json);
         setLoading(false);
     }

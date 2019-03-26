@@ -1,6 +1,7 @@
 import React from 'react';
 import useFetchResultList from '../UseFetchResultList';
 import LibrarianResult from "./LibrarianResult";
+import BentoResultError from "../BentoResultError";
 
 function LibrarianResults({searchString, numResults}) {
     const {data, loading} = useFetchResultList(searchString, 'http://libdev.bc.edu/search-services/librarians');
@@ -8,7 +9,7 @@ function LibrarianResults({searchString, numResults}) {
 
     return <div className="librarian-results-box">
         <h2 className="librarian-results-box__header">Librarians</h2>
-        {body}
+        {data.error ? <BentoResultError message="There was an error searching for librarians."/> : body}
     </div>;
 }
 

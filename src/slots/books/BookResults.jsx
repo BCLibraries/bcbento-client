@@ -1,6 +1,7 @@
 import React from 'react';
 import useFetchResultList from '../UseFetchResultList';
 import BookResult from "./BookResult";
+import BentoResultError from "../BentoResultError";
 
 function BookResults({searchString, numResults}) {
     const {data, loading} = useFetchResultList(searchString, 'http://localhost:8080/search-services/catalog');
@@ -8,7 +9,7 @@ function BookResults({searchString, numResults}) {
 
     return <div className="catalog-results-box">
         <h2 className="catalog-results-box__header">Books & more</h2>
-        {body}
+        {data.error ? <BentoResultError message="There was an error searching the catalog."/> : body}
     </div>;
 }
 

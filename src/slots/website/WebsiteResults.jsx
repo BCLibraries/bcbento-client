@@ -1,6 +1,7 @@
 import React from 'react';
 import useFetchResultList from '../UseFetchResultList';
 import WebsiteResult from "./WebsiteResult";
+import BentoResultError from "../BentoResultError";
 
 function WebsiteResults({searchString, numResults}) {
     const {data, loading} = useFetchResultList(searchString, 'http://libdev.bc.edu/search-services/website');
@@ -11,7 +12,7 @@ function WebsiteResults({searchString, numResults}) {
 
     return <div className="website-results-box">
         <h2 className="website-results-box__header">Our website</h2>
-        {body}
+        {data.error ? <BentoResultError message="There was an error searching the website."/> : body}
     </div>;
 }
 
