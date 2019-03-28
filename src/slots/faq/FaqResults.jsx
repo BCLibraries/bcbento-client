@@ -2,6 +2,7 @@ import React from 'react';
 import useFetchResultList from '../UseFetchResultList';
 import FaqResult from "./FaqResult";
 import BentoResultError from "../BentoResultError";
+import SeeAllLink from "../SeeAllLink";
 
 function FaqResults({searchString}) {
     const {data, loading} = useFetchResultList(searchString, 'http://libdev.bc.edu/search-services/faq');
@@ -12,6 +13,7 @@ function FaqResults({searchString}) {
     const body = loading ? <div className='loading-notice'>Loading</div> : questionList(data.items);
 
     return <div className="faq-results-box">
+        <SeeAllLink url={data.search_url} total={data.total_results} found={data.items.length}/>
         <h2 className="faq-results-box__header">Frequently asked questions</h2>
         {data.error ? <BentoResultError message="There was an error searching the FAQ."/> : body}
     </div>;

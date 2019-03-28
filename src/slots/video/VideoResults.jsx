@@ -3,27 +3,33 @@ import useFetchResultList from '../UseFetchResultList';
 import OnlineVideo from "./OnlineVideo";
 import PhysicalVideo from "./PhysicalVideo";
 import BentoResultError from "../BentoResultError";
+import LoadingNotice from "../LoadingNotice";
+import SeeAllLink from "../SeeAllLink";
 
 function VideoResults({searchString, numResults}) {
     const {data, loading} = useFetchResultList(searchString, 'http://libdev.bc.edu/search-services/video');
-    const body = loading ? <div className='loading-notice'>Loading</div> : videoList(data.items);
+    const body = loading ? <LoadingNotice/> : videoList(data.items, data.total_results, data.search_url);
 
-    return <div className="video-results-box">
+    return <div className="video-results-box">a
         <h2 className="video-results-box__header">Video</h2>
+        <SeeAllLink url={data.search_url} total={data.total_results} found={data.items.length}/>
         {data.error ? <BentoResultError message="There was an error searching videos."/> : body}
     </div>;
 }
 
-function videoList(videos) {
+function videoList(videos, total, url) {
     if (videos.length === 0) {
         return <div className="no-results-found">
             There are no results matching your search.
         </div>
     }
 
-    return <ol className="video-results-list row">
-        {videos.map((video) => videoResult(video))}
-    </ol>;
+    return <div>
+        <ol className="video-results-list row">
+            {videos.map((video) => videoResult(video))}
+        </ol>
+        <SeeAllLink total={total} found={videos.length} term="videos" url={url}/>
+    </div>;
 }
 
 function videoResult(video) {
