@@ -34,7 +34,7 @@ function coverClass(video) {
 }
 
 function getCover(video) {
-    if (video.covers.length > 0) {
+    if (video.covers.length > 0 && video.covers[0]) {
         return video.covers[0];
     }
 
