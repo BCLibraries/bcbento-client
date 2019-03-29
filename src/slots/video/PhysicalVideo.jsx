@@ -30,7 +30,7 @@ function PhysicalVideo({video}) {
 }
 
 function coverClass(video) {
-    return (video.covers.length > 0) ? 'physical-video__box_cover' : 'physical-video__default_cover';
+    return (video.covers.length > 0 && video.covers[0])  ? 'physical-video__box_cover' : 'physical-video__default_cover';
 }
 
 function getCover(video) {
