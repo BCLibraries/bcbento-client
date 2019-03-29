@@ -2,7 +2,7 @@ import React from 'react';
 import useFetchResultList from '../UseFetchResultList';
 import BookResult from "./BookResult";
 import BentoResultError from "../BentoResultError";
-import LoadingNotice from "../articles/ArticleResults";
+import LoadingNotice from "../LoadingNotice";
 import SeeAllLink from "../SeeAllLink";
 
 function BookResults({searchString, numResults}) {

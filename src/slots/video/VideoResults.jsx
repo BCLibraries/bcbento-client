@@ -10,7 +10,7 @@ function VideoResults({searchString, numResults}) {
     const {data, loading} = useFetchResultList(searchString, 'http://libdev.bc.edu/search-services/video');
     const body = loading ? <LoadingNotice/> : videoList(data.items, data.total_results, data.search_url);
 
-    return <div className="video-results-box">a
+    return <div className="video-results-box">
         <h2 className="video-results-box__header">Video</h2>
         <SeeAllLink url={data.search_url} total={data.total_results} found={data.items.length}/>
         {data.error ? <BentoResultError message="There was an error searching videos."/> : body}
