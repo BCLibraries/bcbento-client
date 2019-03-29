@@ -4,6 +4,7 @@ import WebsiteResult from "./WebsiteResult";
 import BentoResultError from "../BentoResultError";
 import SeeAllLink from "../SeeAllLink";
 import LoadingNotice from "../LoadingNotice";
+import SlotHeading from "../SlotHeading";
 
 function WebsiteResults({searchString, numResults}) {
     const {data, loading} = useFetchResultList(searchString, 'http://libdev.bc.edu/search-services/website');
@@ -13,7 +14,7 @@ function WebsiteResults({searchString, numResults}) {
     const body = loading ? <LoadingNotice/> : websiteHitsList(data.items, data.total_results, data.search_url);
 
     return <div className="website-results-box">
-        <h2 className="website-results-box__header">Our website</h2>
+        <SlotHeading url={data.search_url} classPrefix="website">Our website</SlotHeading>
         {data.search_url && <SeeAllLink url={data.search_url} total={data.total_results} found={data.items.length}/>}
         {data.error ? <BentoResultError message="There was an error searching the website."/> : body}
     </div>;

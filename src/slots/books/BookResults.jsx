@@ -4,13 +4,14 @@ import BookResult from "./BookResult";
 import BentoResultError from "../BentoResultError";
 import LoadingNotice from "../LoadingNotice";
 import SeeAllLink from "../SeeAllLink";
+import SlotHeading from "../SlotHeading";
 
 function BookResults({searchString, numResults}) {
     const {data, loading} = useFetchResultList(searchString, 'http://localhost:8080/search-services/catalog');
     const body = loading ? <LoadingNotice/> : booksList(data.items, data.total_results, data.search_url);
 
     return <div className="catalog-results-box">
-        <h2 className="catalog-results-box__header">Books & more</h2>
+        <SlotHeading classPrefix="catalog" url={data.search_url}>Books & more</SlotHeading>
         <SeeAllLink url={data.search_url} total={data.total_results} found={data.items.length}/>
         {data.error ? <BentoResultError message="There was an error searching the catalog."/> : body}
     </div>;
