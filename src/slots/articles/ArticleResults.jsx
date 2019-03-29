@@ -6,7 +6,7 @@ import SeeAllLink from "../SeeAllLink";
 import LoadingNotice from "../LoadingNotice";
 
 function ArticleResults({searchString, numResults}) {
-    const {data, loading} = useFetchResultList(searchString, 'http://localhost:8080/search-services/catalog');
+    const {data, loading} = useFetchResultList(searchString, 'http://localhost:8080/search-services/articles');
     const body = loading ? <LoadingNotice/> : articleList(data.items, data.total_results, data.search_url);
 
     return <div className="article-results-box">
