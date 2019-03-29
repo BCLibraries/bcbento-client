@@ -8,7 +8,7 @@ function OnlineVideo({video}) {
     return <li className="online-video col-md-4">
         <a href={video.getit}>
             <div className="online_video__thumb">
-                <img src={screen} alt="screenshot" className={screenClass}/>
+                <img src={screen} alt={`Watch ${video.title} online`} className={screenClass}/>
             </div>
         </a>
 
@@ -21,7 +21,6 @@ function OnlineVideo({video}) {
         <div className="online-video__creator">{creatorName(video)}</div>
 
         <div className="online-video__watch-link"><a href={video.getit}>Watch online</a></div>
-
     </li>
 }
 

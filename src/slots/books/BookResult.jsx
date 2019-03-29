@@ -21,6 +21,8 @@ function BookResult({item}) {
 
             <PhysicalAvailability item={item}/>
 
+            <a href={item.link} aria-hidden="true" className={"media-body__mobile-link"}>&nbsp;</a>
+
             {item.getit && getItLink(item)}
         </div>
 
@@ -46,7 +48,9 @@ function getItLink(item) {
 
 function coverImage(item) {
     return <div className="media-right">
-        <img src={item.covers[0]} alt="book cover" className="cover-image"/>
+        <a href={item.link} aria-hidden="true">
+            <img src={item.covers[0]} alt="" className="cover-image"/>
+        </a>
     </div>
 }
 

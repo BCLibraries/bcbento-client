@@ -8,8 +8,8 @@ function PhysicalVideo({video}) {
     const cover = getCover(video);
 
     return <li className="physical-video col-md-4">
-        <a href={video.link}>
-            <img src={cover} alt="video cover" className={coverClass(video)}/>
+        <a href={video.link} aria-hidden="true">
+            <img src={cover} alt="" className={coverClass(video)}/>
         </a>
 
         <h3 className="physical-video__media-heading media-heading">
