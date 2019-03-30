@@ -1,37 +1,20 @@
-import React, {Component} from 'react';
+import React, {useState} from 'react';
 import App from "./App";
 import SearchBox from './SearchBox';
 
-class AppContainer extends Component {
-    constructor(props) {
-        super(props);
+function AppContainer() {
+    const initialSearchString = getUrlParameter('any');
+    const [searchString, setSearchString] = useState(initialSearchString);
+    const [inputValue, setInputValue] = useState('');
 
-        const searchString = getUrlParameter('any');
+    const handleInput = value => setInputValue(value);
+    const handleSubmit = () => setSearchString(inputValue);
 
-        this.state = {
-            searchString: searchString,
-            inputValue: ''
-        };
+    const searchBox = <SearchBox searchString={searchString}
+                                 handleTyping={handleInput}
+                                 handleSubmit={handleSubmit}/>;
 
-        this.handleInput = this.handleInput.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
-    }
-
-    handleInput(value) {
-        this.setState({inputValue: value});
-    }
-
-    handleSubmit() {
-        this.setState({searchString: this.state.inputValue});
-    }
-
-    render() {
-        const searchBox = <SearchBox searchString={this.state.searchString}
-                                     handleTyping={this.handleInput}
-                                     handleSubmit={this.handleSubmit}/>;
-
-        return <App searchBox={searchBox} searchString={this.state.searchString}/>;
-    }
+    return <App searchBox={searchBox} searchString={searchString}/>;
 }
 
 function getUrlParameter(name) {
