@@ -1,7 +1,13 @@
 import React, {useRef} from 'react';
 import SkipToLink from "./SkipToLink";
+import BookResults from "./slots/books/BookResults";
+import ArticleResults from "./slots/articles/ArticleResults";
+import FaqResults from "./slots/faq/FaqResults";
+import LibrarianResults from "./slots/librarians/LibrarianResults";
+import VideoResults from "./slots/video/VideoResults";
+import WebsiteResults from "./slots/website/WebsiteResults";
 
-function SearchResults({boxes}) {
+function SearchResults({searchString}) {
     const booksDiv = useRef(null);
     const articlesDiv = useRef(null);
     const faqDiv = useRef(null);
@@ -29,31 +35,31 @@ function SearchResults({boxes}) {
 
             <div className="results-row-1 row">
                 <div className="col-md-5 col-sm-12" ref={booksDiv}>
-                    {boxes.bookResults}
+                    <BookResults searchString={searchString}/>
                 </div>
                 <div className="col-md-5 col-md-offset-1 col-sm-12" ref={articlesDiv}>
-                    {boxes.articleResults}
+                    <ArticleResults searchString={searchString}/>
                 </div>
             </div>
 
             <div className="results-row-2 row" ref={faqDiv}>
                 <div className="col-md-7">
-                    {boxes.faqResults}
+                    <FaqResults searchString={searchString}/>
                 </div>
                 <div className="col-md-4 col-md-offset-1" ref={librariansDiv}>
-                    {boxes.librarianResults}
+                    <LibrarianResults searchString={searchString}/>
                 </div>
             </div>
 
             <div className="results-row-3 row" ref={videoDiv}>
                 <div className="col-md-12">
-                    {boxes.videoResults}
+                    <VideoResults searchString={searchString}/>
                 </div>
             </div>
 
             <div className="results-row-4 row" ref={websiteDiv}>
                 <div className="col-md-12">
-                    {boxes.websiteResults}
+                    <WebsiteResults searchString={searchString}/>
                 </div>
             </div>
         </div>

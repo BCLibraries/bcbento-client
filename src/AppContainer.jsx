@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
-import buildResultsBoxes from './slots/BuildResultsBoxes.jsx';
 import App from "./App";
-import SearchBox from './search-box/SearchBox';
+import SearchBox from './SearchBox';
 
 class AppContainer extends Component {
     constructor(props) {
@@ -13,7 +12,6 @@ class AppContainer extends Component {
             searchString: searchString,
             inputValue: ''
         };
-
 
         this.handleInput = this.handleInput.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -28,13 +26,11 @@ class AppContainer extends Component {
     }
 
     render() {
-        const resultsBoxContainer = buildResultsBoxes(this.state.searchString);
-
         const searchBox = <SearchBox searchString={this.state.searchString}
                                      handleTyping={this.handleInput}
                                      handleSubmit={this.handleSubmit}/>;
 
-        return <App searchBox={searchBox} searchString={this.state.searchString} resultsBoxContainer={resultsBoxContainer}/>;
+        return <App searchBox={searchBox} searchString={this.state.searchString}/>;
     }
 }
 
