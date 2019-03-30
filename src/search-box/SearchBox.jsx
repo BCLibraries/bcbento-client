@@ -64,7 +64,6 @@ function SearchBox({handleTyping, searchString, onSubmit}) {
                      onSuggestionsClearRequested={clearSuggestions}
                      getSuggestionValue={getSuggestionValue}
                      renderSuggestion={renderSuggestion}
-                     onSuggestionSelected={onSuggestionSelected}
                      inputProps={inputProps}
 
         />

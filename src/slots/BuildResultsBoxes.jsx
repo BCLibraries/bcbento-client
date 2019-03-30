@@ -8,7 +8,7 @@ import VideoResults from "./video/VideoResults";
 import WebsiteResults from "./website/WebsiteResults";
 
 
-function buildResultsBoxes(searchString, queryResults) {
+function buildResultsBoxes(searchString) {
     const container = new ResultsBoxContainer();
 
     container.articleResults = <ArticleResults searchString={searchString}/>;

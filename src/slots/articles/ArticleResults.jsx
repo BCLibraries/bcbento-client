@@ -1,35 +1,23 @@
 import React from 'react';
-import useFetchResultList from "../UseFetchResultList";
 import ArticleResult from "./ArticleResult";
-import BentoResultError from "../BentoResultError";
-import SeeAllLink from "../SeeAllLink";
-import LoadingNotice from "../LoadingNotice";
-import SlotHeading from "../SlotHeading";
+import ResultBox from "../ResultBox";
 
-function ArticleResults({searchString, numResults}) {
-    const {data, loading} = useFetchResultList(searchString, 'http://localhost:8080/search-services/articles');
-    const body = loading ? <LoadingNotice/> : articleList(data.items, data.total_results, data.search_url);
+const renderArticleList = data => {
+    return (
+        <React.Fragment>
+            {data.items.map(article => <ArticleResult key={article.id} article={article}/>)}
+        </React.Fragment>
+    );
+};
 
-    return <div className="article-results-box">
-        <SlotHeading url={data.search_url} classPrefix="article">Articles</SlotHeading>
-        <SeeAllLink url={data.search_url} total={data.total_results} found={data.items.length}/>
-        {data.error ? <BentoResultError message="There was an error searching articles."/> : body}
-    </div>;
-}
-
-function articleList(articles, total_results, url) {
-    if (articles.length === 0) {
-        return <div className="no-results-found">
-            There are no results matching your search.
-        </div>
-    }
-
-    return <div>
-        <ol className="article-results-list">
-            {articles.map((article) => <ArticleResult key={article.id} article={article}/>)}
-        </ol>
-        <SeeAllLink total={total_results} found={articles.length} term='articles' url={url}/>
-    </div>;
+function ArticleResults({searchString}) {
+    return <ResultBox baseUrl='http://libdev.bc.edu/search-services/articles'
+                      classPrefix="article"
+                      term="articles"
+                      heading="Articles"
+                      searchString={searchString}
+                      render={renderArticleList}
+    />;
 }
 
 export default ArticleResults;

@@ -1,7 +1,7 @@
 import {useEffect, useState} from 'react';
 
 function useFetchResultList(searchString, baseUrl) {
-    const [data, setData] = useState({error: false, items: []});
+    const [data, setData] = useState({error: false, items: [], total_results: 0});
     const [loading, setLoading] = useState(false);
 
     async function fetchData(url) {

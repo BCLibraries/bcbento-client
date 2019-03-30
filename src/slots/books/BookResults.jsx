@@ -1,35 +1,23 @@
 import React from 'react';
-import useFetchResultList from '../UseFetchResultList';
 import BookResult from "./BookResult";
-import BentoResultError from "../BentoResultError";
-import LoadingNotice from "../LoadingNotice";
-import SeeAllLink from "../SeeAllLink";
-import SlotHeading from "../SlotHeading";
+import ResultBox from "../ResultBox";
 
-function BookResults({searchString, numResults}) {
-    const {data, loading} = useFetchResultList(searchString, 'http://localhost:8080/search-services/catalog');
-    const body = loading ? <LoadingNotice/> : booksList(data.items, data.total_results, data.search_url);
+const renderBookList = data => {
+    return (
+        <React.Fragment>
+            {data.items.map(book => <BookResult key={book.id} item={book}/>)}
+        </React.Fragment>
+    );
+};
 
-    return <div className="catalog-results-box">
-        <SlotHeading classPrefix="catalog" url={data.search_url}>Books & more</SlotHeading>
-        <SeeAllLink url={data.search_url} total={data.total_results} found={data.items.length}/>
-        {data.error ? <BentoResultError message="There was an error searching the catalog."/> : body}
-    </div>;
-}
-
-function booksList(books, total_results, url) {
-    if (books.length === 0) {
-        return <div className="no-results-found">
-            There are no results matching your search.
-        </div>
-    }
-
-    return <div>
-        <ol className="catalog-results-list">
-            {books.map((book) => <BookResult key={book.id} item={book}/>)}
-        </ol>
-        <SeeAllLink total={total_results} found={books.length} term='books' url={url}/>
-    </div>;
+function BookResults({searchString}) {
+    return <ResultBox baseUrl='http://libdev.bc.edu/search-services/catalog'
+                      classPrefix="catalog"
+                      term="results"
+                      heading="Books & more"
+                      searchString={searchString}
+                      render={renderBookList}
+    />;
 }
 
 export default BookResults;
