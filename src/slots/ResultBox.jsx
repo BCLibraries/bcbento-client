@@ -8,11 +8,11 @@ function ResultBox({render, heading, term, searchString, baseUrl, classPrefix, n
     noResultsMessage = noResultsMessage ? noResultsMessage : 'There are no results matching your search.';
 
     if (loading) {
-        body = <div className='loading-notice'>Loading</div>
+        body = <div className='bento-results-box__loading-notice'>Loading</div>
     } else if (data.error) {
-        body = <div className="bento-result-error">There was an error performing this search.</div>;
+        body = <div className="bento-results-box__error-notice">There was an error performing this search.</div>;
     } else if (!data.total_results) {
-        body = <div className="no-results-found">{noResultsMessage}</div>
+        body = <div className="bento-results-box__no-results-notice">{noResultsMessage}</div>
     } else {
         body = (
             <ol className={`${classPrefix}-result-list`}>
