@@ -14,7 +14,7 @@ const renderQuestionList = data => {
 };
 
 function FaqResults({searchString}) {
-    return <ResultBox baseUrl='http://libdev.bc.edu/search-services/faq'
+    return <ResultBox baseUrl={process.env.REACT_APP_FAQ_SERVICE_URL}
                       classPrefix="faq"
                       term="questions"
                       heading="Frequently Asked Questions"

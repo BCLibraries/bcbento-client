@@ -11,7 +11,7 @@ const renderHitList = data => {
 };
 
 function WebsiteResults({searchString}) {
-    return <ResultBox baseUrl="http://libdev.bc.edu/search-services/website"
+    return <ResultBox baseUrl={process.env.REACT_APP_WEBSITE_SERVICE_URL}
                       classPrefix="website"
                       term="results"
                       heading="Our Website"

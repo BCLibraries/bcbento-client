@@ -11,7 +11,7 @@ const renderBookList = data => {
 };
 
 function BookResults({searchString}) {
-    return <ResultBox baseUrl='http://libdev.bc.edu/search-services/catalog'
+    return <ResultBox baseUrl={process.env.REACT_APP_CATALOG_SERVICE_URL}
                       classPrefix="catalog"
                       term="results"
                       heading="Books & more"

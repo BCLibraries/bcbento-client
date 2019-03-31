@@ -11,7 +11,7 @@ const renderArticleList = data => {
 };
 
 function ArticleResults({searchString}) {
-    return <ResultBox baseUrl='http://libdev.bc.edu/search-services/articles'
+    return <ResultBox baseUrl={process.env.REACT_APP_ARTICLES_SERVICE_URL}
                       classPrefix="article"
                       term="articles"
                       heading="Articles"

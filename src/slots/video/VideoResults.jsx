@@ -17,7 +17,7 @@ const renderVideoList = data => {
 };
 
 function VideoResults({searchString}) {
-    return <ResultBox baseUrl='http://libdev.bc.edu/search-services/video'
+    return <ResultBox baseUrl={process.env.REACT_APP_VIDEO_SERVICE_URL}
                       classPrefix="video"
                       term="videos"
                       heading="Video"

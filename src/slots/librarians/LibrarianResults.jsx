@@ -17,7 +17,7 @@ const renderLibrarianList = data => {
 };
 
 function LibrarianResults({searchString}) {
-    return <ResultBox baseUrl='http://libdev.bc.edu/search-services/librarians'
+    return <ResultBox baseUrl={process.env.REACT_APP_LIBRARIANS_SERVICE_URL}
                       classPrefix="librarian"
                       term="librariabs"
                       heading="Librarians"
