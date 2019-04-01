@@ -4,17 +4,26 @@ import SearchBox from './SearchBox';
 
 function AppContainer() {
     const initialSearchString = getUrlParameter('any');
+    document.title = getPageTitle(initialSearchString);
+
     const [searchString, setSearchString] = useState(initialSearchString);
     const [inputValue, setInputValue] = useState('');
 
     const handleInput = value => setInputValue(value);
-    const handleSubmit = () => setSearchString(inputValue);
+    const handleSubmit = () => {
+        setSearchString(inputValue);
+        document.title = getPageTitle(searchString);
+    };
 
     const searchBox = <SearchBox searchString={searchString}
                                  handleTyping={handleInput}
                                  handleSubmit={handleSubmit}/>;
 
     return <App searchBox={searchBox} searchString={searchString}/>;
+}
+
+function getPageTitle(searchString) {
+    return searchString ? `Search - ${searchString}` : 'Search';
 }
 
 function getUrlParameter(name) {
