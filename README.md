@@ -20,7 +20,7 @@ yarn install
  `create-react-app` provides support for ES6 syntax plus [a number of other Javascript
  features](https://facebook.github.io/create-react-app/docs/supported-browsers-features).
  
-All modern browsers are supported.
+All modern browsers are supported. Support for IE11 is provided by a polyfill.
 
 ## Scripts
 
