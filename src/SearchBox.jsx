@@ -58,7 +58,7 @@ function SearchBox({handleTyping, searchString, onSubmit}) {
         name: 'any'
     };
 
-    return <form method="get" action="search-box">
+    return <form method="get" action="." className="bento-search-box">
         <Autosuggest suggestions={suggestions}
                      onSuggestionsFetchRequested={fetchSuggestions}
                      onSuggestionsClearRequested={clearSuggestions}

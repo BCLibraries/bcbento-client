@@ -15,7 +15,7 @@ function ResultBox({render, heading, term, searchString, baseUrl, classPrefix, n
         body = <div className="bento-results-box__no-results-notice">{noResultsMessage}</div>
     } else {
         body = (
-            <ol className={`${classPrefix}-result-list`}>
+            <ol className={`${classPrefix}-results-list`}>
                 {render(data)}
                 <SeeAllLink url={data.search_url} total={data.total_results} found={data.items.length} term={term}/>
             </ol>
