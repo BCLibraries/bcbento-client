@@ -19,11 +19,12 @@ function BookResult({item}) {
 
             <div className="catalog-result-item__type">{item.type}</div>
 
+            {item.getit && getItLink(item)}
+
             <PhysicalAvailability item={item}/>
 
             <a href={item.link} aria-hidden="true" className={"media-body__mobile-link"}>&nbsp;</a>
 
-            {item.getit && getItLink(item)}
         </div>
 
         {item.covers.length > 1 && coverImage(item)}
