@@ -7,24 +7,66 @@ function PhysicalAvailability({item}) {
         return <div>Not available. <a href={item.link}>Check for more options</a>.</div>
     }
 
-    const availabilities = item.avail.filter(avail => avail.on_shelf);
+    const availabilities = item.avail.filter(avail => avail.on_shelf).sort(sortLibraries);
 
-    return <ul className='available-items-list'>
-        {availabilities.map((avail) => availabilityLine(avail, item.link))}
-    </ul>
+    const avail_display = availabilities.length > 0 ? itemAvail(availabilities[0], item.link, availabilities.length) : '';
+
+    return (
+        <ul className='available-items-list'>
+            {avail_display}
+        </ul>
+    )
 }
 
-function availabilityLine(availability, link) {
+function itemAvail(availability, link, total) {
     const availClass = availability.on_shelf ? 'item-info--available' : 'item-info--unavailable';
-    const key = availability.library + '-' + availability.loc_display;
+    const in_other_libraries = total > 1 ? ' and other libraries' : '';
 
-    return <li className={`item-info ${availClass}`} key={key}>
-        <a href={link}>
-            <span className="item-info__library">Find in {availability.lib_display}</span>
-            <span className="item-info__location">{availability.loc_display}</span>
-            <span className="item-info__callno">({availability.call_number})</span>
-        </a>
-    </li>
+    return (
+        <li className={`item-info ${availClass}`}>
+            <a href={link}>
+                <span className="item-info__library">Find in {availability.lib_display}</span>
+                <span className="item-info__location">{availability.loc_display}</span>
+                <span className="item-info__callno">({availability.call_number})</span>
+                <span className="item-info__other-libraries">{in_other_libraries}</span>
+            </a>
+        </li>
+    );
+}
+
+const locationValues = {
+    'ONL': {
+        weight: -1,
+        'Stacks': -3,
+        '1st Floor Microfilm': 1
+    },
+    'TML': {
+        weight: 0
+    },
+    'BAPST': {
+        weight: 0
+    },
+    'BURNS': {
+        weight: 0
+    },
+    'ERC': {
+        weight: 0
+    },
+    'SWK': {
+        weight: 0
+    },
+    'LAW': {
+        weight: 0
+    }
+};
+
+function getLocationScore(libraryCode, location) {
+    const library = locationValues[libraryCode];
+    return library[location] ? library[location] + library.weight : library.weight;
+}
+
+function sortLibraries(a, b) {
+    return getLocationScore(a.library, a.loc_display) - getLocationScore(b.library, b.loc_display)
 }
 
 export default PhysicalAvailability;
