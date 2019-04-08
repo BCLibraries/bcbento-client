@@ -15,16 +15,21 @@ function ResultBox({render, heading, term, searchString, baseUrl, classPrefix, n
         body = <div className="bento-results-box__no-results-notice">{noResultsMessage}</div>
     } else {
         body = (
-            <ol className={`${classPrefix}-results-list`}>
-                {render(data)}
+            <div className={`${classPrefix}-results-box`}>
+                <ol className={`${classPrefix}-results-list`}>
+                    {render(data)}
+                </ol>
                 <SeeAllLink url={data.search_url} total={data.total_results} found={data.items.length} term={term}/>
-            </ol>
+            </div>
         );
     }
 
     return (
         <div className="bento-results-box">
-            <h3 className="bento-results-box__header"><a href={data.search_url}>{heading}</a></h3>
+            <div className="bento-results-box__header-row"><h3 className="bento-results-box__header">
+                <a href={data.search_url}>{heading}</a></h3>
+                <SeeAllLink url={data.search_url} total={data.total_results} found={data.items.length} term={term}/>
+            </div>
             {body}
         </div>
     );

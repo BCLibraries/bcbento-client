@@ -11,9 +11,11 @@ function SeeAllLink({total, found, term, url}) {
         </div>;
     }
 
-    return <div className="see-all-link">
-        > <a href={url}>See all {total.toLocaleString()} {term}</a>
-    </div>;
+    return (
+        <div className="see-all-link">
+            <span className="see-all-link__prefix">></span> <a href={url}>See all {total.toLocaleString()} {term}</a>
+        </div>
+    );
 }
 
 export default SeeAllLink;
