@@ -1,15 +1,15 @@
 import React from 'react';
 import defaultVHSIcon from './video-tape.svg';
 import defaultDVDIcon from './mono-dvd-mount.svg';
-import defaultGenericIcon from './blank-screen.svg';
 import PhysicalAvailability from "../books/PhysicalAvailability";
+import FixBrokenImage from "../../FixBrokenImage";
 
 function PhysicalVideo({video}) {
     const cover = getCover(video);
 
     return <li className="physical-video col-md-4">
         <a href={video.link} aria-hidden="true">
-            <img src={cover} alt="" className={coverClass(video)}/>
+            <img src={cover} onError={FixBrokenImage(defaultVHSIcon)} alt="" className={coverClass(video)}/>
         </a>
 
         <h3 className="physical-video__media-heading media-heading">
@@ -44,7 +44,7 @@ function getCover(video) {
         case 'VHS':
             return defaultVHSIcon;
         default:
-            return defaultGenericIcon;
+            return defaultVHSIcon;
     }
 }
 

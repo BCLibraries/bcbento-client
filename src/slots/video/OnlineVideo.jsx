@@ -1,5 +1,6 @@
 import React from 'react';
 import blankScreen from "./blank-screen.svg";
+import FixBrokenImage from "../../FixBrokenImage";
 
 function OnlineVideo({video}) {
     const screen = (video.covers && video.covers.length > 0) ? video.covers[0] : blankScreen;
@@ -8,7 +9,7 @@ function OnlineVideo({video}) {
     return <li className="online-video col-md-4">
         <a href={video.getit}>
             <div className="online_video__thumb">
-                <img src={screen} alt={`Watch ${video.title} online`} className={screenClass}/>
+                <img src={screen} alt={`Watch ${video.title} online`} onError={FixBrokenImage(blankScreen)} className={screenClass}/>
             </div>
         </a>
 
