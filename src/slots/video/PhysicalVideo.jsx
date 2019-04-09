@@ -1,7 +1,7 @@
 import React from 'react';
 import defaultVHSIcon from './video-tape.svg';
 import defaultDVDIcon from './mono-dvd-mount.svg';
-import PhysicalAvailability from "../books/PhysicalAvailability";
+import PhysicalAvailability from "../PhysicalAvailability";
 import FixBrokenImage from "../../FixBrokenImage";
 
 function PhysicalVideo({video}) {

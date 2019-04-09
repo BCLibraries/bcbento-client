@@ -57,6 +57,18 @@ const locationValues = {
     },
     'LAW': {
         weight: 0
+    },
+    'GEO': {
+        weight: 1
+    },
+    'RES_SHARE': {
+        weight: 2
+    },
+    'DEV': {
+        weight: 2
+    },
+    'INT': {
+        weight: 1
     }
 };
 

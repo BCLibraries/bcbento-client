@@ -1,5 +1,5 @@
 import React from 'react';
-import PhysicalAvailability from "./PhysicalAvailability";
+import PhysicalAvailability from "../PhysicalAvailability";
 
 function BookResult({item}) {
     return <li className="catalog-result-item media">
