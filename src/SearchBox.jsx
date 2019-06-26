@@ -55,12 +55,16 @@ function SearchBox({handleTyping, searchString, onSubmit}) {
         setSuggestions([]);
     }
 
+    // Search box should be auto-focused iff there is no results to display.
+    const autofocus = !value;
+
     // Autosuggest will pass through all these props to the input.
     const inputProps = {
         placeholder: 'Search for books, articles, journals, databases',
         value,
         onChange: onTyping,
-        name: 'any'
+        name: 'any',
+        autoFocus: autofocus
     };
 
     return <form method="get" action="." className="bento-search-box">
