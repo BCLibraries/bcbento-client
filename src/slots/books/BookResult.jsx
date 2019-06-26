@@ -2,11 +2,13 @@ import React from 'react';
 import PhysicalAvailability from "../PhysicalAvailability";
 
 function BookResult({item}) {
+    const link = recordLink(item);
+
     return <li className="catalog-result-item media">
 
         <div className="media-body">
             <h3 className="catalog-result-item__media-heading media-heading">
-                <a href={item.link} className="catalog-result-item__title">
+                <a href={link} className="catalog-result-item__title">
                     {item.title}
                 </a>
             </h3>
@@ -23,11 +25,11 @@ function BookResult({item}) {
 
             <PhysicalAvailability item={item}/>
 
-            <a href={item.link} aria-hidden="true" className={"media-body__mobile-link"}>&nbsp;</a>
+            <a href={link} aria-hidden="true" className={"media-body__mobile-link"}>&nbsp;</a>
 
         </div>
 
-        {item.covers.length > 1 && coverImage(item)}
+        {item.coverImages.length > 1 && coverImage(item)}
     </li>
 }
 
@@ -50,9 +52,13 @@ function getItLink(item) {
 function coverImage(item) {
     return <div className="media-right">
         <a href={item.link} aria-hidden="true">
-            <img src={item.covers[0]} alt="" className="cover-image"/>
+            <img src={item.coverImages[0]} alt="" className="cover-image"/>
         </a>
     </div>
+}
+
+function recordLink(item) {
+    return `https://bc-primo.hosted.exlibrisgroup.com/primo-explore/fulldisplay?docid=${item.id}&context=L&tab=bcl_only&search_scope=bcl&vid=bclib_new&lang=en_US`;
 }
 
 

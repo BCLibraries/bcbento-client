@@ -1,6 +1,10 @@
 import React from 'react';
 
 function SeeAllLink({total, found, term, url}) {
+    if(!total) {
+        total = 0;
+    }
+
     if (total <= found) {
         return <div className="see-all-link--empty"/>;
     }

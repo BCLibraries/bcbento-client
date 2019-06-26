@@ -4,7 +4,7 @@ function ArticleResult({article}) {
     return <li className="article-result-item media">
         <div className="media-body">
             <h3 className="article-result-item__media-heading media-heading">
-                <a href={article.link} className="article-result-item__title">
+                <a href={recordLink(article)} className="article-result-item__title">
                     {article.title}
                 </a>
             </h3>
@@ -13,16 +13,18 @@ function ArticleResult({article}) {
 
             <div className="article-result-item__creator">{article.creator}</div>
             <div className="article-result-item__publisher">
-                {formatPartOf(article.part_of, article.journal)}
+                {formatPartOf(article.isPartOf, article.journalTitle)}
             </div>
 
-            <a href={article.link} aria-hidden="true" className={"media-body__mobile-link"}>&nbsp;</a>
+            <a href={recordLink(article)} aria-hidden="true" className={"media-body__mobile-link"}>&nbsp;</a>
         </div>
     </li>;
 }
 
 // @TODO Replace
 function formatPartOf(part_of, journal_title) {
+    part_of = part_of.length > 0 ? part_of[0] : '';
+
     const parts = part_of.split(journal_title);
 
     if (!journal_title || parts.length !== 2) {
@@ -32,6 +34,10 @@ function formatPartOf(part_of, journal_title) {
     return <span className="article-result-item__journal-title">
             {parts[0]}<cite>{journal_title}</cite>{parts[1]}
         </span>
+}
+
+function recordLink(article) {
+    return `https://bc-primo.hosted.exlibrisgroup.com/primo-explore/fulldisplay?docid=${article.id}&context=PC&tab=pci_only&search_scope=pci&vid=bclib_new&lang=en_US`;
 }
 
 export default ArticleResult;
