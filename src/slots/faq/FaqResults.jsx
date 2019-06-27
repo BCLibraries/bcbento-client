@@ -1,26 +1,66 @@
 import React from 'react';
 import FaqResult from "./FaqResult";
-import ResultBox from "../ResultBox";
+import {Query} from "react-apollo";
+import NewResultsBox from "../NewResultsBox";
+import SeeAllLink from "../SeeAllLink";
+import gql from "graphql-tag";
 
-const maxResults = 3;
 
-const renderQuestionList = data => {
-    const questions = data.items.slice(0, maxResults);
-    return (
-        <React.Fragment>
-            {questions.map((question) => <FaqResult key={question.id} result={question}/>)}
-        </React.Fragment>
-    );
-};
+const classPrefix = 'faq';
+const heading = 'FAQ';
 
 function FaqResults({searchString}) {
-    return <ResultBox baseUrl={process.env.REACT_APP_FAQ_SERVICE_URL}
-                      classPrefix="faq"
-                      term="questions"
-                      heading="Frequently Asked Questions"
-                      searchString={searchString}
-                      render={renderQuestionList}
-    />;
+
+    const graphql = gql`
+{
+  searchFAQ( keyword: "${searchString}", limit: 3) {
+    results {
+      question,
+      url
+    },   
+    searchUrl,
+    total
+  }
+}`;
+    return (
+        <Query query={graphql}>
+            {({loading, error, data}) => {
+
+                if (loading) {
+                    return <NewResultsBox heading={heading} status="loading" classPrefix={classPrefix}/>
+                } else if (error) {
+                    return <NewResultsBox heading={heading} status="error" classPrefix={classPrefix}/>
+                } else if (data.searchFAQ.total === 0) {
+                    return <NewResultsBox heading={heading}
+                                          classPrefix={classPrefix}
+                                          noResultsMessage='There are no results matching your search.'
+                    />
+                }
+
+                const results = data.searchFAQ.results.map(result => <FaqResult result={result}/>);
+
+                const seeAllLink = (
+                    <SeeAllLink
+                        term={"item"}
+                        total={data.searchFAQ.total}
+                        found={data.searchFAQ.results.length}
+                        url={data.searchFAQ.searchUrl}
+                    />
+                );
+
+
+                return (
+                    <NewResultsBox
+                        results={results}
+                        heading={heading}
+                        searchUrl={data.searchFAQ.searchUrl}
+                        classPrefix={classPrefix}
+                        seeAll={seeAllLink}
+                    />
+                );
+            }}
+        </Query>
+    );
 }
 
 export default FaqResults;
