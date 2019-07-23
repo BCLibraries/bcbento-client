@@ -30,12 +30,12 @@ function PhysicalVideo({video}) {
 }
 
 function coverClass(video) {
-    return (video.covers.length > 0 && video.covers[0])  ? 'physical-video__box_cover' : 'physical-video__default_cover';
+    return (video.coverImages.length > 0 && video.coverImages[0])  ? 'physical-video__box_cover' : 'physical-video__default_cover';
 }
 
 function getCover(video) {
-    if (video.covers.length > 0 && video.covers[0]) {
-        return String(video.covers[0]);
+    if (video.coverImages.length > 0 && video.coverImages[0]) {
+        return String(video.coverImages[0]);
     }
 
     switch (video.format) {
