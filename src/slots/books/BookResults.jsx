@@ -17,7 +17,9 @@ function BookResults({searchString}) {
       type,
       creator,
       contributors,
-      coverImages,
+      coverImages { 
+        url
+      },
       available,
       isPhysical,
       isElectronic,

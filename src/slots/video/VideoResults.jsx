@@ -16,7 +16,9 @@ function VideoResults({searchString}) {
       date,
       type,
       contributors,
-      coverImages,
+      coverImages {
+        url
+      },
       screenCap,
       isElectronic,
       mms
