@@ -68,7 +68,7 @@ function SearchBox({handleTyping, searchString, onSubmit}) {
     };
 
     return <form method="get" action="." className="bento-search-box">
-        <label for="bento-search-box__search-input" className="bcbento-search-box__input-label sr-only">Search</label>
+        <label htmlFor="bento-search-box__search-input" className="bcbento-search-box__input-label sr-only">Search</label>
         <Autosuggest suggestions={suggestions}
                      onSuggestionsFetchRequested={fetchSuggestions}
                      onSuggestionsClearRequested={clearSuggestions}

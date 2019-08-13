@@ -4,7 +4,7 @@ import BlankSearchScreen from "./slots/BlankSearchScreen";
 import ApolloClient from 'apollo-boost';
 import {ApolloProvider} from 'react-apollo'
 
-const client = new ApolloClient({uri: 'http://127.0.0.1:8000/graphql'});
+const client = new ApolloClient({uri: process.env.REACT_APP_GRAPHQL_ENDPOINT});
 
 function App({searchBox, searchString}) {
     return (

@@ -42,7 +42,7 @@ function VideoResults({searchString}) {
                 } else if (data.searchVideo.total === 0) {
                     noResultsMessage = 'There are no results matching your search.';
                 } else {
-                    results = data.searchVideo.docs.map(doc => <VideoResult item={doc}/>);
+                    results = data.searchVideo.docs.map(doc => <VideoResult item={doc} key={`video-${doc.id}`} />);
                     seeAllLink = (
                         <SeeAllLink
                             term={"item"}

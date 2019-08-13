@@ -32,7 +32,7 @@ function NewResultsBox({status, heading, results, classPrefix, seeAll, noResults
 }
 
 function boxHeading(contents, searchUrl = false) {
-    return searchUrl ? (<h3><a href={searchUrl}>{contents}</a></h3>) : (<h3>{contents}</h3>);
+    return searchUrl ? (<h2><a href={searchUrl}>{contents}</a></h2>) : (<h3>{contents}</h3>);
 }
 
 export default NewResultsBox;

@@ -21,9 +21,9 @@ function BookResult({item}) {
 
             <div className="catalog-result-item__type">{item.type}</div>
 
-            {item.getit && getItLink(item)}
+            {item.isElectronic && getItLink(item)}
 
-            <PhysicalAvailability item={item}/>
+            {item.isPhysical && physicalAvailability(item)}
 
             <a href={link} aria-hidden="true" className={"media-body__mobile-link"}>&nbsp;</a>
 
@@ -46,7 +46,11 @@ function creatorName(item) {
 }
 
 function getItLink(item) {
-    return <div className="catalog-result-item__getit"><a href={item.link}>Find online</a></div>;
+    return <div className="catalog-result-item__getit"><a href={recordLink(item)}>Find online</a></div>;
+}
+
+function physicalAvailability(item) {
+    return <PhysicalAvailability item={item}/>;
 }
 
 function coverImage(item) {

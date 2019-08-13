@@ -1,15 +1,24 @@
 import React from 'react';
 
 function PhysicalAvailability({item}) {
-
     // Physical item, not available on shelf.
-    if (!item.is_avail && !item.getit) {
+    if (! item.available || item.holdings.length === 0) {
         return <div>Not available. <a href={item.link}>Check for more options</a>.</div>
     }
 
-    const availabilities = item.avail.filter(avail => avail.on_shelf).sort(sortLibraries);
 
-    const avail_display = availabilities.length > 0 ? itemAvail(availabilities[0], item.link, availabilities.length) : '';
+    const all_items = [];
+    let holding, avail_items;
+
+    for (let i=0; i < item.holdings.length; i++) {
+        holding = item.holdings[i];
+        avail_items = holding.items.filter(item => item.availability === 'available');
+        Array.prototype.push.apply(all_items, avail_items);
+    }
+
+    const holdings = all_items.sort(sortLibraries);
+
+    const avail_display = holdings.length > 0 ? itemAvail(holdings[0], item.link, holdings.length) : '';
 
     return (
         <ul className='available-items-list'>
@@ -18,16 +27,16 @@ function PhysicalAvailability({item}) {
     )
 }
 
-function itemAvail(availability, link, total) {
-    const availClass = availability.on_shelf ? 'item-info--available' : 'item-info--unavailable';
+function itemAvail(item, link, total) {
+    const availClass = item.availability === 'available' ? 'item-info--available' : 'item-info--unavailable';
     const in_other_libraries = total > 1 ? ' and other libraries' : '';
 
     return (
         <li className={`item-info ${availClass}`}>
             <a href={link}>
-                <span className="item-info__library">Find in {availability.lib_display}</span>
-                <span className="item-info__location">{availability.loc_display}</span>
-                <span className="item-info__callno">({availability.call_number})</span>
+                <span className="item-info__library">Find in {item.libraryDisplay}</span>
+                <span className="item-info__location">{item.location}</span>
+                <span className="item-info__callno">({item.callNumber})</span>
                 <span className="item-info__other-libraries">{in_other_libraries}</span>
             </a>
         </li>
@@ -78,7 +87,7 @@ function getLocationScore(libraryCode, location) {
 }
 
 function sortLibraries(a, b) {
-    return getLocationScore(a.library, a.loc_display) - getLocationScore(b.library, b.loc_display)
+    return getLocationScore(a.library, a.locationCode) - getLocationScore(b.library, b.locationCode)
 }
 
 export default PhysicalAvailability;

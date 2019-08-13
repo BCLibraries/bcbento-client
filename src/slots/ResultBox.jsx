@@ -26,8 +26,8 @@ function ResultBox({render, heading, term, searchString, baseUrl, classPrefix, n
 
     return (
         <div className="bento-results-box">
-            <div className="bento-results-box__header-row"><h3 className="bento-results-box__header">
-                <a href={data.search_url}>{heading}</a></h3>
+            <div className="bento-results-box__header-row"><h2 className="bento-results-box__header">
+                <a href={data.search_url}>{heading}</a></h2>
                 <SeeAllLink url={data.search_url} total={data.total_results} found={data.items.length} term={term}/>
             </div>
             {body}

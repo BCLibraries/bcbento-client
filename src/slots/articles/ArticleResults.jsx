@@ -39,7 +39,7 @@ function ArticleResults({searchString}) {
                     />
                 }
 
-                const results = data.searchArticles.docs.map(doc => <ArticleResult article={doc}/>);
+                const results = data.searchArticles.docs.map(doc => <ArticleResult article={doc} key={`article-${doc.id}`}/>);
 
                 const seeAllLink = (
                     <SeeAllLink

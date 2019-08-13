@@ -7,7 +7,7 @@ import FixBrokenImage from "../../FixBrokenImage";
 function PhysicalVideo({video}) {
     const cover = getCover(video);
 
-    return <li className="physical-video col-md-4">
+    return <div className="physical-video col-md-4">
         <a href={video.link} aria-hidden="true">
             <img src={cover} onError={FixBrokenImage(defaultVHSIcon)} alt="" className={coverClass(video)}/>
         </a>
@@ -26,7 +26,7 @@ function PhysicalVideo({video}) {
 
         <PhysicalAvailability item={video}/>
 
-    </li>
+    </div>
 }
 
 function coverClass(video) {

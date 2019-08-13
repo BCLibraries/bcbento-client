@@ -15,8 +15,28 @@ function BookResults({searchString}) {
       title,
       date,
       type,
+      creator,
       contributors,
-      coverImages
+      coverImages,
+      available,
+      isPhysical,
+      isElectronic,
+      holdings {
+        ilsId,
+        libraryCode,
+        locationDisplay,
+        locationCode,
+        availabilityStatus,
+        callNumber,
+        items {
+          availability,
+          locationCode,
+          location,
+          libraryDisplay,
+          library,
+          callNumber
+          }
+        }
     },   
     didUMean,
     total
@@ -36,10 +56,12 @@ function BookResults({searchString}) {
                     status = 'loading';
                 } else if (error) {
                     status = 'error';
+                } else if (! data.searchCatalog) {
+                    status = 'error';
                 } else if (data.searchCatalog.total === 0) {
                     noResultsMessage = 'There are no results matching your search.';
                 } else {
-                    results = data.searchCatalog.docs.map(doc => <BookResult item={doc}/>);
+                    results = data.searchCatalog.docs.map(doc => <BookResult item={doc} key={`book-${doc.id}`}/>);
                     seeAllLink = (
                         <SeeAllLink
                             term={"item"}

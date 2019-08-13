@@ -6,6 +6,7 @@ import FaqResults from "./slots/faq/FaqResults";
 import LibrarianResults from "./slots/librarians/LibrarianResults";
 import VideoResults from "./slots/video/VideoResults";
 import WebsiteResults from "./slots/website/WebsiteResults";
+import BestBetLookup from "./slots/bestbets/BestBetLookup";
 
 function SearchResults({searchString}) {
     const booksDiv = useRef(null);
@@ -32,6 +33,7 @@ function SearchResults({searchString}) {
         </div>
 
         <div className="bento-results">
+            <BestBetLookup searchString={searchString}/>
 
             <div className="results-row-1 row">
                 <div className="col-md-5 col-sm-12" ref={booksDiv}>
