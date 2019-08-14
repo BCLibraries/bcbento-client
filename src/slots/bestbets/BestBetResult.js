@@ -1,7 +1,6 @@
 import React from "react";
 
 function BestBetResult({bestBet}) {
-    console.log(bestBet);
     const title = bestBet.link ? (
         <a href={bestBet.link}>{bestBet.title}</a>
     ) : (<span>{bestBet.title}</span>);

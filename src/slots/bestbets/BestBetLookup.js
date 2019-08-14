@@ -4,7 +4,6 @@ import {Query} from "react-apollo";
 import BestBetResult from "./BestBetResult";
 
 function BestBetLookup({searchString}) {
-    console.log(`searching for ${searchString}`);
     const graphql = gql`
 {
   bestBet( keyword: "${searchString}") {

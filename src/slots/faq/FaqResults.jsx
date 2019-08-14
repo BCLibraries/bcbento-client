@@ -15,6 +15,7 @@ function FaqResults({searchString}) {
 {
   searchFAQ( keyword: "${searchString}", limit: 3) {
     results {
+      id,
       question,
       url
     },   
@@ -37,7 +38,7 @@ function FaqResults({searchString}) {
                     />
                 }
 
-                const results = data.searchFAQ.results.map(result => <FaqResult result={result}/>);
+                const results = data.searchFAQ.results.map(result => <FaqResult result={result}  key={`answer-${result.id}`}/>);
 
                 const seeAllLink = (
                     <SeeAllLink
