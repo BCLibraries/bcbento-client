@@ -6,7 +6,7 @@ function OnlineVideo({video}) {
     const screen = video.screenCap ? video.screenCap : blankScreen;
     const screenClass = video.screenCap ? 'online-video-thumb__screenshot' : 'online-video-thumb__blank_screen';
 
-    return <div className="online-video col-md-4">
+    return <div className="online-video">
         <a href={watchLink(video)}>
             <div className="online_video__thumb">
                 <img src={screen} alt={`Watch ${video.title} online`} onError={FixBrokenImage(blankScreen)} className={screenClass}/>
@@ -14,7 +14,7 @@ function OnlineVideo({video}) {
         </a>
 
         <h3 className="online-video__media-heading media-heading">
-            <a href={video.link} className="online-video__title">{video.title}</a>
+            <a href={watchLink(video)} className="online-video__title">{video.title}</a>
         </h3>
 
         {video.date}

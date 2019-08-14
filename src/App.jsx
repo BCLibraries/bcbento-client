@@ -9,7 +9,6 @@ const client = new ApolloClient({uri: process.env.REACT_APP_GRAPHQL_ENDPOINT});
 function App({searchBox, searchString}) {
     return (
         <ApolloProvider client={client}>
-            <h2>HERE</h2>
             <div className="bento-results-page">
                 {searchBox}
                 {searchString ? <SearchResults searchString={searchString}/> : <BlankSearchScreen/>}

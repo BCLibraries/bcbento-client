@@ -7,8 +7,8 @@ import FixBrokenImage from "../../FixBrokenImage";
 function PhysicalVideo({video}) {
     const cover = getCover(video);
 
-    return <div className="physical-video col-md-4">
-        <a href={video.link} aria-hidden="true">
+    return <div className="physical-video">
+        <a href={recordLink(video)} aria-hidden="true">
             <img src={cover} onError={FixBrokenImage(defaultVHSIcon)} alt="" className={coverClass(video)}/>
         </a>
 
@@ -58,6 +58,10 @@ function creatorName(video) {
     }
 
     return '';
+}
+
+function recordLink(item) {
+    return `https://bc-primo.hosted.exlibrisgroup.com/primo-explore/fulldisplay?docid=${item.id}&context=L&tab=bcl_only&search_scope=bcl&vid=bclib_new&lang=en_US`;
 }
 
 export default PhysicalVideo;
