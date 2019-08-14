@@ -55,7 +55,7 @@ function physicalAvailability(item) {
 
 function coverImage(item) {
     return <div className="media-right">
-        <a href={item.link} aria-hidden="true">
+        <a href={recordLink(item)} aria-hidden="true">
             <img src={item.coverImages[0].url} alt="" className="cover-image"/>
         </a>
     </div>

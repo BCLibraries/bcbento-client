@@ -16,7 +16,9 @@ function ArticleResults({searchString}) {
       date,
       type,
       contributors,
-      coverImages,
+      coverImages {
+        url
+      },
       isPartOf,
       journalTitle
     },   
