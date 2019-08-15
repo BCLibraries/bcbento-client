@@ -19,7 +19,7 @@ const renderLibrarianList = data => {
 function LibrarianResults({searchString}) {
     return <ResultBox baseUrl={process.env.REACT_APP_LIBRARIANS_SERVICE_URL}
                       classPrefix="librarian"
-                      term="librariabs"
+                      term="librarians"
                       heading="Librarians"
                       noResultsMessage={noResultsMessage}
                       searchString={searchString}
