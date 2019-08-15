@@ -45,7 +45,7 @@ function ArticleResults({searchString}) {
 
                 const seeAllLink = (
                     <SeeAllLink
-                        term={"item"}
+                        term={"articles"}
                         total={data.searchArticles.total}
                         found={data.searchArticles.docs.length}
                         url={searchUrl(searchString)}

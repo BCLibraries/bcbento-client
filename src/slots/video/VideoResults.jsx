@@ -47,7 +47,7 @@ function VideoResults({searchString}) {
                     results = data.searchVideo.docs.map(doc => <VideoResult item={doc} key={`video-${doc.id}`} />);
                     seeAllLink = (
                         <SeeAllLink
-                            term={"item"}
+                            term={"videos"}
                             total={data.searchVideo.total}
                             found={data.searchVideo.docs.length}
                             url={searchUrl(searchString)}

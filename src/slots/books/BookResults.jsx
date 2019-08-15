@@ -66,7 +66,7 @@ function BookResults({searchString}) {
                     results = data.searchCatalog.docs.map(doc => <BookResult item={doc} key={`book-${doc.id}`}/>);
                     seeAllLink = (
                         <SeeAllLink
-                            term={"item"}
+                            term={"items"}
                             total={data.searchCatalog.total}
                             found={data.searchCatalog.docs.length}
                             url={searchUrl(searchString)}

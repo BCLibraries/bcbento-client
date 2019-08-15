@@ -42,7 +42,7 @@ function FaqResults({searchString}) {
 
                 const seeAllLink = (
                     <SeeAllLink
-                        term={"item"}
+                        term={"questions"}
                         total={data.searchFAQ.total}
                         found={data.searchFAQ.results.length}
                         url={data.searchFAQ.searchUrl}
