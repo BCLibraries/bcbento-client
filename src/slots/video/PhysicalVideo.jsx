@@ -9,7 +9,7 @@ function PhysicalVideo({video}) {
 
     return <div className="physical-video">
         <a href={recordLink(video)} aria-hidden="true">
-            <img src={cover} onError={FixBrokenImage(defaultVHSIcon)} alt="" className={coverClass(video)}/>
+            <img src={cover} onLoad={onImageLoad} onError={FixBrokenImage('https://library.bc.edu/images/video-tape.svg')} alt="" className={coverClass(video)}/>
         </a>
 
         <h3 className="physical-video__media-heading media-heading">
@@ -35,7 +35,7 @@ function coverClass(video) {
 
 function getCover(video) {
     if (video.coverImages.length > 0 && video.coverImages[0]) {
-        return String(video.coverImages[0]);
+        return String(video.coverImages[0].url);
     }
 
     switch (video.format) {
@@ -62,6 +62,13 @@ function creatorName(video) {
 
 function recordLink(item) {
     return `https://bc-primo.hosted.exlibrisgroup.com/primo-explore/fulldisplay?docid=${item.id}&context=L&tab=bcl_only&search_scope=bcl&vid=bclib_new&lang=en_US`;
+}
+
+function onImageLoad(event) {
+    console.log(event.target.offsetHeight);
+    if (event.target.offsetHeight === 1) {
+        event.target.src = 'https://library.bc.edu/images/video-tape.svg';
+    }
 }
 
 export default PhysicalVideo;
