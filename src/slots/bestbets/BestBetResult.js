@@ -8,7 +8,7 @@ function BestBetResult({bestBet}) {
 
     return (
         <div className='best-bet-row'>
-            <h3 className='best-bet-row__heading'>Top result</h3>
+            <h2 className='best-bet-row__heading'>Top result</h2>
             <div className='best-bet-result'>
                 <h3 className='best-bet-result__title'>{title}</h3>
                 <div dangerouslySetInnerHTML={{__html: bestBet.displayText}}/>

@@ -1,15 +1,27 @@
 import React from 'react';
-import defaultVHSIcon from './video-tape.svg';
-import defaultDVDIcon from './mono-dvd-mount.svg';
 import PhysicalAvailability from "../PhysicalAvailability";
 import FixBrokenImage from "../../FixBrokenImage";
 
+const defaultVHSIcon = 'https://library.bc.edu/images/video-tape.svg';
+const defaultDVDIcon = 'https://library.bc.edu/images/mono-dvd-mount.svg';
+
+const vhsClass = 'physical-video__vhs-cover',
+    dvdClass = 'physical-video__dvd-cover';
+
+let defaultIcon = defaultVHSIcon;
+let iconClass = vhsClass;
+
 function PhysicalVideo({video}) {
+    if (video.format.includes('disc')) {
+        defaultIcon = defaultDVDIcon;
+        iconClass = dvdClass;
+    }
+
     const cover = getCover(video);
 
     return <div className="physical-video">
         <a href={recordLink(video)} aria-hidden="true">
-            <img src={cover} onLoad={onImageLoad} onError={FixBrokenImage('https://library.bc.edu/images/video-tape.svg')} alt="" className={coverClass(video)}/>
+            <img src={cover} onLoad={onImageLoad} onError={FixBrokenImage(defaultIcon, `physical-video__default_cover ${iconClass}`)} alt="" className={coverClass(video)}/>
         </a>
 
         <h3 className="physical-video__media-heading media-heading">
@@ -30,7 +42,7 @@ function PhysicalVideo({video}) {
 }
 
 function coverClass(video) {
-    return (video.coverImages.length > 0 && video.coverImages[0])  ? 'physical-video__box_cover' : 'physical-video__default_cover';
+    return (video.coverImages.length > 0 && video.coverImages[0]) ? 'physical-video__box_cover' : `physical-video__default_cover  ${iconClass}`;
 }
 
 function getCover(video) {
@@ -38,14 +50,7 @@ function getCover(video) {
         return String(video.coverImages[0].url);
     }
 
-    switch (video.format) {
-        case 'DVD':
-            return defaultDVDIcon;
-        case 'VHS':
-            return defaultVHSIcon;
-        default:
-            return defaultVHSIcon;
-    }
+    return defaultIcon;
 }
 
 function creatorName(video) {
@@ -65,9 +70,9 @@ function recordLink(item) {
 }
 
 function onImageLoad(event) {
-    console.log(event.target.offsetHeight);
-    if (event.target.offsetHeight === 1) {
-        event.target.src = 'https://library.bc.edu/images/video-tape.svg';
+    event.target.className = `physical-video__default_cover ${iconClass}`;
+    if (event.target.naturalHeight === 1) {
+        event.target.src = defaultIcon;
     }
 }
 
