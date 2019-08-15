@@ -4,12 +4,15 @@ import NewResultsBox from "../NewResultsBox";
 import SeeAllLink from "../SeeAllLink";
 import {Query} from "react-apollo";
 import gql from "graphql-tag";
+import CleanGraphqlInput from "../../CleanGraphqlInput";
 
 function BookResults({searchString}) {
 
+    const searchFor = CleanGraphqlInput(searchString);
+
     const graphql = gql`
 {
-  searchCatalog( keyword: "${searchString}", limit: 3) {
+  searchCatalog( keyword: "${searchFor}", limit: 3) {
     docs {
       id,
       title,

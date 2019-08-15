@@ -4,6 +4,7 @@ import {Query} from "react-apollo";
 import NewResultsBox from "../NewResultsBox";
 import SeeAllLink from "../SeeAllLink";
 import gql from "graphql-tag";
+import CleanGraphqlInput from "../../CleanGraphqlInput";
 
 
 const classPrefix = 'faq';
@@ -11,9 +12,11 @@ const heading = 'FAQ';
 
 function FaqResults({searchString}) {
 
+    const searchFor = CleanGraphqlInput(searchString);
+
     const graphql = gql`
 {
-  searchFAQ( keyword: "${searchString}", limit: 3) {
+  searchFAQ( keyword: "${searchFor}", limit: 3) {
     results {
       id,
       question,

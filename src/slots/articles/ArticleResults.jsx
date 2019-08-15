@@ -3,13 +3,16 @@ import ArticleResult from "./ArticleResult";
 import SeeAllLink from "../SeeAllLink";
 import {Query} from "react-apollo";
 import gql from "graphql-tag";
+import CleanGraphqlInput from "../../CleanGraphqlInput";
 import NewResultsBox from "../NewResultsBox";
 
 function ArticleResults({searchString}) {
 
+    const searchFor = CleanGraphqlInput(searchString);
+
     const graphql = gql`
 {
-  searchArticles( keyword: "${searchString}", limit: 3) {
+  searchArticles( keyword: "${searchFor}", limit: 3) {
     docs {
       id,
       title,

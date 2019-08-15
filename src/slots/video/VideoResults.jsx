@@ -4,12 +4,15 @@ import NewResultsBox from "../NewResultsBox";
 import SeeAllLink from "../SeeAllLink";
 import {Query} from "react-apollo";
 import gql from "graphql-tag";
+import CleanGraphqlInput from "../../CleanGraphqlInput";
 
 function VideoResults({searchString}) {
 
+    const searchFor = CleanGraphqlInput(searchString);
+
     const graphql = gql`
 {
-  searchVideo( keyword: "${searchString}", limit: 3) {
+  searchVideo( keyword: "${searchFor}", limit: 3) {
     docs {
       id,
       title,

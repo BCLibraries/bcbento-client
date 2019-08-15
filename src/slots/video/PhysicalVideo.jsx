@@ -25,7 +25,7 @@ function PhysicalVideo({video}) {
         </a>
 
         <h3 className="physical-video__media-heading media-heading">
-            <a href={video.link} className="physical-video__title">
+            <a href={recordLink(video)} className="physical-video__title">
                 {video.title}
             </a>
         </h3>
