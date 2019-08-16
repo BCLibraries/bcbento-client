@@ -1,6 +1,7 @@
 import React from 'react';
-import blankScreen from "./blank-screen.svg";
 import FixBrokenImage from "../../FixBrokenImage";
+
+const blankScreen = 'https://library.bc.edu/images/blank-screen.svg';
 
 function OnlineVideo({video}) {
     const screen = video.screenCap ? video.screenCap : blankScreen;
