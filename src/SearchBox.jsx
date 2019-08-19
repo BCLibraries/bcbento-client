@@ -30,7 +30,7 @@ function SearchBox({handleTyping, searchString, onSubmit}) {
     };
 
     async function fetchSuggestions({value, reason}) {
-        const url = `http://libdev.bc.edu/search-services/typeahead?any=${value}`;
+        const url = `https://library.bc.edu/search-services/typeahead?any=${value}`;
 
         let json = [];
 

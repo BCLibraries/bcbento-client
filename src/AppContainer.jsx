@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import App from "./App";
 import SearchBox from './SearchBox';
+import 'airbnb-js-shims';
 
 function AppContainer() {
     const initialSearchString = getUrlParameter('any');
