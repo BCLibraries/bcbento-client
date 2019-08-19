@@ -94,7 +94,7 @@ function BookResults({searchString}) {
 }
 
 function searchUrl(searchString) {
-    return `https://bc-primo.hosted.exlibrisgroup.com/primo-explore/search?query=any%2Ccontains%2C${searchString}&tab=pci_only&search_scope=pci&vid=bclib_new&lang=en_US&offset=0`;
+    return `https://bc-primo.hosted.exlibrisgroup.com/primo-explore/search?query=any%2Ccontains%2C${searchString}&tab=bcl_only&search_scope=bcl&vid=bclib_new&lang=en_US&offset=0`;
 }
 
 export default BookResults;
