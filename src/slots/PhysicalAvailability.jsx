@@ -3,7 +3,12 @@ import React from 'react';
 function PhysicalAvailability({item}) {
     // Physical item, not available on shelf.
     if (! item.available || item.holdings.length === 0) {
-        return <div>Not available. <a href={recordLink(item)}>Check for more options</a>.</div>
+        console.log(item);
+        const reason = item.available ? 'no holdings' : 'not available';
+        return <div>
+            <h1>{reason}</h1>
+            Not available. <a href={recordLink(item)}>Check for more options</a>.
+        </div>
     }
 
 

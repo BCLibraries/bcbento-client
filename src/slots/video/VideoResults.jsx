@@ -13,19 +13,38 @@ function VideoResults({searchString}) {
     const graphql = gql`
 {
   searchVideo( keyword: "${searchFor}", limit: 3) {
-    docs {
+     docs {
       id,
       title,
       date,
-      type,
       format,
+      type,
+      creator,
       contributors,
-      coverImages {
+      coverImages { 
         url
       },
-      screenCap,
+      available,
+      isPhysical,
       isElectronic,
-      mms
+      screenCap,
+      mms,
+      holdings {
+        ilsId,
+        libraryCode,
+        locationDisplay,
+        locationCode,
+        availabilityStatus,
+        callNumber,
+        items {
+          availability,
+          locationCode,
+          location,
+          libraryDisplay,
+          library,
+          callNumber
+          }
+        }
     },   
     didUMean,
     total
