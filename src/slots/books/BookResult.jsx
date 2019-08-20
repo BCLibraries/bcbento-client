@@ -1,7 +1,12 @@
 import React from 'react';
 import PhysicalAvailability from "../PhysicalAvailability";
+import VideoResult from "../video/VideoResult";
 
 function BookResult({item}) {
+    if (item.isElectronic && item.type === 'Video') {
+        return <VideoResult item={item} inCatalogResult={true}/>;
+    }
+
     const link = recordLink(item);
 
     return <li className="catalog-result-item media">

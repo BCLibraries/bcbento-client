@@ -26,6 +26,8 @@ function BookResults({searchString}) {
       available,
       isPhysical,
       isElectronic,
+      screenCap,
+      mms,
       holdings {
         ilsId,
         libraryCode,
@@ -61,7 +63,7 @@ function BookResults({searchString}) {
                     status = 'loading';
                 } else if (error) {
                     status = 'error';
-                } else if (! data.searchCatalog) {
+                } else if (!data.searchCatalog) {
                     status = 'error';
                 } else if (data.searchCatalog.total === 0) {
                     noResultsMessage = 'There are no results matching your search.';
