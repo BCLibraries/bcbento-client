@@ -21,7 +21,7 @@ function PhysicalVideo({video}) {
 
     return <div className="physical-video">
         <a href={recordLink(video)} aria-hidden="true">
-            <img src={cover} onLoad={onImageLoad} onError={FixBrokenImage(defaultIcon, `physical-video__default_cover ${iconClass}`)} alt="" className={coverClass(video)}/>
+            <img src={cover} onLoad={onImageLoad} onError={FixBrokenImage(defaultIcon, `OPER physical-video__default_cover ${iconClass}`)} alt="" className={coverClass(video)}/>
         </a>
 
         <h3 className="physical-video__media-heading media-heading">
@@ -42,7 +42,7 @@ function PhysicalVideo({video}) {
 }
 
 function coverClass(video) {
-    return (video.coverImages.length > 0 && video.coverImages[0]) ? 'physical-video__box_cover' : `physical-video__default_cover  ${iconClass}`;
+    return (video.coverImages.length > 0 && video.coverImages[0]) ? 'physical-video__box_cover' : `OPER HERE NOW physical-video__default_cover  ${iconClass}`;
 }
 
 function getCover(video) {
@@ -70,8 +70,8 @@ function recordLink(item) {
 }
 
 function onImageLoad(event) {
-    event.target.className = `physical-video__default_cover ${iconClass}`;
     if (event.target.naturalHeight === 1) {
+        event.target.className = `physical-video__default_cover ${iconClass}`;
         event.target.src = defaultIcon;
     }
 }
