@@ -15,7 +15,7 @@ function OnlineVideo({video}) {
         </a>
 
         <h3 className="online-video__media-heading media-heading">
-            <a href={watchLink(video)} className="online-video__title">{video.title}</a>
+            <a href={recordLink(video)} className="online-video__title">{video.title}</a>
         </h3>
 
         {video.date}
@@ -40,6 +40,10 @@ function creatorName(video) {
 
 function watchLink(video) {
     return `https://mlib.bc.edu/reserves-api/items/${video.mms}`;
+}
+
+function recordLink(item) {
+    return `https://bc-primo.hosted.exlibrisgroup.com/primo-explore/fulldisplay?docid=${item.id}&context=L&tab=bcl_only&search_scope=bcl&vid=bclib_new&lang=en_US`;
 }
 
 export default OnlineVideo;
