@@ -36,7 +36,7 @@ function PhysicalVideo({video}) {
 
         {video.format}
 
-        <PhysicalAvailability item={video}/>;
+        <PhysicalAvailability item={video}/>
 
     </div>
 }

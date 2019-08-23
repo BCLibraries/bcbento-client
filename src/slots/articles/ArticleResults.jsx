@@ -5,10 +5,12 @@ import {Query} from "react-apollo";
 import gql from "graphql-tag";
 import CleanGraphqlInput from "../../CleanGraphqlInput";
 import NewResultsBox from "../NewResultsBox";
+import primoSearchURl from "../../PrimoSearchURL";
 
 function ArticleResults({searchString}) {
 
     const searchFor = CleanGraphqlInput(searchString);
+    const searchURL = primoSearchURl(searchString, 'pci_only','pci');
 
     const graphql = gql`
 {
@@ -51,7 +53,7 @@ function ArticleResults({searchString}) {
                         term={"articles"}
                         total={data.searchArticles.total}
                         found={data.searchArticles.docs.length}
-                        url={searchUrl(searchString)}
+                        url={searchURL}
                     />
                 );
 
@@ -60,7 +62,7 @@ function ArticleResults({searchString}) {
                     <NewResultsBox
                         results={results}
                         heading={"Articles"}
-                        searchUrl={searchUrl(searchString)}
+                        searchUrl={searchURL}
                         classPrefix={"articles"}
                         seeAll={seeAllLink}
                     />
@@ -68,10 +70,6 @@ function ArticleResults({searchString}) {
             }}
         </Query>
     );
-}
-
-function searchUrl(searchString) {
-    return `https://bc-primo.hosted.exlibrisgroup.com/primo-explore/search?query=any%2Ccontains%2C${searchString}&tab=bcl_only&search_scope=bcl&vid=bclib_new&lang=en_US&offset=0`;
 }
 
 export default ArticleResults;

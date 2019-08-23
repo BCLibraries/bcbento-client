@@ -5,10 +5,11 @@ import SeeAllLink from "../SeeAllLink";
 import {Query} from "react-apollo";
 import gql from "graphql-tag";
 import CleanGraphqlInput from "../../CleanGraphqlInput";
+import primoSearchUrl from "../../PrimoSearchURL";
 
 function VideoResults({searchString}) {
-
     const searchFor = CleanGraphqlInput(searchString);
+    const searchURL = primoSearchUrl(searchString,'video','VIDEO');
 
     const graphql = gql`
 {
@@ -73,7 +74,7 @@ function VideoResults({searchString}) {
                             term={"videos"}
                             total={data.searchVideo.total}
                             found={data.searchVideo.docs.length}
-                            url={searchUrl(searchString)}
+                            url={searchURL}
                         />
                     );
                 }
@@ -83,7 +84,7 @@ function VideoResults({searchString}) {
                         results={results}
                         heading={"Videos"}
                         status={status}
-                        searchUrl={searchUrl(searchString)}
+                        searchUrl={searchURL}
                         classPrefix={"videos"}
                         noResultsMessage={noResultsMessage}
                         seeAll={seeAllLink}
@@ -92,10 +93,6 @@ function VideoResults({searchString}) {
             }}
         </Query>
     );
-}
-
-function searchUrl(searchString) {
-    return `https://bc-primo.hosted.exlibrisgroup.com/primo-explore/search?query=any,contains,${searchString}&tab=bcl_only&search_scope=bcl&vid=bclib_new&facet=rtype,include,video&lang=en_US&offset=0`;
 }
 
 export default VideoResults;

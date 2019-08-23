@@ -5,10 +5,12 @@ import SeeAllLink from "../SeeAllLink";
 import {Query} from "react-apollo";
 import gql from "graphql-tag";
 import CleanGraphqlInput from "../../CleanGraphqlInput";
+import primoSearchURl from "../../PrimoSearchURL";
 
 function BookResults({searchString}) {
 
     const searchFor = CleanGraphqlInput(searchString);
+    const searchURL = primoSearchURl(searchString, 'bcl_only', 'bcl');
 
     const graphql = gql`
 {
@@ -74,7 +76,7 @@ function BookResults({searchString}) {
                             term={"items"}
                             total={data.searchCatalog.total}
                             found={data.searchCatalog.docs.length}
-                            url={searchUrl(searchString)}
+                            url={searchURL}
                         />
                     );
                 }
@@ -84,7 +86,7 @@ function BookResults({searchString}) {
                         results={results}
                         heading={"Books & more"}
                         status={status}
-                        searchUrl={searchUrl(searchString)}
+                        searchUrl={searchURL}
                         classPrefix={"books"}
                         noResultsMessage={noResultsMessage}
                         seeAll={seeAllLink}
@@ -93,10 +95,6 @@ function BookResults({searchString}) {
             }}
         </Query>
     );
-}
-
-function searchUrl(searchString) {
-    return `https://bc-primo.hosted.exlibrisgroup.com/primo-explore/search?query=any%2Ccontains%2C${searchString}&tab=bcl_only&search_scope=bcl&vid=bclib_new&lang=en_US&offset=0`;
 }
 
 export default BookResults;
