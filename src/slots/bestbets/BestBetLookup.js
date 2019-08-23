@@ -1,22 +1,11 @@
 import React from 'react';
-import gql from "graphql-tag";
 import {Query} from "react-apollo";
 import BestBetResult from "./BestBetResult";
-import CleanGraphqlInput from "../../CleanGraphqlInput";
+import GraphQLQueries from "../../GraphQLQueries";
 
 function BestBetLookup({searchString}) {
-    const searchFor = CleanGraphqlInput(searchString);
-    const graphql = gql`
-{
-  bestBet( keyword: "${searchFor}") {
-      title
-      displayText
-      link
-  }
-}`;
-
     return (
-        <Query query={graphql}>
+        <Query query={GraphQLQueries.forBestBets(searchString)}>
             {({loading, error, data}) => {
                 if (!loading && data && data.bestBet) {
                     return <BestBetResult bestBet={data.bestBet} />;

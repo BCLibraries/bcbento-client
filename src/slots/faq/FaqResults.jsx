@@ -3,31 +3,15 @@ import FaqResult from "./FaqResult";
 import {Query} from "react-apollo";
 import NewResultsBox from "../NewResultsBox";
 import SeeAllLink from "../SeeAllLink";
-import gql from "graphql-tag";
-import CleanGraphqlInput from "../../CleanGraphqlInput";
+import GraphQLQueries from "../../GraphQLQueries";
 
 
 const classPrefix = 'faq';
 const heading = 'FAQ';
 
 function FaqResults({searchString}) {
-
-    const searchFor = CleanGraphqlInput(searchString);
-
-    const graphql = gql`
-{
-  searchFAQ( keyword: "${searchFor}", limit: 3) {
-    results {
-      id,
-      question,
-      url
-    },   
-    searchUrl,
-    total
-  }
-}`;
     return (
-        <Query query={graphql}>
+        <Query query={GraphQLQueries.forFAQ(searchString)}>
             {({loading, error, data}) => {
 
                 if (loading) {

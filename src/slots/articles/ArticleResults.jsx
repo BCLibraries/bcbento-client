@@ -2,37 +2,15 @@ import React from 'react';
 import ArticleResult from "./ArticleResult";
 import SeeAllLink from "../SeeAllLink";
 import {Query} from "react-apollo";
-import gql from "graphql-tag";
-import CleanGraphqlInput from "../../CleanGraphqlInput";
 import NewResultsBox from "../NewResultsBox";
 import primoSearchURl from "../../PrimoSearchURL";
+import GraphQLQueries from "../../GraphQLQueries";
 
 function ArticleResults({searchString}) {
-
-    const searchFor = CleanGraphqlInput(searchString);
     const searchURL = primoSearchURl(searchString, 'pci_only','pci');
 
-    const graphql = gql`
-{
-  searchArticles( keyword: "${searchFor}", limit: 3) {
-    docs {
-      id,
-      title,
-      date,
-      type,
-      contributors,
-      coverImages {
-        url
-      },
-      isPartOf,
-      journalTitle
-    },   
-    didUMean,
-    total
-  }
-}`;
     return (
-        <Query query={graphql}>
+        <Query query={GraphQLQueries.forArticles(searchString)}>
             {({loading, error, data}) => {
 
                 if (loading) {

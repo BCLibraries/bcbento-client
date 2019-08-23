@@ -3,56 +3,14 @@ import BookResult from "./BookResult";
 import NewResultsBox from "../NewResultsBox";
 import SeeAllLink from "../SeeAllLink";
 import {Query} from "react-apollo";
-import gql from "graphql-tag";
-import CleanGraphqlInput from "../../CleanGraphqlInput";
+import GraphQLQueries from "../../GraphQLQueries";
 import primoSearchURl from "../../PrimoSearchURL";
 
 function BookResults({searchString}) {
-
-    const searchFor = CleanGraphqlInput(searchString);
     const searchURL = primoSearchURl(searchString, 'bcl_only', 'bcl');
 
-    const graphql = gql`
-{
-  searchCatalog( keyword: "${searchFor}", limit: 3) {
-    docs {
-      id,
-      title,
-      date,
-      type,
-      creator,
-      contributors,
-      coverImages { 
-        url
-      },
-      available,
-      isPhysical,
-      isElectronic,
-      screenCap,
-      mms,
-      holdings {
-        ilsId,
-        libraryCode,
-        locationDisplay,
-        locationCode,
-        availabilityStatus,
-        callNumber,
-        items {
-          availability,
-          locationCode,
-          location,
-          libraryDisplay,
-          library,
-          callNumber
-          }
-        }
-    },   
-    didUMean,
-    total
-  }
-}`;
     return (
-        <Query query={graphql}>
+        <Query query={GraphQLQueries.forBooksAndMore(searchString)}>
             {({loading, error, data}) => {
 
                 let results = '';

@@ -3,56 +3,14 @@ import VideoResult from "./VideoResult";
 import NewResultsBox from "../NewResultsBox";
 import SeeAllLink from "../SeeAllLink";
 import {Query} from "react-apollo";
-import gql from "graphql-tag";
-import CleanGraphqlInput from "../../CleanGraphqlInput";
 import primoSearchUrl from "../../PrimoSearchURL";
+import GraphQLQueries from "../../GraphQLQueries";
 
 function VideoResults({searchString}) {
-    const searchFor = CleanGraphqlInput(searchString);
     const searchURL = primoSearchUrl(searchString,'video','VIDEO');
 
-    const graphql = gql`
-{
-  searchVideo( keyword: "${searchFor}", limit: 3) {
-     docs {
-      id,
-      title,
-      date,
-      format,
-      type,
-      creator,
-      contributors,
-      coverImages { 
-        url
-      },
-      available,
-      isPhysical,
-      isElectronic,
-      screenCap,
-      mms,
-      holdings {
-        ilsId,
-        libraryCode,
-        locationDisplay,
-        locationCode,
-        availabilityStatus,
-        callNumber,
-        items {
-          availability,
-          locationCode,
-          location,
-          libraryDisplay,
-          library,
-          callNumber
-          }
-        }
-    },   
-    didUMean,
-    total
-  }
-}`;
     return (
-        <Query query={graphql}>
+        <Query query={GraphQLQueries.forVideos(searchString)}>
             {({loading, error, data}) => {
 
                 let results = '';
