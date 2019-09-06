@@ -4,7 +4,9 @@ import Autosuggest from 'react-autosuggest';
 const minTypeaheadLength = 3;
 const getSuggestionValue = suggestion => suggestion.value;
 
-function onSuggestionSelected(event, { suggestion, suggestionValue, suggestionIndex, sectionIndex, method }) {
+const searchBoxId = 'bento-search-box__search-input';
+
+function onSuggestionSelected(event, {suggestion, suggestionValue, suggestionIndex, sectionIndex, method}) {
     const url = window.location.protocol + '//' + window.location.host + window.location.pathname;
     window.location.href = `${url}?any=${suggestionValue}`;
 }
@@ -64,11 +66,15 @@ function SearchBox({handleTyping, searchString, onSubmit}) {
         value,
         onChange: onTyping,
         name: 'any',
+        id: searchBoxId,
         autoFocus: autofocus
     };
 
     return <form method="get" action="." className="bento-search-box">
-        <label htmlFor="bento-search-box__search-input" className="bcbento-search-box__input-label sr-only">Search</label>
+
+        <label htmlFor={searchBoxId} className="bcbento-search-box__input-label sr-only">
+            Enter a search term
+        </label>
         <Autosuggest suggestions={suggestions}
                      onSuggestionsFetchRequested={fetchSuggestions}
                      onSuggestionsClearRequested={clearSuggestions}
@@ -76,7 +82,6 @@ function SearchBox({handleTyping, searchString, onSubmit}) {
                      renderSuggestion={renderSuggestion}
                      onSuggestionSelected={onSuggestionSelected}
                      inputProps={inputProps}
-                     id='bento-search-box__search-input'
 
         />
     </form>

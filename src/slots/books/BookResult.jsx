@@ -30,8 +30,6 @@ function BookResult({item}) {
 
             {item.isPhysical && physicalAvailability(item)}
 
-            <a href={link} aria-hidden="true" className={"media-body__mobile-link"}>&nbsp;</a>
-
         </div>
 
         {item.coverImages.length > 1 && coverImage(item)}
@@ -59,9 +57,10 @@ function physicalAvailability(item) {
 }
 
 function coverImage(item) {
+    const altText = `Catalog record for ${item.title}`;
     return <div className="media-right">
         <a href={recordLink(item)} aria-hidden="true">
-            <img src={item.coverImages[0].url} alt="" className="cover-image"/>
+            <img src={item.coverImages[0].url} alt={altText} className="cover-image"/>
         </a>
     </div>
 }

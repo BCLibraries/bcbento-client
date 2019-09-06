@@ -21,7 +21,7 @@ function NewResultsBox({status, heading, results, classPrefix, seeAll, noResults
     }
 
     return (
-        <div className="bento-results-box">
+        <div className="bento-results-box" aria-live="polite">
             <div className="bento-results-box__header-row">
                 {boxHeading(heading, searchUrl)}
                 {seeAll}
@@ -32,7 +32,7 @@ function NewResultsBox({status, heading, results, classPrefix, seeAll, noResults
 }
 
 function boxHeading(contents, searchUrl = false) {
-    return searchUrl ? (<h2><a href={searchUrl}>{contents}</a></h2>) : (<h3>{contents}</h3>);
+    return searchUrl ? (<h2><a href={searchUrl}>{contents}</a></h2>) : (<h2>{contents}</h2>);
 }
 
 export default NewResultsBox;

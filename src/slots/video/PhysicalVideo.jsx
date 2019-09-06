@@ -19,9 +19,15 @@ function PhysicalVideo({video}) {
 
     const cover = getCover(video);
 
+    const altText = `Catalog record for ${video.title}`;
+
     return <div className="physical-video">
         <a href={recordLink(video)} aria-hidden="true">
-            <img src={cover} onLoad={onImageLoad} onError={FixBrokenImage(defaultIcon, `OPER physical-video__default_cover ${iconClass}`)} alt="" className={coverClass(video)}/>
+            <img src={cover}
+                 onLoad={onImageLoad}
+                 onError={FixBrokenImage(defaultIcon, `OPER physical-video__default_cover ${iconClass}`)}
+                 alt={altText}
+                 className={coverClass(video)}/>
         </a>
 
         <h3 className="physical-video__media-heading media-heading">

@@ -16,7 +16,6 @@ function ArticleResult({article}) {
                 {formatPartOf(article.isPartOf, article.journalTitle)}
             </div>
 
-            <a href={recordLink(article)} aria-hidden="true" className={"media-body__mobile-link"}>&nbsp;</a>
         </div>
     </li>;
 }

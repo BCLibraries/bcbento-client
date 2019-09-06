@@ -13,9 +13,9 @@ function LibrarianResult({librarian}) {
         </div>
 
         <div className="media-body">
-            <h4 className="media-heading">
+            <h3 className="media-heading">
                 <a href={url}>{librarian.name}</a>
-            </h4>
+            </h3>
             <p className="guide-description">{display_subjects}</p>
         </div>
     </li>;

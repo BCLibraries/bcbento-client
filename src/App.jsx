@@ -10,6 +10,7 @@ function App({searchBox, searchString}) {
     return (
         <ApolloProvider client={client}>
             <div className="bento-results-page">
+                <h1 className="sr-only sr-only-focusable" id="main-heading">Search the library</h1>
                 {searchBox}
                 {searchString ? <SearchResults searchString={searchString}/> : <BlankSearchScreen/>}
             </div>
