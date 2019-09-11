@@ -7,6 +7,9 @@ import VideoResults from "./slots/video/VideoResults";
 import WebsiteResults from "./slots/website/WebsiteResults";
 import BestBetLookup from "./slots/bestbets/BestBetLookup";
 import {SkipToLinkBar} from "./SkipToLinkBar";
+import ApolloClient from 'apollo-boost';
+
+const client = new ApolloClient({uri: process.env.REACT_APP_GRAPHQL_ENDPOINT});
 
 function SearchResults({searchString}) {
 
@@ -20,26 +23,27 @@ function SearchResults({searchString}) {
         websiteDiv: useRef(null),
     };
 
+    const resultBoxParams = {searchString, client};
 
     return (
         <div>
             <SkipToLinkBar {...refList} />
 
             <div className="bento-results">
-                <BestBetLookup searchString={searchString}/>
+                <BestBetLookup {...resultBoxParams}/>
 
                 <div className="results-row-1 row">
                     <div className="col-md-5 col-sm-12" ref={refList.booksDiv}>
-                        <BookResults searchString={searchString}/>
+                        <BookResults {...resultBoxParams} />
                     </div>
                     <div className="col-md-5 col-md-offset-1 col-sm-12" ref={refList.articlesDiv}>
-                        <ArticleResults searchString={searchString}/>
+                        <ArticleResults {...resultBoxParams}/>
                     </div>
                 </div>
 
                 <div className="results-row-2 row" ref={refList.faqDiv}>
                     <div className="col-md-7">
-                        <FaqResults searchString={searchString}/>
+                        <FaqResults {...resultBoxParams}/>
                     </div>
                     <div className="col-md-4 col-md-offset-1" ref={refList.librariansDiv}>
                         <LibrarianResults searchString={searchString}/>
@@ -48,7 +52,7 @@ function SearchResults({searchString}) {
 
                 <div className="results-row-3 row" ref={refList.videoDiv}>
                     <div className="col-md-12">
-                        <VideoResults searchString={searchString}/>
+                        <VideoResults {...resultBoxParams}/>
                     </div>
                 </div>
 

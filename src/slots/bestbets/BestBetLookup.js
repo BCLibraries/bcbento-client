@@ -1,20 +1,16 @@
 import React from 'react';
-import {Query} from "react-apollo";
 import BestBetResult from "./BestBetResult";
 import GraphQLQueries from "../../GraphQLQueries";
+import {useQuery} from "@apollo/react-hooks";
 
-function BestBetLookup({searchString}) {
-    return (
-        <Query query={GraphQLQueries.forBestBets(searchString)}>
-            {({loading, error, data}) => {
-                if (!loading && data && data.bestBet) {
-                    return <BestBetResult bestBet={data.bestBet} />;
-                } else {
-                    return null;
-                }
-            }}
-        </Query>
-    );
+function BestBetLookup({searchString, client}) {
+    const {loading, error, data} = useQuery(GraphQLQueries.forBestBets(searchString), {client});
+
+    if (loading || error || !data.bestBet) {
+        return null;
+    }
+
+    return <BestBetResult bestBet={data.bestBet}/>;
 }
 
 export default BestBetLookup;
