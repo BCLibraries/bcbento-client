@@ -125,6 +125,7 @@ function forArticles(searchString) {
       title,
       date,
       type,
+      creator,
       contributors,
       coverImages {
         url
