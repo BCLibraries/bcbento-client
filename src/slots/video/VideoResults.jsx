@@ -2,54 +2,54 @@ import React from 'react';
 import VideoResult from "./VideoResult";
 import NewResultsBox from "../NewResultsBox";
 import SeeAllLink from "../SeeAllLink";
-import {Query} from "react-apollo";
 import primoSearchUrl from "../../PrimoSearchURL";
 import GraphQLQueries from "../../GraphQLQueries";
+import {useQuery} from "@apollo/react-hooks";
 
-function VideoResults({searchString}) {
-    const searchURL = primoSearchUrl(searchString,'video','VIDEO');
+const heading = 'Videos';
+const classPrefix = 'videos';
+
+function VideoResults({searchString, client}) {
+    const searchURL = primoSearchUrl(searchString, 'video', 'VIDEO');
+    const {loading, error, data} = useQuery(GraphQLQueries.forVideos(searchString), {client});
+
+    if (loading) {
+        return (
+            <NewResultsBox heading={heading} classPrefix={classPrefix} status="loading"/>
+        );
+    }
+
+    if (error) {
+        return <NewResultsBox heading={heading} classPrefix={classPrefix} status="error"/>
+    }
+
+    if (data.searchVideo.total === 0) {
+        return <NewResultsBox heading={heading}
+                              classPrefix={classPrefix}
+                              noResultsMessage='There are no results matching your search.'
+        />
+    }
+
+    const results = data.searchVideo.docs.map(doc => <VideoResult item={doc} key={`video-${doc.id}`}/>);
+
+    const seeAllLink = (
+        <SeeAllLink
+            term={"items"}
+            total={data.searchVideo.total}
+            found={data.searchVideo.docs.length}
+            url={searchURL}
+        />
+    );
 
     return (
-        <Query query={GraphQLQueries.forVideos(searchString)}>
-            {({loading, error, data}) => {
-
-                let results = '';
-                let status = 'success';
-                let noResultsMessage = false;
-                let seeAllLink = '';
-
-
-                if (loading) {
-                    status = 'loading';
-                } else if (error) {
-                    status = 'error';
-                } else if (data.searchVideo.total === 0) {
-                    noResultsMessage = 'There are no results matching your search.';
-                } else {
-                    results = data.searchVideo.docs.map(doc => <VideoResult item={doc} key={`video-${doc.id}`} />);
-                    seeAllLink = (
-                        <SeeAllLink
-                            term={"videos"}
-                            total={data.searchVideo.total}
-                            found={data.searchVideo.docs.length}
-                            url={searchURL}
-                        />
-                    );
-                }
-
-                return (
-                    <NewResultsBox
-                        results={results}
-                        heading={"Videos"}
-                        status={status}
-                        searchUrl={searchURL}
-                        classPrefix={"videos"}
-                        noResultsMessage={noResultsMessage}
-                        seeAll={seeAllLink}
-                    />
-                );
-            }}
-        </Query>
+        <NewResultsBox
+            heading={heading}
+            classPrefix={classPrefix}
+            results={results}
+            status={'success'}
+            searchUrl={searchURL}
+            seeAll={seeAllLink}
+        />
     );
 }
 
