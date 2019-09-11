@@ -6,8 +6,10 @@ import GraphQLQueries from "../../GraphQLQueries";
 import primoSearchURl from "../../PrimoSearchURL";
 import {useQuery} from "@apollo/react-hooks";
 
-const heading = 'Books & more';
-const classPrefix = 'books';
+const resultsBoxOptions = {
+    heading: 'Books & more',
+    classPrefix: 'books'
+};
 
 function BookResults({searchString, client}) {
     const searchURL = primoSearchURl(searchString, 'bcl_only', 'bcl');
@@ -15,18 +17,15 @@ function BookResults({searchString, client}) {
     const {loading, error, data} = useQuery(GraphQLQueries.forBooksAndMore(searchString), {client});
 
     if (loading) {
-        return <NewResultsBox heading={heading} status="loading" classPrefix={classPrefix}/>
+        return <NewResultsBox status="loading" {...resultsBoxOptions} />
     }
 
     if (error) {
-        return <NewResultsBox heading={heading} status="error" classPrefix={classPrefix}/>
+        return <NewResultsBox status="error" {...resultsBoxOptions}/>
     }
 
     if (data.searchCatalog.total === 0) {
-        return <NewResultsBox heading={heading}
-                              classPrefix={classPrefix}
-                              noResultsMessage='There are no results matching your search.'
-        />
+        return <NewResultsBox noResultsMessage='There are no results matching your search.' {...resultsBoxOptions}/>
     }
 
     const results = data.searchCatalog.docs.map(doc => <BookResult item={doc} key={`book-${doc.id}`}/>);
@@ -43,11 +42,10 @@ function BookResults({searchString, client}) {
     return (
         <NewResultsBox
             results={results}
-            heading={heading}
             status={'success'}
             searchUrl={searchURL}
-            classPrefix={classPrefix}
             seeAll={seeAllLink}
+            {...resultsBoxOptions}
         />
     );
 }

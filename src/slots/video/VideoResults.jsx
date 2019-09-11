@@ -6,8 +6,10 @@ import primoSearchUrl from "../../PrimoSearchURL";
 import GraphQLQueries from "../../GraphQLQueries";
 import {useQuery} from "@apollo/react-hooks";
 
-const heading = 'Videos';
-const classPrefix = 'videos';
+const resultsBoxOptions = {
+    heading: 'Videos',
+    classPrefix: 'videos'
+};
 
 function VideoResults({searchString, client}) {
     const searchURL = primoSearchUrl(searchString, 'video', 'VIDEO');
@@ -15,19 +17,16 @@ function VideoResults({searchString, client}) {
 
     if (loading) {
         return (
-            <NewResultsBox heading={heading} classPrefix={classPrefix} status="loading"/>
+            <NewResultsBox status="loading" {...resultsBoxOptions}/>
         );
     }
 
     if (error) {
-        return <NewResultsBox heading={heading} classPrefix={classPrefix} status="error"/>
+        return <NewResultsBox status="error" {...resultsBoxOptions} />
     }
 
     if (data.searchVideo.total === 0) {
-        return <NewResultsBox heading={heading}
-                              classPrefix={classPrefix}
-                              noResultsMessage='There are no results matching your search.'
-        />
+        return <NewResultsBox noResultsMessage='There are no results matching your search.' {...resultsBoxOptions} />
     }
 
     const results = data.searchVideo.docs.map(doc => <VideoResult item={doc} key={`video-${doc.id}`}/>);
@@ -43,12 +42,11 @@ function VideoResults({searchString, client}) {
 
     return (
         <NewResultsBox
-            heading={heading}
-            classPrefix={classPrefix}
             results={results}
             status={'success'}
             searchUrl={searchURL}
             seeAll={seeAllLink}
+            {...resultsBoxOptions}
         />
     );
 }

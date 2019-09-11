@@ -5,25 +5,24 @@ import SeeAllLink from "../SeeAllLink";
 import GraphQLQueries from "../../GraphQLQueries";
 import {useQuery} from "@apollo/react-hooks";
 
-const classPrefix = 'faq';
-const heading = 'FAQ';
+const resultsBoxOptions = {
+    heading: 'FAQ',
+    classPrefix: 'faq'
+};
 
 function FaqResults({searchString, client}) {
     const {loading, error, data} = useQuery(GraphQLQueries.forFAQ(searchString), {client});
 
     if (loading) {
-        return <NewResultsBox heading={heading} status="loading" classPrefix={classPrefix}/>
+        return <NewResultsBox status="loading" {...resultsBoxOptions} />
     }
 
     if (error) {
-        return <NewResultsBox heading={heading} status="error" classPrefix={classPrefix}/>
+        return <NewResultsBox status="error" {...resultsBoxOptions} />
     }
 
     if (data.searchFAQ.total === 0) {
-        return <NewResultsBox heading={heading}
-                              classPrefix={classPrefix}
-                              noResultsMessage='There are no results matching your search.'
-        />
+        return <NewResultsBox noResultsMessage='There are no results matching your search.' {...resultsBoxOptions} />
     }
 
     const results = data.searchFAQ.results.map(result =>
@@ -42,10 +41,9 @@ function FaqResults({searchString, client}) {
     return (
         <NewResultsBox
             results={results}
-            heading={heading}
             searchUrl={data.searchFAQ.searchUrl}
-            classPrefix={classPrefix}
             seeAll={seeAllLink}
+            {...resultsBoxOptions}
         />
     );
 }

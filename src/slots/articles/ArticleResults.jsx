@@ -6,23 +6,25 @@ import primoSearchURl from "../../PrimoSearchURL";
 import GraphQLQueries from "../../GraphQLQueries";
 import {useQuery} from "@apollo/react-hooks";
 
+const resultsBoxOptions = {
+    heading: 'Articles',
+    classPrefix: 'articles'
+};
+
 function ArticleResults({searchString, client}) {
     const searchURL = primoSearchURl(searchString, 'pci_only', 'pci');
     const {loading, error, data} = useQuery(GraphQLQueries.forArticles(searchString), {client: client});
 
     if (loading) {
-        return <NewResultsBox heading={"Articles"} status="loading" classPrefix={"articles"}/>
+        return <NewResultsBox status="loading" {...resultsBoxOptions} />
     }
 
     if (error) {
-        return <NewResultsBox heading={"Articles"} status="error" classPrefix={"articles"}/>
+        return <NewResultsBox status="error" {...resultsBoxOptions} />
     }
 
     if (data.searchArticles.total === 0) {
-        return <NewResultsBox heading='Articles'
-                              classPrefix='articles'
-                              noResultsMessage='There are no results matching your search.'
-        />
+        return <NewResultsBox noResultsMessage='There are no results matching your search.' {...resultsBoxOptions} />
     }
 
     const results = data.searchArticles.docs.map(doc => <ArticleResult article={doc} key={`article-${doc.id}`}/>);
@@ -40,10 +42,9 @@ function ArticleResults({searchString, client}) {
     return (
         <NewResultsBox
             results={results}
-            heading={"Articles"}
             searchUrl={searchURL}
-            classPrefix={"articles"}
             seeAll={seeAllLink}
+            {...resultsBoxOptions}
         />
     );
 }
