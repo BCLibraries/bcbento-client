@@ -1,7 +1,7 @@
 import React from 'react';
 import VideoResult from "./VideoResult";
 import primoSearchUrl from "../../PrimoSearchURL";
-import NewerResultsBox from "../NewerResultsBox";
+import NewResultsBox from "../NewResultsBox";
 import {VideosQuery} from "./VideosQuery";
 
 /**
@@ -13,7 +13,7 @@ import {VideosQuery} from "./VideosQuery";
  * @constructor
  */
 function VideoResults({searchString, client}) {
-    return <NewerResultsBox
+    return <NewResultsBox
         client={client}
         heading={'Videos'}
         classPrefix={'videos'}

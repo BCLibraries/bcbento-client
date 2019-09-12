@@ -19,10 +19,12 @@ import ResultList from "./ResultList";
  * @return {*}
  * @constructor
  */
-function NewerResultsBox({client, heading, term, classPrefix, searchUrl, renderResult, query}) {
+function NewResultsBox({client, heading, term, classPrefix, searchUrl, renderResult, query}) {
 
     // Perform GraphQL query
     const {loading, error, data} = useQuery(query.gql, {client});
+
+    console.log('what')
 
     let body;
     let seeAll = '';
@@ -36,7 +38,9 @@ function NewerResultsBox({client, heading, term, classPrefix, searchUrl, renderR
     } else {
 
         // Success! Build response.
-        const docs = data[query.object].docs;
+        const docs = data[query.object].docs ? data[query.object].docs : data[query.object].results;
+        searchUrl = data[query.object].searchUrl ? data[query.object].searchUrl : searchUrl;
+
         body = <ResultList classPrefix={classPrefix} docs={docs} renderResult={renderResult}/>;
         seeAll = <SeeAllLink term={term} total={data[query.object].total} found={docs.length} url={searchUrl}/>;
     }
@@ -61,4 +65,4 @@ function boxHeading(text, searchUrl = false) {
     return searchUrl ? (<h2><a href={searchUrl}>{text}</a></h2>) : (<h2>{text}</h2>);
 }
 
-export default NewerResultsBox;
+export default NewResultsBox;

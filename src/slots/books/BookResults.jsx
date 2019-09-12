@@ -1,6 +1,6 @@
 import React from 'react';
 import BookResult from "./BookResult";
-import NewerResultsBox from "../NewerResultsBox";
+import NewResultsBox from "../NewResultsBox";
 import primoSearchURl from "../../PrimoSearchURL";
 import {BooksAndMoreQuery} from "./BooksAndMoreQuery";
 
@@ -14,7 +14,7 @@ import {BooksAndMoreQuery} from "./BooksAndMoreQuery";
  */
 function BookResults({searchString, client}) {
     return (
-        <NewerResultsBox
+        <NewResultsBox
             client={client}
             heading={'Books & more'}
             classPrefix={'books'}

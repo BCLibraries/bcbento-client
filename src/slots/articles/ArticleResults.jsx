@@ -1,7 +1,7 @@
 import React from 'react';
 import ArticleResult from "./ArticleResult";
 import primoSearchURl from "../../PrimoSearchURL";
-import NewerResultsBox from "../NewerResultsBox";
+import NewResultsBox from "../NewResultsBox";
 import {ArticlesQuery} from "./ArticlesQuery";
 
 /**
@@ -14,7 +14,7 @@ import {ArticlesQuery} from "./ArticlesQuery";
  */
 function ArticleResults({searchString, client}) {
     return (
-        <NewerResultsBox
+        <NewResultsBox
             client={client}
             heading={'Articles'}
             classPrefix={'articles'}
