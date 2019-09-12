@@ -1,9 +1,16 @@
 import React from 'react';
 
-function ErrorBox({header}) {
+/**
+ * Contents of result box after error
+ *
+ * @param heading string Heading for the box (e.g. "Books & more")
+ * @return {*}
+ * @constructor
+ */
+function ErrorBox({heading}) {
     return (
         <div>
-            <h2>{header}</h2>
+            <h2>{heading}</h2>
             <div className="bento-results-box__error-notice">There was an error performing this search.</div>
         </div>
     );

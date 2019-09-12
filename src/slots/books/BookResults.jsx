@@ -1,51 +1,27 @@
 import React from 'react';
 import BookResult from "./BookResult";
-import NewResultsBox from "../NewResultsBox";
-import SeeAllLink from "../SeeAllLink";
-import GraphQLQueries from "../../GraphQLQueries";
+import NewerResultsBox from "../NewerResultsBox";
 import primoSearchURl from "../../PrimoSearchURL";
-import {useQuery} from "@apollo/react-hooks";
+import {BooksAndMoreQuery} from "./BooksAndMoreQuery";
 
-const resultsBoxOptions = {
-    heading: 'Books & more',
-    classPrefix: 'books'
-};
-
+/**
+ * Book results box
+ *
+ * @param searchString string The search string from user input
+ * @param client object GraphQL client
+ * @return {*}
+ * @constructor
+ */
 function BookResults({searchString, client}) {
-    const searchURL = primoSearchURl(searchString, 'bcl_only', 'bcl');
-
-    const {loading, error, data} = useQuery(GraphQLQueries.forBooksAndMore(searchString), {client});
-
-    if (loading) {
-        return <NewResultsBox status="loading" {...resultsBoxOptions} />
-    }
-
-    if (error) {
-        return <NewResultsBox status="error" {...resultsBoxOptions}/>
-    }
-
-    if (data.searchCatalog.total === 0) {
-        return <NewResultsBox noResultsMessage='There are no results matching your search.' {...resultsBoxOptions}/>
-    }
-
-    const results = data.searchCatalog.docs.map(doc => <BookResult item={doc} key={`book-${doc.id}`}/>);
-
-    const seeAllLink = (
-        <SeeAllLink
-            term={"items"}
-            total={data.searchCatalog.total}
-            found={data.searchCatalog.docs.length}
-            url={searchURL}
-        />
-    );
-
     return (
-        <NewResultsBox
-            results={results}
-            status={'success'}
-            searchUrl={searchURL}
-            seeAll={seeAllLink}
-            {...resultsBoxOptions}
+        <NewerResultsBox
+            client={client}
+            heading={'Books & more'}
+            classPrefix={'books'}
+            term={'items'}
+            searchUrl={primoSearchURl(searchString, 'bcl_only', 'bcl')}
+            query={new BooksAndMoreQuery(searchString)}
+            renderResult={doc => <BookResult item={doc} key={`book-${doc.id}`}/>}
         />
     );
 }
