@@ -1,50 +1,27 @@
 import React from 'react';
 import ArticleResult from "./ArticleResult";
-import SeeAllLink from "../SeeAllLink";
-import NewResultsBox from "../NewResultsBox";
 import primoSearchURl from "../../PrimoSearchURL";
-import GraphQLQueries from "../../GraphQLQueries";
-import {useQuery} from "@apollo/react-hooks";
+import NewerResultsBox from "../NewerResultsBox";
+import {ArticlesQuery} from "./ArticlesQuery";
 
-const resultsBoxOptions = {
-    heading: 'Articles',
-    classPrefix: 'articles'
-};
-
+/**
+ * Article results box
+ *
+ * @param searchString string The search string from user input
+ * @param client object GraphQL client
+ * @return {*}
+ * @constructor
+ */
 function ArticleResults({searchString, client}) {
-    const searchURL = primoSearchURl(searchString, 'pci_only', 'pci');
-    const {loading, error, data} = useQuery(GraphQLQueries.forArticles(searchString), {client: client});
-
-    if (loading) {
-        return <NewResultsBox status="loading" {...resultsBoxOptions} />
-    }
-
-    if (error) {
-        return <NewResultsBox status="error" {...resultsBoxOptions} />
-    }
-
-    if (data.searchArticles.total === 0) {
-        return <NewResultsBox noResultsMessage='There are no results matching your search.' {...resultsBoxOptions} />
-    }
-
-    const results = data.searchArticles.docs.map(doc => <ArticleResult article={doc} key={`article-${doc.id}`}/>);
-
-    const seeAllLink = (
-        <SeeAllLink
-            term={"articles"}
-            total={data.searchArticles.total}
-            found={data.searchArticles.docs.length}
-            url={searchURL}
-        />
-    );
-
-
     return (
-        <NewResultsBox
-            results={results}
-            searchUrl={searchURL}
-            seeAll={seeAllLink}
-            {...resultsBoxOptions}
+        <NewerResultsBox
+            client={client}
+            heading={'Articles'}
+            classPrefix={'articles'}
+            term={'articles'}
+            searchUrl={primoSearchURl(searchString, 'pci_only', 'pci')}
+            query={new ArticlesQuery(searchString)}
+            renderResult={doc => <ArticleResult article={doc} key={`article-${doc.id}`}/>}
         />
     );
 }
