@@ -1,7 +1,6 @@
 import React from 'react';
 import BookResult from "./BookResult";
 import NewResultsBox from "../NewResultsBox";
-import primoSearchURl from "../../PrimoSearchURL";
 import {BooksAndMoreQuery} from "./BooksAndMoreQuery";
 
 /**
@@ -19,7 +18,6 @@ function BookResults({searchString, client}) {
             heading={'Books & more'}
             classPrefix={'books'}
             term={'items'}
-            searchUrl={primoSearchURl(searchString, 'bcl_only', 'bcl')}
             query={new BooksAndMoreQuery(searchString)}
             renderResult={doc => <BookResult item={doc} key={`book-${doc.id}`}/>}
         />

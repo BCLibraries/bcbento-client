@@ -19,15 +19,14 @@ import ResultList from "./ResultList";
  * @return {*}
  * @constructor
  */
-function NewResultsBox({client, heading, term, classPrefix, searchUrl, renderResult, query}) {
+function NewResultsBox({client, heading, term, classPrefix, renderResult, query}) {
 
     // Perform GraphQL query
     const {loading, error, data} = useQuery(query.gql, {client});
 
-    console.log('what')
-
     let body;
     let seeAll = '';
+    let searchUrl = '';
 
     if (loading) {
         body = <LoadingBox heading={heading}/>
@@ -39,7 +38,7 @@ function NewResultsBox({client, heading, term, classPrefix, searchUrl, renderRes
 
         // Success! Build response.
         const docs = data[query.object].docs ? data[query.object].docs : data[query.object].results;
-        searchUrl = data[query.object].searchUrl ? data[query.object].searchUrl : searchUrl;
+         searchUrl = data[query.object].searchUrl;
 
         body = <ResultList classPrefix={classPrefix} docs={docs} renderResult={renderResult}/>;
         seeAll = <SeeAllLink term={term} total={data[query.object].total} found={docs.length} url={searchUrl}/>;

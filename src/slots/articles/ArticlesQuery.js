@@ -32,6 +32,7 @@ function forArticles(searchString) {
       isPartOf,
       journalTitle
     },   
+    searchUrl,
     didUMean,
     total
   }

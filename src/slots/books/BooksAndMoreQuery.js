@@ -49,6 +49,7 @@ function forBooksAndMore(searchString) {
           }
         }
     },   
+    searchUrl,
     didUMean,
     total
   }

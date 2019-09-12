@@ -54,6 +54,7 @@ function forVideos(searchString) {
           }
         }
     },   
+    searchUrl,
     didUMean,
     total
   }

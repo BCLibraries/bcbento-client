@@ -1,6 +1,5 @@
 import React from 'react';
 import ArticleResult from "./ArticleResult";
-import primoSearchURl from "../../PrimoSearchURL";
 import NewResultsBox from "../NewResultsBox";
 import {ArticlesQuery} from "./ArticlesQuery";
 
@@ -19,7 +18,6 @@ function ArticleResults({searchString, client}) {
             heading={'Articles'}
             classPrefix={'articles'}
             term={'articles'}
-            searchUrl={primoSearchURl(searchString, 'pci_only', 'pci')}
             query={new ArticlesQuery(searchString)}
             renderResult={doc => <ArticleResult article={doc} key={`article-${doc.id}`}/>}
         />

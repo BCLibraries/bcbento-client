@@ -1,6 +1,5 @@
 import React from 'react';
 import VideoResult from "./VideoResult";
-import primoSearchUrl from "../../PrimoSearchURL";
 import NewResultsBox from "../NewResultsBox";
 import {VideosQuery} from "./VideosQuery";
 
@@ -18,7 +17,6 @@ function VideoResults({searchString, client}) {
         heading={'Videos'}
         classPrefix={'videos'}
         term={'videos'}
-        searchUrl={primoSearchUrl(searchString, 'video', 'VIDEO')}
         query={new VideosQuery(searchString)}
         renderResult={doc => <VideoResult item={doc} key={`video-${doc.id}`}/>}
     />
