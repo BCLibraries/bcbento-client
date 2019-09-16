@@ -1,6 +1,6 @@
 import React from 'react';
 import ArticleResult from "./ArticleResult";
-import NewResultsBox from "../NewResultsBox";
+import NewResultsBoxContainer from "../NewResultsBoxContainer";
 import {ArticlesQuery} from "./ArticlesQuery";
 
 /**
@@ -13,7 +13,7 @@ import {ArticlesQuery} from "./ArticlesQuery";
  */
 function ArticleResults({searchString, client}) {
     return (
-        <NewResultsBox
+        <NewResultsBoxContainer
             client={client}
             heading={'Articles'}
             classPrefix={'articles'}

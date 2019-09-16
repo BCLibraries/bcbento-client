@@ -1,6 +1,6 @@
 import React from 'react';
 import FaqResult from "./FaqResult";
-import NewResultsBox from "../NewResultsBox";
+import NewResultsBoxContainer from "../NewResultsBoxContainer";
 import {FAQQuery} from "./FAQQuery";
 
 /**
@@ -13,7 +13,7 @@ import {FAQQuery} from "./FAQQuery";
  */
 function FaqResults({searchString, client}) {
     return (
-        <NewResultsBox
+        <NewResultsBoxContainer
             client={client}
             heading={'FAQ'}
             classPrefix={'faq'}

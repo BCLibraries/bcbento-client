@@ -1,4 +1,5 @@
 import React from 'react';
+import NewResultsBox from './NewResultsBox';
 
 /**
  * Contents of result box when waiting for results
@@ -9,11 +10,10 @@ import React from 'react';
  */
 function LoadingBox({heading}) {
     return (
-        <div>
-            <h2>{heading}</h2>
-            <div className='bento-results-box__loading-notice'>Loading</div>
-        </div>
-    );
+        <NewResultsBox heading={heading}>
+            <div className='bento-results-box__loading-notice'>Loading...</div>
+        </NewResultsBox>
+    )
 }
 
 export default LoadingBox;

@@ -1,6 +1,6 @@
 import React from 'react';
 import VideoResult from "./VideoResult";
-import NewResultsBox from "../NewResultsBox";
+import NewResultsBoxContainer from "../NewResultsBoxContainer";
 import {VideosQuery} from "./VideosQuery";
 
 /**
@@ -12,7 +12,7 @@ import {VideosQuery} from "./VideosQuery";
  * @constructor
  */
 function VideoResults({searchString, client}) {
-    return <NewResultsBox
+    return <NewResultsBoxContainer
         client={client}
         heading={'Videos'}
         classPrefix={'videos'}
