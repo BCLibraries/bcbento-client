@@ -1,7 +1,8 @@
 import React from 'react';
-import PhysicalAvailability from "../PhysicalAvailability";
+import Availability from "../availability/Availability";
 import VideoResult from "../video/VideoResult";
 import {PrimoRecordLink} from "../PrimoRecordLink";
+import AvailabilityContainer from "../availability/AvailabilityContainer";
 
 function BookResult({item}) {
     if (item.isElectronic && item.type === 'Video') {
@@ -54,7 +55,7 @@ function getItLink(item) {
 }
 
 function physicalAvailability(item) {
-    return <PhysicalAvailability item={item}/>;
+    return <AvailabilityContainer item={item} />;
 }
 
 function coverImage(item) {

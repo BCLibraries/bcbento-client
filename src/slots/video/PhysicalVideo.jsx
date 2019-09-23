@@ -1,7 +1,8 @@
 import React from 'react';
-import PhysicalAvailability from "../PhysicalAvailability";
+import Availability from "../availability/Availability";
 import FixBrokenImage from "../../FixBrokenImage";
 import {PrimoRecordLink} from "../PrimoRecordLink";
+import AvailabilityContainer from "../availability/AvailabilityContainer";
 
 const defaultVHSIcon = 'https://library.bc.edu/images/video-tape.svg';
 const defaultDVDIcon = 'https://library.bc.edu/images/mono-dvd-mount.svg';
@@ -45,7 +46,7 @@ function PhysicalVideo({video}) {
 
         {video.format}
 
-        <PhysicalAvailability item={video}/>
+        <AvailabilityContainer item={video}/>
 
     </div>
 }
