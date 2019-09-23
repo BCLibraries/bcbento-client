@@ -1,5 +1,5 @@
 import React from 'react';
-import NewResultsBox from './NewResultsBox';
+import ResultsBox from './ResultsBox';
 
 /**
  * Contents of result box after error
@@ -10,9 +10,9 @@ import NewResultsBox from './NewResultsBox';
  */
 function ErrorBox({heading}) {
     return (
-        <NewResultsBox heading={heading}>
+        <ResultsBox heading={heading}>
             <div className="bento-results-box__error-notice">There was an error performing this search.</div>
-        </NewResultsBox>
+        </ResultsBox>
     )
 }
 

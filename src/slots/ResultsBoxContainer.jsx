@@ -5,7 +5,7 @@ import LoadingBox from "./LoadingBox";
 import ErrorBox from "./ErrorBox";
 import NoResultsBox from "./NoResultsBox";
 import ResultList from "./ResultList";
-import NewResultsBox from "./NewResultsBox";
+import ResultsBox from "./ResultsBox";
 
 /**
  * Fetch data from GraphQL and render result box
@@ -20,7 +20,7 @@ import NewResultsBox from "./NewResultsBox";
  * @return {*}
  * @constructor
  */
-function NewResultsBoxContainer({client, heading, term, classPrefix, renderResult, query}) {
+function ResultsBoxContainer({client, heading, term, classPrefix, renderResult, query}) {
 
     // Perform GraphQL query
     const {loading, error, data} = useQuery(query.gql, {client});
@@ -44,10 +44,10 @@ function NewResultsBoxContainer({client, heading, term, classPrefix, renderResul
     heading = <a href={searchUrl}>{heading}</a>;
 
     return (
-        <NewResultsBox heading={heading} seeAll={seeAll} searchUrl={searchUrl}>
+        <ResultsBox heading={heading} seeAll={seeAll} searchUrl={searchUrl}>
             <ResultList classPrefix={classPrefix} docs={docs} renderResult={renderResult}/>
-        </NewResultsBox>
+        </ResultsBox>
     )
 }
 
-export default NewResultsBoxContainer;
+export default ResultsBoxContainer;

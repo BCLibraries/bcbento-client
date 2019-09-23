@@ -1,5 +1,5 @@
 import React from 'react';
-import NewResultsBox from './NewResultsBox';
+import ResultsBox from './ResultsBox';
 
 /**
  * Contents of result box when waiting for results
@@ -10,9 +10,9 @@ import NewResultsBox from './NewResultsBox';
  */
 function LoadingBox({heading}) {
     return (
-        <NewResultsBox heading={heading}>
+        <ResultsBox heading={heading}>
             <div className='bento-results-box__loading-notice'>Loading...</div>
-        </NewResultsBox>
+        </ResultsBox>
     )
 }
 

@@ -46,7 +46,7 @@ function SearchResults({searchString}) {
                         <FaqResults {...resultBoxParams}/>
                     </div>
                     <div className="col-md-4 col-md-offset-1" ref={refList.librariansDiv}>
-                        <LibrarianResults searchString={searchString}/>
+                        <LibrarianResults  {...resultBoxParams}/>
                     </div>
                 </div>
 
@@ -58,7 +58,7 @@ function SearchResults({searchString}) {
 
                 <div className="results-row-4 row" ref={refList.websiteDiv}>
                     <div className="col-md-12">
-                        <WebsiteResults searchString={searchString}/>
+                        <WebsiteResults {...resultBoxParams}/>
                     </div>
                 </div>
             </div>

@@ -1,6 +1,6 @@
 import React from 'react';
 import BookResult from "./BookResult";
-import NewResultsBoxContainer from "../NewResultsBoxContainer";
+import ResultsBoxContainer from "../ResultsBoxContainer";
 import {BooksAndMoreQuery} from "./BooksAndMoreQuery";
 
 /**
@@ -13,7 +13,7 @@ import {BooksAndMoreQuery} from "./BooksAndMoreQuery";
  */
 function BookResults({searchString, client}) {
     return (
-        <NewResultsBoxContainer
+        <ResultsBoxContainer
             client={client}
             heading={'Books & more'}
             classPrefix={'books'}

@@ -1,5 +1,5 @@
 import React from 'react';
-import NewResultsBox from './NewResultsBox';
+import ResultsBox from './ResultsBox';
 
 /**
  * Contents of result after no result search
@@ -10,9 +10,9 @@ import NewResultsBox from './NewResultsBox';
  */
 function NoResultsBox({heading}) {
     return (
-        <NewResultsBox heading={heading}>
+        <ResultsBox heading={heading}>
             <div className="bento-results-box__no-results">There are no results matching your search.</div>
-        </NewResultsBox>
+        </ResultsBox>
     )
 
 }

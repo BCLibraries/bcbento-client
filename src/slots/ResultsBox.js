@@ -9,7 +9,7 @@ import React from 'react';
  * @return {*}
  * @constructor
  */
-function NewResultsBox({heading, searchUrl, seeAll, children}) {
+function ResultsBox({heading, searchUrl, seeAll, children}) {
     return (
         <div className="bento-results-box" aria-live="polite">
             <div className="bento-results-box__header-row">
@@ -21,4 +21,4 @@ function NewResultsBox({heading, searchUrl, seeAll, children}) {
     )
 }
 
-export default NewResultsBox;
+export default ResultsBox;

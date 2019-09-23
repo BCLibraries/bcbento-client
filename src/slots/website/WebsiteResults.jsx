@@ -1,23 +1,19 @@
 import React from 'react';
 import WebsiteResult from "./WebsiteResult";
-import ResultBox from "../ResultBox";
+import ResultsBoxContainer from "../ResultsBoxContainer";
+import {WebsiteQuery} from "./WebsiteQuery";
 
-const renderHitList = data => {
+function WebsiteResults({searchString, client}) {
     return (
-        <React.Fragment>
-            {data.items.map((hit) => <WebsiteResult key={hit.url} hit={hit}/>)}
-        </React.Fragment>
+        <ResultsBoxContainer
+            client={client}
+            heading={'Our Website'}
+            classPrefix={'website'}
+            term={'results'}
+            query={new WebsiteQuery(searchString)}
+            renderResult={doc => <WebsiteResult hit={doc} key={`hit-${doc.url}`}/>}
+        />
     );
-};
-
-function WebsiteResults({searchString}) {
-    return <ResultBox baseUrl={process.env.REACT_APP_WEBSITE_SERVICE_URL}
-                      classPrefix="website"
-                      term="results"
-                      heading="Our Website"
-                      searchString={searchString}
-                      render={renderHitList}
-    />;
 }
 
 export default WebsiteResults;
