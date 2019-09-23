@@ -1,13 +1,14 @@
 import React from 'react';
 import PhysicalAvailability from "../PhysicalAvailability";
 import VideoResult from "../video/VideoResult";
+import {PrimoRecordLink} from "../PrimoRecordLink";
 
 function BookResult({item}) {
     if (item.isElectronic && item.type === 'Video') {
         return <VideoResult item={item} inCatalogResult={true}/>;
     }
 
-    const link = recordLink(item);
+    const link = PrimoRecordLink(item);
 
     return <li className="catalog-result-item media">
 
@@ -49,7 +50,7 @@ function creatorName(item) {
 }
 
 function getItLink(item) {
-    return <div className="catalog-result-item__getit"><a href={recordLink(item)}>Find online</a></div>;
+    return <div className="catalog-result-item__getit"><a href={PrimoRecordLink(item)}>Find online</a></div>;
 }
 
 function physicalAvailability(item) {
@@ -59,15 +60,10 @@ function physicalAvailability(item) {
 function coverImage(item) {
     const altText = `Catalog record for ${item.title}`;
     return <div className="media-right">
-        <a href={recordLink(item)} aria-hidden="true">
+        <a href={PrimoRecordLink(item)} aria-hidden="true">
             <img src={item.coverImages[0].url} alt={altText} className="cover-image"/>
         </a>
     </div>
 }
-
-function recordLink(item) {
-    return `https://bc-primo.hosted.exlibrisgroup.com/primo-explore/fulldisplay?docid=${item.id}&context=L&tab=bcl_only&search_scope=bcl&vid=bclib_new&lang=en_US`;
-}
-
 
 export default BookResult;

@@ -1,6 +1,7 @@
 import React from 'react';
 import PhysicalAvailability from "../PhysicalAvailability";
 import FixBrokenImage from "../../FixBrokenImage";
+import {PrimoRecordLink} from "../PrimoRecordLink";
 
 const defaultVHSIcon = 'https://library.bc.edu/images/video-tape.svg';
 const defaultDVDIcon = 'https://library.bc.edu/images/mono-dvd-mount.svg';
@@ -21,8 +22,10 @@ function PhysicalVideo({video}) {
 
     const altText = `Catalog record for ${video.title}`;
 
+    const recordLink = PrimoRecordLink(video);
+
     return <div className="physical-video">
-        <a href={recordLink(video)} aria-hidden="true">
+        <a href={recordLink} aria-hidden="true">
             <img src={cover}
                  onLoad={onImageLoad}
                  onError={FixBrokenImage(defaultIcon, `OPER physical-video__default_cover ${iconClass}`)}
@@ -31,7 +34,7 @@ function PhysicalVideo({video}) {
         </a>
 
         <h3 className="physical-video__media-heading media-heading">
-            <a href={recordLink(video)} className="physical-video__title">
+            <a href={recordLink} className="physical-video__title">
                 {video.title}
             </a>
         </h3>
@@ -69,10 +72,6 @@ function creatorName(video) {
     }
 
     return '';
-}
-
-function recordLink(item) {
-    return `https://bc-primo.hosted.exlibrisgroup.com/primo-explore/fulldisplay?docid=${item.id}&context=L&tab=bcl_only&search_scope=bcl&vid=bclib_new&lang=en_US`;
 }
 
 function onImageLoad(event) {

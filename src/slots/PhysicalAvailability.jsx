@@ -1,10 +1,11 @@
 import React from 'react';
+import {PrimoRecordLink} from "./PrimoRecordLink";
 
 function PhysicalAvailability({item}) {
     // Physical item, not available on shelf.
     if (! item.available || item.holdings.length === 0) {
         return <div>
-            Not available. <a href={recordLink(item)}>Check for more options</a>.
+            Not available. <a href={PrimoRecordLink(item)}>Check for more options</a>.
         </div>
     }
 
@@ -90,10 +91,6 @@ function getLocationScore(libraryCode, location) {
 
 function sortLibraries(a, b) {
     return getLocationScore(a.library, a.locationCode) - getLocationScore(b.library, b.locationCode)
-}
-
-function recordLink(item) {
-    return `https://bc-primo.hosted.exlibrisgroup.com/primo-explore/fulldisplay?docid=${item.id}&context=L&tab=bcl_only&search_scope=bcl&vid=bclib_new&lang=en_US`;
 }
 
 export default PhysicalAvailability;
