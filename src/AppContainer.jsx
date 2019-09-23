@@ -4,29 +4,41 @@ import SearchBox from './SearchBox';
 import 'airbnb-js-shims';
 
 function AppContainer() {
+    // On page load, grab search string from URL 'any' GET parameter.
     const initialSearchString = getUrlParameter('any');
-    document.title = getPageTitle(initialSearchString);
+    setPageTitle(initialSearchString);
 
+    // searchString is the text to be searched for.
     const [searchString, setSearchString] = useState(initialSearchString);
-    const [inputValue, setInputValue] = useState('');
 
-    const handleInput = value => setInputValue(value);
+    // inputText is the text currently in the search box.
+    const [inputText, setInputText] = useState('');
+    const handleTyping = value => setInputText(value);
+
+    // Handle page submits without reloads. Currently all submits have reloads, but this
+    // will eventually be enabled for efficiency.
     const handleSubmit = () => {
-        setSearchString(inputValue);
-        document.title = getPageTitle(searchString);
+        setSearchString(inputText);
+        setPageTitle(searchString);
     };
 
     const searchBox = <SearchBox searchString={searchString}
-                                 handleTyping={handleInput}
+                                 handleTyping={handleTyping}
                                  handleSubmit={handleSubmit}/>;
 
     return <App searchBox={searchBox} searchString={searchString}/>;
 }
 
-function getPageTitle(searchString) {
-    return searchString ? `Search - ${searchString}` : 'Search';
+function setPageTitle(searchString) {
+    document.title = searchString ? `Search - ${searchString}` : 'Search';
 }
 
+/**
+ * Return a GET parameter from a URL query string
+ *
+ * @param name
+ * @return {string}
+ */
 function getUrlParameter(name) {
     name = name.replace(/[[]/, '\\[').replace(/[\]]/, '\\]');
     const regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
