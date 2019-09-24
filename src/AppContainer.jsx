@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import App from "./App";
-import SearchBox from './SearchBox';
+import SearchBoxContainer from './searchbox/SearchBoxContainer';
 import 'airbnb-js-shims';
 
 function AppContainer() {
@@ -22,9 +22,9 @@ function AppContainer() {
         setPageTitle(searchString);
     };
 
-    const searchBox = <SearchBox searchString={searchString}
-                                 handleTyping={handleTyping}
-                                 handleSubmit={handleSubmit}/>;
+    const searchBox = <SearchBoxContainer searchString={searchString}
+                                          handleTyping={handleTyping}
+                                          handleSubmit={handleSubmit}/>;
 
     return <App searchBox={searchBox} searchString={searchString}/>;
 }

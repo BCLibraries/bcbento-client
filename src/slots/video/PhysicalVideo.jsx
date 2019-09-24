@@ -1,5 +1,4 @@
 import React from 'react';
-import Availability from "../availability/Availability";
 import FixBrokenImage from "../../FixBrokenImage";
 import {PrimoRecordLink} from "../PrimoRecordLink";
 import AvailabilityContainer from "../availability/AvailabilityContainer";
