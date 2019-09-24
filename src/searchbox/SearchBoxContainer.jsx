@@ -14,6 +14,15 @@ function onSuggestionSelected(event, {suggestion, suggestionValue, suggestionInd
     window.location.href = `${url}?any=${suggestionValue}`;
 }
 
+/**
+ * Controls search box and typeahead
+ *
+ * @param handleTyping
+ * @param searchString
+ * @param onSubmit
+ * @return {*}
+ * @constructor
+ */
 function SearchBoxContainer({handleTyping, searchString, onSubmit}) {
 
     // suggestions is an array of suggestions, each with the format:
