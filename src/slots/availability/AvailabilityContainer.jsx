@@ -16,8 +16,8 @@ function AvailabilityContainer({item}) {
     const holdings = buildHoldings(item);
     const firstHolding = holdings.length > 0 ? holdings[0] : null;
 
-    if (item.holdings[0].availabilityStatus === 'check_holdings') {
-        return <CheckHoldingsMessage item={item} />
+    if (item.holdings[0] && item.holdings[0].availabilityStatus === 'check_holdings') {
+        return <CheckHoldingsMessage item={item} library={item.holdings[0].libraryCode} location={item.holdings[0].locationDisplay}/>
     } else if (firstHolding) {
         return <Availability firstHolding={firstHolding} inOtherLibraries={holdings.length > 1}/>;
     } else {
