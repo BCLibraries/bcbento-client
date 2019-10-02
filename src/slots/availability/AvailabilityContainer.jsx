@@ -1,5 +1,6 @@
 import React from 'react';
 import NotAvailableMessage from "./NotAvailableMessage";
+import CheckHoldingsMessage from "./CheckHoldingsMessage";
 import Availability from "./Availability";
 
 /**
@@ -15,7 +16,9 @@ function AvailabilityContainer({item}) {
     const holdings = buildHoldings(item);
     const firstHolding = holdings.length > 0 ? holdings[0] : null;
 
-    if (firstHolding) {
+    if (item.holdings[0].availabilityStatus === 'check_holdings') {
+        return <CheckHoldingsMessage item={item} />
+    } else if (firstHolding) {
         return <Availability firstHolding={firstHolding} inOtherLibraries={holdings.length > 1}/>;
     } else {
         return <NotAvailableMessage item={item}/>;
