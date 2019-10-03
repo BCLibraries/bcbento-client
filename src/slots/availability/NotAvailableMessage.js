@@ -10,7 +10,7 @@ import React from "react";
  */
 function NotAvailableMessage({item}) {
     return (
-        <div>
+        <div className="item-info item-info--unavailable">
             Not available. <a href={PrimoRecordLink(item)}>Check for more options</a>.
         </div>
     )

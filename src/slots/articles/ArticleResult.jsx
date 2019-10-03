@@ -5,7 +5,7 @@ function ArticleResult({article}) {
     return <li className="article-result-item media">
         <div className="media-body">
             <h3 className="article-result-item__media-heading media-heading">
-                <a href={PrimoRecordLink(article)} className="article-result-item__title">
+                <a href={PrimoRecordLink(article, true)} className="article-result-item__title" target="_blank" rel="noreferrer noopener">
                     {article.title}
                 </a>
             </h3>

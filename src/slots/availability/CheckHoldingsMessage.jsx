@@ -3,8 +3,10 @@ import React from "react";
 
 function checkHoldingsMessage({item, library, location}) {
     return (
-        <div>
-            <a href={PrimoRecordLink(item)}>Check "Find in Library"</a>
+        <div className="item-info item-info--check-holdings">
+            <span className="item-info__instructions">
+                <a href={PrimoRecordLink(item, false)}>Check "Find in Library"</a>
+            </span>
             <span className="item-info__library">{library}</span>
             <span className="item-info__location">{location}</span>.
         </div>

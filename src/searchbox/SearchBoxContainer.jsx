@@ -10,8 +10,10 @@ const searchBoxId = 'bento-search-box__search-input';
 // Called when a suggestion in the typeahead box is selected. Redirects page to
 // new search with the selected value as keyword.
 function onSuggestionSelected(event, {suggestion, suggestionValue, suggestionIndex, sectionIndex, method}) {
-    const url = window.location.protocol + '//' + window.location.host + window.location.pathname;
-    window.location.href = `${url}?any=${suggestionValue}`;
+    if (suggestionValue) {
+        const url = window.location.protocol + '//' + window.location.host + window.location.pathname.replace(/\/$/, "");
+        window.location.href = `${url}?any=${suggestionValue}`;
+    }
 }
 
 /**
