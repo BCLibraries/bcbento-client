@@ -22,32 +22,36 @@ import ResultsBox from "./ResultsBox";
  */
 function ResultsBoxContainer({client, heading, term, classPrefix, renderResult, query}) {
 
-    // Perform GraphQL query
-    const {loading, error, data} = useQuery(query.gql, {client});
+    try {
+        // Perform GraphQL query
+        const {loading, error, data} = useQuery(query.gql, {client});
 
-    if (loading) {
-        return <LoadingBox heading={heading}/>
-    }
+        if (loading) {
+            return <LoadingBox heading={heading}/>
+        }
 
-    if (error) {
+        if (error) {
+            return <ErrorBox heading={heading}/>
+        }
+
+        if (data[query.object].total === 0) {
+            return <NoResultsBox heading={heading}/>
+        }
+
+        // Success! Build response.
+        const docs = data[query.object].docs ? data[query.object].docs : data[query.object].results;
+        const searchUrl = data[query.object].searchUrl;
+        const seeAll = <SeeAllLink term={term} total={data[query.object].total} found={docs.length} url={searchUrl}/>;
+        heading = <a href={searchUrl}>{heading}</a>;
+
+        return (
+            <ResultsBox heading={heading} seeAll={seeAll} searchUrl={searchUrl}>
+                <ResultList classPrefix={classPrefix} docs={docs} renderResult={renderResult}/>
+            </ResultsBox>
+        )
+    } catch (err) {
         return <ErrorBox heading={heading}/>
     }
-
-    if (data[query.object].total === 0) {
-        return <NoResultsBox heading={heading}/>
-    }
-
-    // Success! Build response.
-    const docs = data[query.object].docs ? data[query.object].docs : data[query.object].results;
-    const searchUrl = data[query.object].searchUrl;
-    const seeAll = <SeeAllLink term={term} total={data[query.object].total} found={docs.length} url={searchUrl}/>;
-    heading = <a href={searchUrl}>{heading}</a>;
-
-    return (
-        <ResultsBox heading={heading} seeAll={seeAll} searchUrl={searchUrl}>
-            <ResultList classPrefix={classPrefix} docs={docs} renderResult={renderResult}/>
-        </ResultsBox>
-    )
 }
 
 export default ResultsBoxContainer;
