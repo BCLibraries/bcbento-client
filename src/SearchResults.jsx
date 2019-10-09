@@ -7,7 +7,9 @@ import VideoResults from "./slots/video/VideoResults";
 import WebsiteResults from "./slots/website/WebsiteResults";
 import BestBetLookup from "./slots/bestbets/BestBetLookup";
 import {SkipToLinkBar} from "./SkipToLinkBar";
-import {apolloClient} from "./ApolloClientFactory";
+import ApolloClient from 'apollo-boost';
+
+const client = new ApolloClient({uri: process.env.REACT_APP_GRAPHQL_ENDPOINT});
 
 function SearchResults({searchString}) {
 
@@ -21,7 +23,7 @@ function SearchResults({searchString}) {
         websiteDiv: useRef(null),
     };
 
-    const resultBoxParams = {searchString, client: apolloClient};
+    const resultBoxParams = {searchString, client};
 
     return (
         <div>
