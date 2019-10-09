@@ -1,0 +1,45 @@
+{
+  "__schema": {
+    "types": [
+      {
+        "kind": "INTERFACE",
+        "name": "BestBetInterface",
+        "possibleTypes": [
+          {
+            "name": "BestBet"
+          },
+          {
+            "name": "CitationBestBet"
+          },
+          {
+            "name": "LocalBestBet"
+          }
+        ]
+      },
+      {
+        "kind": "INTERFACE",
+        "name": "SearchResponseInterface",
+        "possibleTypes": [
+          {
+            "name": "CatalogSearchResponse"
+          },
+          {
+            "name": "SearchResponse"
+          }
+        ]
+      },
+      {
+        "kind": "INTERFACE",
+        "name": "DocInterface",
+        "possibleTypes": [
+          {
+            "name": "CatalogItem"
+          },
+          {
+            "name": "Doc"
+          }
+        ]
+      }
+    ]
+  }
+}
