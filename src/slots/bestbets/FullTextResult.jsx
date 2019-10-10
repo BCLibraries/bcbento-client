@@ -3,7 +3,6 @@ import React from "react";
 // Styles. Move to CSS file eventually.
 const buttonStyle = {
     display: 'block',
-    marginBottom: '-40px'
 };
 
 const publicationStyle = {

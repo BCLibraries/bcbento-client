@@ -1,8 +1,12 @@
 import React, {useState} from 'react';
 import SearchBox from './SearchBox';
+import LargeSearchBox from "./LargeSearchBox";
 
 // Minimum length of input string before typeahead is activated.
 const minTypeaheadLength = 3;
+
+// How big should a text input be before enlarging the search box?
+const minLargeSearchBoxLength = 30;
 
 // Id of the search box <input> element.
 const searchBoxId = 'bento-search-box__search-input';
@@ -38,6 +42,8 @@ function SearchBoxContainer({handleTyping, searchString, onSubmit}) {
 
     // value is the text value of the search box <input> element.
     const [value, setValue] = useState(searchString);
+
+    const largeSearchBox = value.length > minLargeSearchBoxLength;
 
     // Called after each keypress in the typeahead box.
     const onTyping = (event, {newValue, method}) => {
@@ -100,6 +106,9 @@ function SearchBoxContainer({handleTyping, searchString, onSubmit}) {
         inputProps
     };
 
+    if (largeSearchBox) {
+        return <LargeSearchBox onTyping={onTyping} searchBoxId={searchBoxId} value={value} />
+    }
     return <SearchBox {...props} />
 }
 
