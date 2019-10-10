@@ -7,7 +7,7 @@ import {CSSTransition} from "react-transition-group";
 const minTypeaheadLength = 3;
 
 // How big should a text input be before enlarging the search box?
-const minLargeSearchBoxLength = 40;
+const minLargeSearchBoxLength = 50;
 
 // Id of the search box <input> element.
 const searchBoxId = 'bento-search-box__search-input';
@@ -44,7 +44,12 @@ function SearchBoxContainer({handleTyping, searchString, onSubmit}) {
     // value is the text value of the search box <input> element.
     const [value, setValue] = useState(searchString);
 
-    const largeSearchBox = value.length > minLargeSearchBoxLength;
+    // Use text area when input is long.
+    const useTextArea = value.length >= minLargeSearchBoxLength;
+
+    // Tipping point for transition animation. Should be one character larger than text area threshold for
+    // smooth animation.
+    const useLarge = value.length > minLargeSearchBoxLength;
 
     // Called after each keypress in the typeahead box.
     const onTyping = (event, {newValue, method}) => {
@@ -98,7 +103,7 @@ function SearchBoxContainer({handleTyping, searchString, onSubmit}) {
         autoFocus
     };
 
-    const props = {
+    const smallBoxProps = {
         searchBoxId,
         suggestions,
         fetchSuggestions,
@@ -107,15 +112,18 @@ function SearchBoxContainer({handleTyping, searchString, onSubmit}) {
         inputProps
     };
 
-    const searchBox = largeSearchBox ? <LargeSearchBox onTyping={onTyping} searchBoxId={searchBoxId} value={value}/> :
-        <SearchBox {...props} />;
+    const largeBoxProps = {
+        onTyping,
+        searchBoxId,
+        value
+    };
+
+    const searchBox = useTextArea ? <LargeSearchBox {...largeBoxProps}/> : <SearchBox {...smallBoxProps} />;
 
     return <CSSTransition
-        in={largeSearchBox}
-        timeout={1000}
-        classNames="my-node"
-        onEnter={f => console.log('in here')}
-    >
+        in={useLarge}
+        timeout={200}
+        classNames="searchbox-animate">
         {searchBox}
     </CSSTransition>
 }

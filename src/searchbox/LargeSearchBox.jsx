@@ -9,8 +9,6 @@ function LargeSearchBox({searchBoxId, onTyping, value}) {
         event.target.selectionStart = value.length
     }
 
-    console.log('is loaded');
-
     return (
         <textarea
             id={searchBoxId}
