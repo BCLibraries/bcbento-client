@@ -9,14 +9,18 @@ function LargeSearchBox({searchBoxId, onTyping, value}) {
         event.target.selectionStart = value.length
     }
 
-    return <textarea
-        id={searchBoxId}
-        value={value}
-        onChange={handleChange}
-        onFocus={moveCursorToEnd}
-        name="any"
-        autoFocus
-    />;
+    console.log('is loaded');
+
+    return (
+        <textarea
+            id={searchBoxId}
+            value={value}
+            onChange={handleChange}
+            onFocus={moveCursorToEnd}
+            name="any"
+            autoFocus
+        />
+    );
 }
 
 export default LargeSearchBox;

@@ -1,12 +1,13 @@
 import React, {useState} from 'react';
 import SearchBox from './SearchBox';
 import LargeSearchBox from "./LargeSearchBox";
+import {CSSTransition} from "react-transition-group";
 
 // Minimum length of input string before typeahead is activated.
 const minTypeaheadLength = 3;
 
 // How big should a text input be before enlarging the search box?
-const minLargeSearchBoxLength = 30;
+const minLargeSearchBoxLength = 40;
 
 // Id of the search box <input> element.
 const searchBoxId = 'bento-search-box__search-input';
@@ -106,10 +107,17 @@ function SearchBoxContainer({handleTyping, searchString, onSubmit}) {
         inputProps
     };
 
-    if (largeSearchBox) {
-        return <LargeSearchBox onTyping={onTyping} searchBoxId={searchBoxId} value={value} />
-    }
-    return <SearchBox {...props} />
+    const searchBox = largeSearchBox ? <LargeSearchBox onTyping={onTyping} searchBoxId={searchBoxId} value={value}/> :
+        <SearchBox {...props} />;
+
+    return <CSSTransition
+        in={largeSearchBox}
+        timeout={1000}
+        classNames="my-node"
+        onEnter={f => console.log('in here')}
+    >
+        {searchBox}
+    </CSSTransition>
 }
 
 export default SearchBoxContainer;
