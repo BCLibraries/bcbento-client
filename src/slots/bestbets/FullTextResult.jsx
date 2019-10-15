@@ -42,6 +42,7 @@ function FullTextResult({crossref, libKey}) {
             <h2 className='best-bet-row__heading'>Top result</h2>
             <div className='best-bet-result'>
                 <h3 className='best-bet-result__title'><a href={link}>{title}</a></h3>
+                {buildAuthors(crossref.authors)}
                 <p className='best-bet-result__publication' style={publicationStyle}>
                     {containerTitle} {date} {issueInfo}
                 </p>
@@ -63,7 +64,27 @@ function buildContainerTitle(containerTitles) {
     return null;
 }
 
+function buildAuthors(authors) {
+    if (authors === undefined || authors.length === 0) {
+        return '';
+    }
+
+    const originalLength = authors.length;
+    authors = authors.slice(0,4);
+
+    const fullNames = authors.map(auth => `${auth.familyName}, ${auth.givenName}`);
+    if (originalLength > 4) {
+        fullNames.push('et. al.');
+    }
+
+    return  <h4 className="best-bet-result__author">{fullNames.join('; ')}</h4>;
+}
+
 function buildDate(dateData) {
+    if (dateData === undefined) {
+        return '';
+    }
+
     const datePartCount = dateData.length;
 
     if (datePartCount === 0) {
