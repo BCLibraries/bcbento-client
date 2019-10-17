@@ -49,7 +49,7 @@ function SearchBoxContainer({handleTyping, searchString, onSubmit}) {
 
     // Tipping point for transition animation. Should be one character larger than text area threshold for
     // smooth animation.
-    const useLarge = value.length > minLargeSearchBoxLength;
+    const useLarge = value.length >= minLargeSearchBoxLength;
 
     // Called after each keypress in the typeahead box.
     const onTyping = (event, {newValue, method}) => {
