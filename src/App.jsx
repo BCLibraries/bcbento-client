@@ -8,7 +8,10 @@ function App({searchBox, searchString}) {
             <h1 className="sr-only sr-only-focusable" id="main-heading">Search the library</h1>
             <form method="get" action={window.location.pathname} className="bento-search-box">
                 {searchBox}
-                <input type="submit" value="Search"/>
+                <button className="btn btn-default" type="submit">
+                    <i className="fa fa-search" aria-hidden="true"/>
+                    <span className="search-button-text">Search</span>
+                </button>
             </form>
             {searchString ? <SearchResults searchString={searchString}/> : <BlankSearchScreen/>}
         </div>

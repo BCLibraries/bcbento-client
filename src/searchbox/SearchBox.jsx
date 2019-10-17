@@ -23,7 +23,7 @@ function SearchBox({searchBoxId, suggestions, fetchSuggestions, clearSuggestions
     );
 
     return (
-        <div>
+        <div className="bcbento-search-box">
             <label htmlFor={searchBoxId} className="bcbento-search-box__input-label sr-only">
                 Enter a search term please
             </label>
