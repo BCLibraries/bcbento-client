@@ -103,7 +103,7 @@ function buildDate(dateData) {
         return `${month} ${year},`;
     }
 
-    return `${month} ${year} ${datePartCount[2]},`;
+    return `${month} ${year} ${dateData[2]},`;
 }
 
 function buildIssue(volume, issue, page) {
