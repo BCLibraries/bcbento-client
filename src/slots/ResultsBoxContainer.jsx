@@ -20,7 +20,7 @@ import ResultsBox from "./ResultsBox";
  * @return {*}
  * @constructor
  */
-function ResultsBoxContainer({client, heading, term, classPrefix, renderResult, query}) {
+function ResultsBoxContainer({client, heading, term, classPrefix, renderResult, query, noResultsContent = 'There are no results matching your search.'}) {
 
     try {
         // Perform GraphQL query
@@ -35,7 +35,7 @@ function ResultsBoxContainer({client, heading, term, classPrefix, renderResult, 
         }
 
         if (data[query.object].total === 0) {
-            return <NoResultsBox heading={heading}/>
+            return <NoResultsBox heading={heading} content={noResultsContent}/>
         }
 
         // Success! Build response.
