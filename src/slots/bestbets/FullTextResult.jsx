@@ -1,19 +1,5 @@
 import React from "react";
 
-// Styles. Move to CSS file eventually.
-const buttonStyle = {
-    display: 'block',
-};
-
-const publicationStyle = {
-    fontSize: '14px'
-};
-
-const doiStyle = {
-    color: '#44555F',
-    fontSize: '13px'
-};
-
 // Map month numbers to strings.
 const months = [
     'January',
@@ -43,11 +29,11 @@ function FullTextResult({crossref, libKey}) {
             <div className='best-bet-result'>
                 <h3 className='best-bet-result__title'><a href={link}>{title}</a></h3>
                 {buildAuthors(crossref.authors)}
-                <p className='best-bet-result__publication' style={publicationStyle}>
+                <p className='best-bet-result__publication'>
                     {containerTitle} {date} {issueInfo}
                 </p>
-                <p className='best-bet-result__doi' style={doiStyle}>doi:{crossref.DOI}</p>
-                <a href={link} style={buttonStyle} className="pull-right btn btn-primary">Read</a>
+                <p className='best-bet-result__doi'>doi:{crossref.DOI}</p>
+                <a href={link} className="pull-right btn btn-primary">Read</a>
             </div>
         </div>
     );
