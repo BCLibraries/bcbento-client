@@ -6,12 +6,13 @@ import {ArticlesQuery} from "./ArticlesQuery";
 /**
  * Article results box
  *
- * @param searchString string The search string from user input
- * @param client object GraphQL client
+ * @param {string} searchString  The search string from user input
+ * @param {object} client GraphQL client
+ * @param {function} handleFetch Called when new results are fetched
  * @return {*}
  * @constructor
  */
-function ArticleResults({searchString, client}) {
+function ArticleResults({searchString, client, handleFetch}) {
     return (
         <ResultsBoxContainer
             client={client}
@@ -20,6 +21,7 @@ function ArticleResults({searchString, client}) {
             term={'articles'}
             query={new ArticlesQuery(searchString)}
             renderResult={doc => <ArticleResult article={doc} key={`article-${doc.id}`}/>}
+            handleFetch={handleFetch}
         />
     );
 }

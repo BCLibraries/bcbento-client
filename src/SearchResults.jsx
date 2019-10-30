@@ -1,4 +1,4 @@
-import React, {useRef} from 'react';
+import React, {useRef, useState} from 'react';
 import BookResults from "./slots/books/BookResults";
 import ArticleResults from "./slots/articles/ArticleResults";
 import FaqResults from "./slots/faq/FaqResults";
@@ -10,6 +10,9 @@ import {SkipToLinkBar} from "./SkipToLinkBar";
 import {apolloClient} from "./ApolloClientFactory";
 
 function SearchResults({searchString}) {
+
+    // Store article results state here to share with BestBetLookup.
+    const [articleResults, setArticleResults] = useState(null);
 
     // Get references to search result boxes for linking in the skip to bar.
     const refList = {
@@ -28,14 +31,14 @@ function SearchResults({searchString}) {
             <SkipToLinkBar {...refList} />
 
             <div className="bento-results">
-                <BestBetLookup {...resultBoxParams}/>
+                <BestBetLookup {...resultBoxParams} articleResults={articleResults}/>
 
                 <div className="results-row-1 row">
                     <div className="col-md-5 col-sm-12" ref={refList.booksDiv}>
                         <BookResults {...resultBoxParams} />
                     </div>
                     <div className="col-md-5 col-md-offset-1 col-sm-12" ref={refList.articlesDiv}>
-                        <ArticleResults {...resultBoxParams}/>
+                        <ArticleResults {...resultBoxParams} handleFetch={setArticleResults}/>
                     </div>
                 </div>
 

@@ -20,7 +20,7 @@ import ResultsBox from "./ResultsBox";
  * @return {*}
  * @constructor
  */
-function ResultsBoxContainer({client, heading, term, classPrefix, renderResult, query, noResultsContent = 'There are no results matching your search.'}) {
+function ResultsBoxContainer({client, heading, term, classPrefix, renderResult, query, noResultsContent = 'There are no results matching your search.', handleFetch}) {
 
     try {
         // Perform GraphQL query
@@ -40,6 +40,7 @@ function ResultsBoxContainer({client, heading, term, classPrefix, renderResult, 
 
         // Success! Build response.
         const docs = data[query.object].docs ? data[query.object].docs : data[query.object].results;
+        if (handleFetch) {handleFetch(docs);}
         const searchUrl = data[query.object].searchUrl;
         const seeAll = <SeeAllLink term={term} total={data[query.object].total} found={docs.length} url={searchUrl}/>;
         heading = <a href={searchUrl}>{heading}</a>;

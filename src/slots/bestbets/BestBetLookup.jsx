@@ -5,10 +5,11 @@ import {useQuery} from "@apollo/react-hooks";
 import {cleanGraphQLInput} from "../cleanGraphQLInput";
 import FullTextResult from "./FullTextResult";
 
-function BestBetLookup({searchString, client}) {
+function BestBetLookup({searchString, client, articleResults}) {
     const {loading, error, data} = useQuery(forBestBets(searchString), {client});
 
-    if (loading || error || !data.bestBet) {
+    // Don't display a best bet if we don't have a best bet or if we haven't gotten our articleResults back yet.
+    if (loading || error || !data.bestBet || !articleResults) {
         return null;
     }
 
@@ -16,7 +17,12 @@ function BestBetLookup({searchString, client}) {
         return <BestBetResult bestBet={data.bestBet}/>;
     }
 
-    return <FullTextResult crossref={data.bestBet.fullText.crossRefData} libKey={data.bestBet.fullText.libKeyData}/>;
+    // If there is a fullText best bet and it is not a review, display it.
+    if (data.bestBet.fullText && !doiIsReview(data.bestBet.fullText.crossRefData.DOI, articleResults)) {
+        return <FullTextResult crossref={data.bestBet.fullText.crossRefData} libKey={data.bestBet.fullText.libKeyData}/>;
+    }
+
+    return null;
 }
 
 /**
@@ -59,6 +65,28 @@ function forBestBets(searchString) {
     }
   }
 }`
+}
+
+/**
+ * Is the DOI a review?
+ *
+ * @param {string} fullTextDOI
+ * @param {Object[]} articleRecords
+ * @param {string} articleRecords[].doi
+ */
+function doiIsReview(fullTextDOI, articleRecords) {
+    // Look through the article results for matching DOIs that are reviews.
+    let isReview = false;
+    fullTextDOI = fullTextDOI.toLowerCase();
+
+    articleRecords.forEach(article => {
+        const articleDOI = article.dOI ? article.dOI.toLowerCase() : '';
+        if (fullTextDOI === articleDOI && article.type === 'review') {
+            isReview = true;
+        }
+    });
+
+    return isReview;
 }
 
 export default BestBetLookup;
