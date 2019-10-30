@@ -1,5 +1,6 @@
 import React from 'react';
 import {PrimoRecordLink} from "../PrimoRecordLink";
+import BrowzineBadge from './BrowzineBadge';
 
 function ArticleResult({article}) {
     return <li className="article-result-item media">
@@ -16,6 +17,8 @@ function ArticleResult({article}) {
             <div className="article-result-item__publisher">
                 {formatPartOf(article.isPartOf, article.journalTitle)}
             </div>
+
+            {article.libkeyAvailability && <BrowzineBadge libkeyAvailability={article.libkeyAvailability}/>}
 
         </div>
     </li>;

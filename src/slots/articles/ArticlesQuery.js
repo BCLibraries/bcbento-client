@@ -24,6 +24,7 @@ function forArticles(searchString) {
       title,
       date,
       type,
+      dOI,
       creator,
       contributors,
       coverImages {
@@ -31,6 +32,16 @@ function forArticles(searchString) {
       },
       isPartOf,
       journalTitle
+            libkeyAvailability {
+        fullTextFile
+        contentLocation
+        availableThroughBrowzine
+        browzineWebLink
+        journals {
+          browzineEnabled
+          browzineWebLink
+        }
+      }
     },   
     searchUrl,
     didUMean,
