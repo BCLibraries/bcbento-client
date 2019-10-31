@@ -4,22 +4,60 @@ import gql from "graphql-tag";
 import {useQuery} from "@apollo/react-hooks";
 import {cleanGraphQLInput} from "../cleanGraphQLInput";
 import FullTextResult from "./FullTextResult";
+import {buildFulltextFromCrossref} from "./CrossrefFulltextBuilder";
+import {buildFulltextFromPCI} from "./PCIFulltextBuilder";
 
 function BestBetLookup({searchString, client, articleResults}) {
     const {loading, error, data} = useQuery(forBestBets(searchString), {client});
 
-    // Don't display a best bet if we don't have a best bet or if we haven't gotten our articleResults back yet.
-    if (loading || error || !data.bestBet || !articleResults) {
+    // No result (yet).
+    if (loading || error) {
         return null;
     }
 
-    if (data.bestBet.displayText) {
+    // Local best bet (e.g. database, LibAnswers question, etc).
+    if (data.bestBet && data.bestBet.displayText) {
         return <BestBetResult bestBet={data.bestBet}/>;
     }
 
+    // Don't return full text best bets until we can compare them against the article list.
+    if (!articleResults) {
+        return null;
+    }
+
     // If there is a fullText best bet and it is not a review, display it.
-    if (data.bestBet.fullText && !doiIsReview(data.bestBet.fullText.crossRefData.DOI, articleResults)) {
-        return <FullTextResult crossref={data.bestBet.fullText.crossRefData} libKey={data.bestBet.fullText.libKeyData}/>;
+    if (data.bestBet && data.bestBet.fullText && !doiIsReview(data.bestBet.fullText.crossRefData.DOI, articleResults)) {
+        const fulltextItem = buildFulltextFromCrossref(data.bestBet.fullText.crossRefData);
+        const libKey = data.bestBet.fullText.libKeyData;
+
+        return (
+            <FullTextResult
+                title={fulltextItem.title}
+                source={'crossref'}
+                doi={fulltextItem.doi}
+                authors={fulltextItem.authors}
+                containerTitle={fulltextItem.containerTitle}
+                issueInfo={fulltextItem.issueInfo}
+                date={fulltextItem.date}
+                link={libKey.fullTextFile ? libKey.fullTextFile : libKey.contentLocation}
+            />
+        );
+    }
+
+    const articleHits = findPossibleMatches(searchString, articleResults);
+    if (articleHits.length > 0) {
+        const fullTextItem = buildFulltextFromPCI(articleHits[0]);
+        const libKey = articleHits[0].libkeyAvailability;
+        return <FullTextResult
+            title={fullTextItem.title}
+            source={'pci'}
+            doi={fullTextItem.doi}
+            authors={fullTextItem.authors}
+            containerTitle={fullTextItem.containerTitle}
+            issueInfo={fullTextItem.issueInfo}
+            date={fullTextItem.date}
+            link={libKey.fullTextFile ? libKey.fullTextFile : libKey.contentLocation}
+        />
     }
 
     return null;
@@ -87,6 +125,13 @@ function doiIsReview(fullTextDOI, articleRecords) {
     });
 
     return isReview;
+}
+
+function findPossibleMatches(searchString, articleRecords) {
+    const fixedSearchString = searchString.toLowerCase().trim();
+    return articleRecords.filter(article => {
+        return article.title.length > 40 && fixedSearchString === article.title.toLowerCase().trim();
+    });
 }
 
 export default BestBetLookup;
