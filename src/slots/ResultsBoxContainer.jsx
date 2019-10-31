@@ -23,6 +23,7 @@ import ResultsBox from "./ResultsBox";
 function ResultsBoxContainer({client, heading, term, classPrefix, renderResult, query, noResultsContent = 'There are no results matching your search.', handleFetch}) {
 
     try {
+
         // Perform GraphQL query
         const {loading, error, data} = useQuery(query.gql, {client});
 
@@ -34,13 +35,14 @@ function ResultsBoxContainer({client, heading, term, classPrefix, renderResult, 
             return <ErrorBox heading={heading}/>
         }
 
+        // Response came back successfully, but there aren't any hits.
         if (data[query.object].total === 0) {
             return <NoResultsBox heading={heading} content={noResultsContent}/>
         }
 
         // Success! Build response.
         const docs = data[query.object].docs ? data[query.object].docs : data[query.object].results;
-        if (handleFetch) {handleFetch(docs);}
+        passStateUp(handleFetch, docs);
         const searchUrl = data[query.object].searchUrl;
         const seeAll = <SeeAllLink term={term} total={data[query.object].total} found={docs.length} url={searchUrl}/>;
         heading = <a href={searchUrl}>{heading}</a>;
@@ -51,7 +53,20 @@ function ResultsBoxContainer({client, heading, term, classPrefix, renderResult, 
             </ResultsBox>
         )
     } catch (err) {
+        console.log(`LOGGING err`);
         return <ErrorBox heading={heading}/>
+    }
+}
+
+/**
+ * Execute callbacks from props and pass list of responses up
+ *
+ * @param handleFetch
+ * @param docs
+ */
+function passStateUp(handleFetch, docs) {
+    if (handleFetch) {
+        handleFetch(docs ? docs : []);
     }
 }
 

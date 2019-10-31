@@ -12,7 +12,7 @@ import {apolloClient} from "./ApolloClientFactory";
 function SearchResults({searchString}) {
 
     // Store article results state here to share with BestBetLookup.
-    const [articleResults, setArticleResults] = useState(null);
+    const [articleResults, setArticleResults] = useState([]);
 
     // Get references to search result boxes for linking in the skip to bar.
     const refList = {
