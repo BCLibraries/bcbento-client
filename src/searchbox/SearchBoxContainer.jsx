@@ -44,6 +44,9 @@ function SearchBoxContainer({handleTyping, searchString, onSubmit}) {
     // value is the text value of the search box <input> element.
     const [value, setValue] = useState(searchString);
 
+    // Does the searchbox have user focus?
+    const [hasFocus, setHasFocus] = useState(!value);
+
     // Use text area when input is long.
     const useTextArea = value.length >= minLargeSearchBoxLength;
 
@@ -90,9 +93,6 @@ function SearchBoxContainer({handleTyping, searchString, onSubmit}) {
         setSuggestions([]);
     }
 
-    // Search box should be auto-focused iff there are no results to display.
-    const autoFocus = !value;
-
     // Autosuggest will pass through all these props to the input.
     const inputProps = {
         placeholder: 'Search for books, articles, journals, databases',
@@ -100,7 +100,9 @@ function SearchBoxContainer({handleTyping, searchString, onSubmit}) {
         onChange: onTyping,
         name: 'any',
         id: searchBoxId,
-        autoFocus
+        autoFocus: hasFocus,
+        onFocus: event => setHasFocus(true),
+        onBlur: event => setHasFocus(false)
     };
 
     const smallBoxProps = {
@@ -115,7 +117,8 @@ function SearchBoxContainer({handleTyping, searchString, onSubmit}) {
     const largeBoxProps = {
         onTyping,
         searchBoxId,
-        value
+        value,
+        setHasFocus
     };
 
     const searchBox = useTextArea ? <LargeSearchBox {...largeBoxProps}/> : <SearchBox {...smallBoxProps} />;

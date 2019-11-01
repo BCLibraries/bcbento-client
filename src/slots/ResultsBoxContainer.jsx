@@ -53,7 +53,6 @@ function ResultsBoxContainer({client, heading, term, classPrefix, renderResult, 
             </ResultsBox>
         )
     } catch (err) {
-        console.log(`LOGGING err`);
         return <ErrorBox heading={heading}/>
     }
 }
