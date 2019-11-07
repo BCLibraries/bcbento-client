@@ -6,6 +6,7 @@ import ErrorBox from "./ErrorBox";
 import NoResultsBox from "./NoResultsBox";
 import ResultList from "./ResultList";
 import ResultsBox from "./ResultsBox";
+import {Logger} from "../Logger";
 
 /**
  * Fetch data from GraphQL and render result box
@@ -50,6 +51,7 @@ function ResultsBoxContainer({client, heading, term, classPrefix, renderResult, 
             </ResultsBox>
         )
     } catch (err) {
+        Logger.error(`Error on GraphQL search: ${query.gql}`);
         return <ErrorBox heading={heading}/>
     }
 }

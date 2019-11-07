@@ -8,6 +8,7 @@ import WebsiteResults from "./slots/website/WebsiteResults";
 import BestBetLookup from "./slots/bestbets/BestBetLookup";
 import {SkipToLinkBar} from "./SkipToLinkBar";
 import ApolloClient from 'apollo-boost';
+import SearchComponentErrorBoundary from "./slots/SearchComponentErrorBoundary";
 
 const client = new ApolloClient({uri: process.env.REACT_APP_GRAPHQL_ENDPOINT});
 
@@ -30,35 +31,49 @@ function SearchResults({searchString}) {
             <SkipToLinkBar {...refList} />
 
             <div className="bento-results">
-                <BestBetLookup {...resultBoxParams}/>
+                <SearchComponentErrorBoundary>
+                    <BestBetLookup {...resultBoxParams} />
+                </SearchComponentErrorBoundary>
 
                 <div className="results-row-1 row">
                     <div className="col-md-5 col-sm-12" ref={refList.booksDiv}>
-                        <BookResults {...resultBoxParams} />
+                        <SearchComponentErrorBoundary>
+                            <BookResults {...resultBoxParams} />
+                        </SearchComponentErrorBoundary>
                     </div>
                     <div className="col-md-5 col-md-offset-1 col-sm-12" ref={refList.articlesDiv}>
-                        <ArticleResults {...resultBoxParams}/>
+                        <SearchComponentErrorBoundary>
+                            <ArticleResults {...resultBoxParams}/>
+                        </SearchComponentErrorBoundary>
                     </div>
                 </div>
 
                 <div className="results-row-2 row" ref={refList.faqDiv}>
                     <div className="col-md-7">
-                        <FaqResults {...resultBoxParams}/>
+                        <SearchComponentErrorBoundary>
+                            <FaqResults {...resultBoxParams}/>
+                        </SearchComponentErrorBoundary>
                     </div>
                     <div className="col-md-4 col-md-offset-1" ref={refList.librariansDiv}>
-                        <LibrarianResults  {...resultBoxParams}/>
+                        <SearchComponentErrorBoundary>
+                            <LibrarianResults  {...resultBoxParams}/>
+                        </SearchComponentErrorBoundary>
                     </div>
                 </div>
 
                 <div className="results-row-3 row" ref={refList.videoDiv}>
                     <div className="col-md-12">
-                        <VideoResults {...resultBoxParams}/>
+                        <SearchComponentErrorBoundary>
+                            <VideoResults {...resultBoxParams}/>
+                        </SearchComponentErrorBoundary>
                     </div>
                 </div>
 
                 <div className="results-row-4 row" ref={refList.websiteDiv}>
                     <div className="col-md-12">
-                        <WebsiteResults {...resultBoxParams}/>
+                        <SearchComponentErrorBoundary>
+                            <WebsiteResults {...resultBoxParams}/>
+                        </SearchComponentErrorBoundary>
                     </div>
                 </div>
             </div>

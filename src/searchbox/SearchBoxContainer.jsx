@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import SearchBox from './SearchBox';
+import {Logger} from "../Logger";
 
 // Minimum length of input string before typeahead is activated.
 const minTypeaheadLength = 3;
@@ -66,6 +67,7 @@ function SearchBoxContainer({handleTyping, searchString, onSubmit}) {
             const response = await fetch(url);
             json = await response.json();
         } catch (err) {
+            Logger.error(`Error fetching suggestions for ${value}`);
 
             // Don't fail on error, just don't return a suggestions.
             json = []
