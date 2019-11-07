@@ -6,6 +6,7 @@ import ErrorBox from "./ErrorBox";
 import NoResultsBox from "./NoResultsBox";
 import ResultList from "./ResultList";
 import ResultsBox from "./ResultsBox";
+import {Logger} from "../Logger";
 
 /**
  * Fetch data from GraphQL and render result box
@@ -14,7 +15,6 @@ import ResultsBox from "./ResultsBox";
  * @param heading string Heading for the box (e.g. "Books & more")
  * @param term string Term for result (e.g. "articles")
  * @param classPrefix string Prefix for element class
- * @param searchUrl string URL to link to search.
  * @param renderResult function Function that maps a GraphQL doc to a single JSX result entry
  * @param query object The GraphQL query to execute.
  * @return {*}
@@ -53,6 +53,7 @@ function ResultsBoxContainer({client, heading, term, classPrefix, renderResult, 
             </ResultsBox>
         )
     } catch (err) {
+        Logger.error(`Error on GraphQL search: ${query.gql}`);
         return <ErrorBox heading={heading}/>
     }
 }
