@@ -5,7 +5,7 @@
  * @return {void | string | never}
  */
 function cleanGraphQLInput(string) {
-    return string.replace(/"/g, '\\"').replace('/\\/g', '\\');
+    return string.replace(/"/g, '\\"').replace('/\\/g', '\\').replace(/(\r\n|\n|\r)/gm,' ');
 }
 
 export {cleanGraphQLInput};
