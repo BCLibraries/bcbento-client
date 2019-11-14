@@ -22,7 +22,7 @@ function PhysicalVideo({video}) {
 
     const altText = `Catalog record for ${video.title}`;
 
-    const recordLink = PrimoRecordLink(video, true);
+    const recordLink = PrimoRecordLink(video, false);
 
     return <div className="physical-video">
         <a href={recordLink} aria-hidden="true">
