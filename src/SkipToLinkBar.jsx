@@ -13,9 +13,7 @@ function SkipToLinkBar({booksDiv, articlesDiv, faqDiv, librariansDiv, videoDiv, 
                 <SkipToLink target={videoDiv} label="Video"/>
                 <SkipToLink target={websiteDiv} label="Website"/>
             </nav>
-            <div className="not-finding col-md-4">Not finding what you
-                need? <a href="https://libguides.bc.edu/ask-a-librarian">Ask
-                    us!</a></div>
+            <div className="tell-us col-md-4"><a href="https://forms.gle/cfqoEnM6s13KLWJu9">Tell us what you think!</a></div>
         </div>
     );
 }
