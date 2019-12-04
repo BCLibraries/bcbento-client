@@ -1,4 +1,5 @@
 import React from "react";
+import {Logger} from "../../Logger";
 
 /**
  * Display a linked fulltext response
@@ -8,11 +9,17 @@ import React from "react";
  * @constructor
  */
 function FullTextResult({fullText}) {
+    Logger.info(`FullText Best Bet Result displayed: ${fullText.title} ${fullText.doi}`);
+
+    function logClick() {
+        Logger.info(`FullText Best Bet Result clicked: ${fullText.title} ${fullText.doi}`);
+    }
+
     return (
         <div className='best-bet-row'>
             <h2 className='best-bet-row__heading'>Top result</h2>
             <div className='best-bet-result'>
-                <h3 className='best-bet-result__title'><a href={fullText.link}>{fullText.title}</a></h3>
+                <h3 className='best-bet-result__title'><a href={fullText.link} onClick={logClick}>{fullText.title}</a></h3>
                 <p className='best-bet-result__author'>
                     {authorLine(fullText.authors)}
                 </p>
