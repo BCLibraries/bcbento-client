@@ -2,6 +2,12 @@ import React from 'react';
 import SearchResults from "./SearchResults";
 import BlankSearchScreen from "./slots/BlankSearchScreen";
 
+const Results = props => {
+    return <SearchResults searchString={props.searchString}/>;
+};
+
+const MemoizedResults = React.memo(Results);
+
 function App({searchBox, searchString}) {
     return (
         <div className="bento-results-page">
@@ -13,7 +19,7 @@ function App({searchBox, searchString}) {
                     <span className="search-button-text">Search</span>
                 </button>
             </form>
-            {searchString ? <SearchResults searchString={searchString}/> : <BlankSearchScreen/>}
+            {searchString ? <MemoizedResults searchString={searchString}/> : <BlankSearchScreen/>}
         </div>
     );
 }
