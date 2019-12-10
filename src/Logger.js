@@ -105,7 +105,6 @@ function sendEntries() {
     const data = JSON.stringify({
         events: events
     });
-    console.log(process.env);
     navigator.sendBeacon(process.env.REACT_APP_LOGGING_ENDPOINT, data);
 }
 
