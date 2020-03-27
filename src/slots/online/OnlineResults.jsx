@@ -1,10 +1,10 @@
 import React from 'react';
-import BookResult from "./BookResult";
+import OnlineResult from "./OnlineResult";
 import ResultsBoxContainer from "../ResultsBoxContainer";
-import {BooksAndMoreQuery} from "./BooksAndMoreQuery";
+import {OnlineQuery} from "./OnlineQuery";
 
 /**
- * Book results box
+ * Online results box
  *
  * @param searchString string The search string from user input
  * @param client object GraphQL client
@@ -12,15 +12,15 @@ import {BooksAndMoreQuery} from "./BooksAndMoreQuery";
  * @return {*}
  * @constructor
  */
-function BookResults({searchString, client, toggle}) {
+function OnlineResults({searchString, client, toggle}) {
     return (
         <ResultsBoxContainer
             client={client}
             heading={'Books & more'}
             classPrefix={'books'}
             term={'items'}
-            query={new BooksAndMoreQuery(searchString)}
-            renderResult={doc => <BookResult item={doc} key={`book-${doc.id}`}/>}
+            query={new OnlineQuery(searchString)}
+            renderResult={doc => <OnlineResult item={doc} key={`book-${doc.id}`}/>}
             noResultsContent={noResultContent(searchString)}
             modifier={toggle}
         />
@@ -41,4 +41,4 @@ function noResultContent(searchString) {
     );
 }
 
-export default BookResults;
+export default OnlineResults;

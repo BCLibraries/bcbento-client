@@ -20,7 +20,7 @@ import {Logger} from "../Logger";
  * @return {*}
  * @constructor
  */
-function ResultsBoxContainer({client, heading, term, classPrefix, renderResult, query, noResultsContent = 'There are no results matching your search.', handleFetch}) {
+function ResultsBoxContainer({client, heading, term, classPrefix, renderResult, query, noResultsContent = 'There are no results matching your search.', handleFetch, modifier}) {
 
     try {
 
@@ -49,6 +49,7 @@ function ResultsBoxContainer({client, heading, term, classPrefix, renderResult, 
 
         return (
             <ResultsBox heading={heading} seeAll={seeAll} searchUrl={searchUrl}>
+                {modifier}
                 <ResultList classPrefix={classPrefix} docs={docs} renderResult={renderResult}/>
             </ResultsBox>
         )
