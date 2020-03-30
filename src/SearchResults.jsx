@@ -16,7 +16,7 @@ function SearchResults({searchString}) {
 
     // Store article results state here to share with BestBetLookup.
     const [articleResults, setArticleResults] = useState([]);
-    const [isOnlineOnly, setIsOnlineOnly] = useState(true);
+    const [isOnlineOnly, setIsOnlineOnly] = useState(false);
 
     function handleOnlineOnlyToggle() {
         setIsOnlineOnly(!isOnlineOnly);
