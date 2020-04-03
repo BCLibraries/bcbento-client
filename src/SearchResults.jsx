@@ -11,15 +11,23 @@ import {apolloClient} from "./ApolloClientFactory";
 import SearchComponentErrorBoundary from "./slots/SearchComponentErrorBoundary";
 import BookResults from "./slots/books/BookResults";
 import CatalogToggle from "./slots/CatalogToggle";
+import useQueryString from "./useQueryString";
 
 function SearchResults({searchString}) {
 
     // Store article results state here to share with BestBetLookup.
     const [articleResults, setArticleResults] = useState([]);
-    const [isOnlineOnly, setIsOnlineOnly] = useState(false);
+    const [isOnlineOnlyString, onSetIsOnlineOnly] = useQueryString('online');
+
+    const isOnlineOnlyBoolean = isOnlineOnlyString === 'true';
 
     function handleOnlineOnlyToggle() {
-        setIsOnlineOnly(!isOnlineOnly);
+        onSetIsOnlineOnly(! isOnlineOnlyBoolean);
+        if (isOnlineOnlyBoolean) {
+            onSetIsOnlineOnly('false');
+        } else {
+            onSetIsOnlineOnly('true');
+        }
     }
 
     // Get references to search result boxes for linking in the skip to bar.
@@ -33,7 +41,7 @@ function SearchResults({searchString}) {
     };
 
     const resultBoxParams = {searchString, client: apolloClient};
-    const catalogToggle = <CatalogToggle handleToggle={handleOnlineOnlyToggle} isChecked={isOnlineOnly} />;
+    const catalogToggle = <CatalogToggle handleToggle={handleOnlineOnlyToggle} isChecked={isOnlineOnlyBoolean} />;
 
     return (
         <div>
@@ -47,7 +55,7 @@ function SearchResults({searchString}) {
                 <div className="results-row-1 row">
                     <div className="col-md-5 col-sm-12" ref={refList.booksDiv}>
                         <SearchComponentErrorBoundary>
-                            {isOnlineOnly ?
+                            {isOnlineOnlyBoolean ?
                                 <OnlineResults {...resultBoxParams} toggle={catalogToggle}/> :
                                 <BookResults {...resultBoxParams} toggle={catalogToggle} />
                             }
