@@ -28,6 +28,7 @@ function forBooksAndMore(searchString) {
         url
       },
       available,
+      hathitrustUrl,
       isPhysical,
       isElectronic,
       screenCap,

@@ -2,6 +2,7 @@ import React from 'react';
 import VideoResult from "../video/VideoResult";
 import {PrimoRecordLink} from "../PrimoRecordLink";
 import AvailabilityContainer from "../availability/AvailabilityContainer";
+import HathiTrustLink from "./HathiTrustLink";
 
 function BookResult({item}) {
     if (item.isElectronic && item.type === 'Video') {
@@ -30,6 +31,8 @@ function BookResult({item}) {
             {item.isElectronic && getItLink(item)}
 
             {item.isPhysical && physicalAvailability(item)}
+
+            {item.hathitrustUrl && <HathiTrustLink url={item.hathitrustUrl}/> }
 
         </div>
 
