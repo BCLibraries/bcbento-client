@@ -1,6 +1,8 @@
 import React from 'react';
 import VideoResult from "../video/VideoResult";
 import {PrimoRecordLink} from "../PrimoRecordLink";
+import HathiTrustLink from "../books/HathiTrustLink";
+import AvailabilityContainer from "../availability/AvailabilityContainer";
 
 function OnlineResult({item}) {
     if (item.isElectronic && item.type === 'Video') {
@@ -27,6 +29,10 @@ function OnlineResult({item}) {
             <div className="catalog-result-item__type">{item.type}</div>
 
             {item.isElectronic && getItLink(item)}
+
+            {item.isPhysical && <AvailabilityContainer item={item} />}
+
+            {item.hathitrustUrl && <HathiTrustLink url={item.hathitrustUrl}/> }
 
         </div>
 
