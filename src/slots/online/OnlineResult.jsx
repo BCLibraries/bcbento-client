@@ -3,6 +3,8 @@ import VideoResult from "../video/VideoResult";
 import {PrimoRecordLink} from "../PrimoRecordLink";
 import HathiTrustLink from "../books/HathiTrustLink";
 import AvailabilityContainer from "../availability/AvailabilityContainer";
+import CoverImage from "../CoverImage";
+import GetItLink from "../GetItLink";
 
 function OnlineResult({item}) {
     if (item.isElectronic && item.type === 'Video') {
@@ -28,15 +30,15 @@ function OnlineResult({item}) {
 
             <div className="catalog-result-item__type">{item.type}</div>
 
-            {item.isElectronic && getItLink(item)}
+            {item.isElectronic && <GetItLink url={link}/>}
 
-            {item.isPhysical && <AvailabilityContainer item={item} />}
+            {item.isPhysical && <AvailabilityContainer item={item}/>}
 
-            {item.hathitrustUrl && <HathiTrustLink url={item.hathitrustUrl}/> }
+            {item.hathitrustUrl && <HathiTrustLink url={item.hathitrustUrl}/>}
 
         </div>
 
-        {item.coverImages.length > 1 && coverImage(item)}
+        {item.coverImages.length > 1 && <CoverImage itemUrl={link} imageUrl={item.coverImages[0].url}/>}
     </li>
 }
 
@@ -50,19 +52,6 @@ function creatorName(item) {
     }
 
     return '';
-}
-
-function getItLink(item) {
-    return <div className="catalog-result-item__getit"><a href={PrimoRecordLink(item)}>Find online</a></div>;
-}
-
-function coverImage(item) {
-    const altText = `Catalog record for ${item.title}`;
-    return <div className="media-right">
-        <a href={PrimoRecordLink(item)} aria-hidden="true">
-            <img src={item.coverImages[0].url} alt={altText} className="cover-image"/>
-        </a>
-    </div>
 }
 
 export default OnlineResult;

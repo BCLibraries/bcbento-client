@@ -4,6 +4,9 @@ import {PrimoRecordLink} from "../PrimoRecordLink";
 import AvailabilityContainer from "../availability/AvailabilityContainer";
 import HathiTrustLink from "./HathiTrustLink";
 import FindingAidLink from "./FindingAidLink";
+import FindingAidIcon from "./icon_archives.svg";
+import CoverImage from "../CoverImage";
+import GetItLink from "../GetItLink";
 
 function BookResult({item}) {
     if (item.isElectronic && item.type === 'Video') {
@@ -29,18 +32,51 @@ function BookResult({item}) {
 
             <div className="catalog-result-item__type">{item.type}</div>
 
-            {item.isElectronic && getItLink(item)}
+            {item.isElectronic && <GetItLink url={link}/>}
 
-            {item.isPhysical && physicalAvailability(item)}
+            {item.isPhysical && <AvailabilityContainer item={item}/>}
 
-            {item.hathitrustUrl && <HathiTrustLink url={item.hathitrustUrl}/> }
+            {item.hathitrustUrl && <HathiTrustLink url={item.hathitrustUrl}/>}
 
-            {item.linkToFindingAid && item.linkToFindingAid.url && <FindingAidLink url={item.linkToFindingAid.url}/> }
+            {hasFindingAid(item) && <FindingAidLink url={item.linkToFindingAid.url}/>}
 
         </div>
 
-        {item.coverImages.length > 1 && coverImage(item)}
+        {getThumbnail(item, link)}
+
     </li>
+}
+
+/**
+ * Determine what thumbnail to use
+ *
+ * @param item
+ * @return {null|*}
+ */
+function getThumbnail(item, link) {
+
+    // Is there a cover image? Use that.
+    if (item.coverImages.length > 1) {
+        return <CoverImage imageUrl={item.coverImages[0].url} itemUrl={link}/>;
+    }
+
+    // If it's a finding aid, use the finding aid icon.
+    if (hasFindingAid(item, link)) {
+        return <CoverImage imageUrl={FindingAidIcon} itemUrl={link} specialClass={"finding-aid-thumb"}/>;
+    }
+
+    // Otherwise nothing.
+    return null;
+}
+
+/**
+ * Is this thing a finding aid?
+ *
+ * @param item
+ * @return {boolean}
+ */
+function hasFindingAid(item) {
+    return Boolean(item.linkToFindingAid && item.linkToFindingAid.url);
 }
 
 function creatorName(item) {
@@ -53,23 +89,6 @@ function creatorName(item) {
     }
 
     return '';
-}
-
-function getItLink(item) {
-    return <div className="catalog-result-item__getit"><a href={PrimoRecordLink(item)}>Find online</a></div>;
-}
-
-function physicalAvailability(item) {
-    return <AvailabilityContainer item={item} />;
-}
-
-function coverImage(item) {
-    const altText = `Catalog record for ${item.title}`;
-    return <div className="media-right">
-        <a href={PrimoRecordLink(item)} aria-hidden="true">
-            <img src={item.coverImages[0].url} alt={altText} className="cover-image"/>
-        </a>
-    </div>
 }
 
 export default BookResult;
