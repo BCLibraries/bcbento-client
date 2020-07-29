@@ -3,6 +3,7 @@ import VideoResult from "../video/VideoResult";
 import {PrimoRecordLink} from "../PrimoRecordLink";
 import AvailabilityContainer from "../availability/AvailabilityContainer";
 import HathiTrustLink from "./HathiTrustLink";
+import FindingAidLink from "./FindingAidLink";
 
 function BookResult({item}) {
     if (item.isElectronic && item.type === 'Video') {
@@ -33,6 +34,8 @@ function BookResult({item}) {
             {item.isPhysical && physicalAvailability(item)}
 
             {item.hathitrustUrl && <HathiTrustLink url={item.hathitrustUrl}/> }
+
+            {item.linkToFindingAid && item.linkToFindingAid.url && <FindingAidLink url={item.linkToFindingAid.url}/> }
 
         </div>
 

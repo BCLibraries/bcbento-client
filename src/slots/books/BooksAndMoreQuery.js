@@ -29,6 +29,9 @@ function forBooksAndMore(searchString) {
       },
       available,
       hathitrustUrl,
+      linkToFindingAid {
+        url
+      },
       isPhysical,
       isElectronic,
       screenCap,

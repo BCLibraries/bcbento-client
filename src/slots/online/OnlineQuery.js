@@ -28,10 +28,27 @@ function forOnline(searchString) {
         url
       },
       available,
+      hathitrustUrl,
       isPhysical,
       isElectronic,
       screenCap,
       mms,
+      holdings {
+        ilsId,
+        libraryCode,
+        locationDisplay,
+        locationCode,
+        availabilityStatus,
+        callNumber,
+        items {
+          availability,
+          locationCode,
+          location,
+          libraryDisplay,
+          library,
+          callNumber
+         }
+       }
     },   
     searchUrl,
     didUMean,
