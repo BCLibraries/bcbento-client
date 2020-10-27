@@ -6,7 +6,7 @@ import ErrorBox from "./ErrorBox";
 import NoResultsBox from "./NoResultsBox";
 import ResultList from "./ResultList";
 import ResultsBox from "./ResultsBox";
-import {Logger} from "../Logger";
+import ResultBoxErrorBoundary from "./ResultBoxErrorBoundary";
 
 /**
  * Fetch data from GraphQL and render result box
@@ -22,41 +22,38 @@ import {Logger} from "../Logger";
  */
 function ResultsBoxContainer({client, heading, term, classPrefix, renderResult, query, noResultsContent = 'There are no results matching your search.', handleFetch, modifier}) {
 
-    try {
+    // Perform GraphQL query
+    const {loading, error, data} = useQuery(query.gql, {client});
 
-        // Perform GraphQL query
-        const {loading, error, data} = useQuery(query.gql, {client});
+    if (loading) {
+        return <LoadingBox heading={heading}/>
+    }
 
-        if (loading) {
-            return <LoadingBox heading={heading}/>
-        }
+    if (error) {
+        return <ErrorBox heading={heading}/>
+    }
 
-        if (error) {
-            return <ErrorBox heading={heading}/>
-        }
+    // Response came back successfully, but there aren't any hits.
+    if (data[query.object].total === 0) {
+        return <NoResultsBox heading={heading} content={noResultsContent}/>
+    }
 
-        // Response came back successfully, but there aren't any hits.
-        if (data[query.object].total === 0) {
-            return <NoResultsBox heading={heading} content={noResultsContent}/>
-        }
+    // Success! Build response.
+    const docs = data[query.object].docs ? data[query.object].docs : data[query.object].results;
+    passStateUp(handleFetch, docs);
+    const searchUrl = data[query.object].searchUrl;
+    const seeAll = <SeeAllLink term={term} total={data[query.object].total} found={docs.length} url={searchUrl}/>;
+    heading = <a href={searchUrl}>{heading}</a>;
 
-        // Success! Build response.
-        const docs = data[query.object].docs ? data[query.object].docs : data[query.object].results;
-        passStateUp(handleFetch, docs);
-        const searchUrl = data[query.object].searchUrl;
-        const seeAll = <SeeAllLink term={term} total={data[query.object].total} found={docs.length} url={searchUrl}/>;
-        heading = <a href={searchUrl}>{heading}</a>;
-
-        return (
+    return (
+        <ResultBoxErrorBoundary heading={heading}>
             <ResultsBox heading={heading} seeAll={seeAll} searchUrl={searchUrl}>
                 {modifier}
                 <ResultList classPrefix={classPrefix} docs={docs} renderResult={renderResult}/>
             </ResultsBox>
-        )
-    } catch (err) {
-        Logger.error(`Error on GraphQL search: ${query.gql}`);
-        return <ErrorBox heading={heading}/>
-    }
+        </ResultBoxErrorBoundary>
+    )
+
 }
 
 /**
