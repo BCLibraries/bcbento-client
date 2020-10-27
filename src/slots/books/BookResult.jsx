@@ -7,6 +7,7 @@ import FindingAidLink from "./FindingAidLink";
 import FindingAidIcon from "./icon_archives.svg";
 import CoverImage from "../CoverImage";
 import GetItLink from "../GetItLink";
+import {getDisplayCreator} from "../getDisplayCreator";
 
 function BookResult({item}) {
     if (item.isElectronic && item.type === 'Video') {
@@ -24,7 +25,7 @@ function BookResult({item}) {
                 </a>
             </h3>
 
-            <div className="catalog-result-item__creator">{creatorName(item)}</div>
+            <div className="catalog-result-item__creator">{getDisplayCreator(item)}</div>
 
             <div className="catalog-result-item__publisher">
                 {item.publisher} {item.date}
@@ -77,18 +78,6 @@ function getThumbnail(item, link) {
  */
 function hasFindingAid(item) {
     return Boolean(item.linkToFindingAid && item.linkToFindingAid.url);
-}
-
-function creatorName(item) {
-    if (item.creator) {
-        return item.creator;
-    }
-
-    if (item.contributors[0]) {
-        return item.contributors[0];
-    }
-
-    return '';
 }
 
 export default BookResult;

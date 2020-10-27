@@ -1,6 +1,7 @@
 import React from 'react';
 import FixBrokenImage from "../../FixBrokenImage";
 import {PrimoRecordLink} from "../PrimoRecordLink";
+import {getDisplayCreator} from "../getDisplayCreator";
 
 const blankScreen = 'https://library.bc.edu/images/blank-screen.svg';
 
@@ -23,22 +24,10 @@ function OnlineVideo({video}) {
 
         {video.date}
 
-        <div className="online-video__creator">{creatorName(video)}</div>
+        <div className="online-video__creator">{getDisplayCreator(video)}</div>
 
         <div className="online-video__watch-link"><a href={watchLink}>Watch online</a></div>
     </div>
-}
-
-function creatorName(video) {
-    if (video.creator) {
-        return video.creator;
-    }
-
-    if (video.contributors[0]) {
-        return video.contributors[0];
-    }
-
-    return '';
 }
 
 export default OnlineVideo;

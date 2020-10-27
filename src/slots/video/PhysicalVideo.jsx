@@ -2,6 +2,7 @@ import React from 'react';
 import FixBrokenImage from "../../FixBrokenImage";
 import {PrimoRecordLink} from "../PrimoRecordLink";
 import AvailabilityContainer from "../availability/AvailabilityContainer";
+import {getDisplayCreator} from "../getDisplayCreator";
 
 const defaultVHSIcon = 'https://library.bc.edu/images/video-tape.svg';
 const defaultDVDIcon = 'https://library.bc.edu/images/mono-dvd-mount.svg';
@@ -41,7 +42,7 @@ function PhysicalVideo({video}) {
 
         {video.date}
 
-        <div className="physical-video__creator">{creatorName(video)}</div>
+        <div className="physical-video__creator">{getDisplayCreator(video)}</div>
 
         {video.format}
 
@@ -60,18 +61,6 @@ function getCover(video) {
     }
 
     return defaultIcon;
-}
-
-function creatorName(video) {
-    if (video.creator) {
-        return video.creator;
-    }
-
-    if (video.contributors[0]) {
-        return video.contributors[0];
-    }
-
-    return '';
 }
 
 function onImageLoad(event) {

@@ -5,6 +5,7 @@ import HathiTrustLink from "../books/HathiTrustLink";
 import AvailabilityContainer from "../availability/AvailabilityContainer";
 import CoverImage from "../CoverImage";
 import GetItLink from "../GetItLink";
+import {getDisplayCreator} from "../getDisplayCreator";
 
 function OnlineResult({item}) {
     if (item.isElectronic && item.type === 'Video') {
@@ -22,7 +23,7 @@ function OnlineResult({item}) {
                 </a>
             </h3>
 
-            <div className="catalog-result-item__creator">{creatorName(item)}</div>
+            <div className="catalog-result-item__creator">{getDisplayCreator(item)}</div>
 
             <div className="catalog-result-item__publisher">
                 {item.publisher} {item.date}
@@ -40,18 +41,6 @@ function OnlineResult({item}) {
 
         {item.coverImages.length > 1 && <CoverImage itemUrl={link} imageUrl={item.coverImages[0].url}/>}
     </li>
-}
-
-function creatorName(item) {
-    if (item.creator) {
-        return item.creator;
-    }
-
-    if (item.contributors[0]) {
-        return item.contributors[0];
-    }
-
-    return '';
 }
 
 export default OnlineResult;
