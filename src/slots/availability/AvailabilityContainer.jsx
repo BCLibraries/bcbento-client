@@ -81,6 +81,9 @@ const locationValues = {
     },
     'INT': {
         weight: 1
+    },
+    'IAJS': {
+        weight: 1
     }
 };
 
@@ -88,7 +91,8 @@ const locationValues = {
  * Lookup desirability score by library and location
  */
 function getLocationScore(libraryCode, location) {
-    const library = locationValues[libraryCode];
+    const defaultLibrary = {weight: 0}; // Default to a locationless library if no library is found.
+    const library = locationValues[libraryCode] ? locationValues[libraryCode] : defaultLibrary;
     return library[location] ? library[location] + library.weight : library.weight;
 }
 
