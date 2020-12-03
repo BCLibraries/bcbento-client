@@ -7,7 +7,7 @@
 function truncateField(fieldValue, maxLength) {
 
     // Primo Central sometimes add spurious spaces after names.
-    fieldValue = fieldValue.replaceAll(' ;', ';');
+    fieldValue = fieldValue.replace(new RegExp(' ;', 'g'), ';');
 
     // Catch nulls or undefined.
     if (!fieldValue) {
