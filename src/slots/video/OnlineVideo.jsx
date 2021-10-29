@@ -2,6 +2,8 @@ import React from 'react';
 import FixBrokenImage from "../../FixBrokenImage";
 import {PrimoRecordLink} from "../PrimoRecordLink";
 import {getDisplayCreator} from "../getDisplayCreator";
+import Availability from "../availability/Availability";
+import AvailabilityContainer from "../availability/AvailabilityContainer";
 
 const blankScreen = 'https://library.bc.edu/images/blank-screen.svg';
 
@@ -27,6 +29,8 @@ function OnlineVideo({video}) {
         <div className="online-video__creator">{getDisplayCreator(video)}</div>
 
         <div className="online-video__watch-link"><a href={watchLink}>Watch online</a></div>
+
+        {video.isPhysical && <AvailabilityContainer item={video}/>}
     </div>
 }
 
