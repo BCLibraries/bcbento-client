@@ -28,6 +28,13 @@ function forBooksAndMore(searchString) {
         url
       },
       available,
+      availability {
+        libraryName,
+        locationName,
+        totalCount,
+        callNumber,
+        otherAvailabilities
+      },
       hathitrustUrl,
       linkToFindingAid {
         url
@@ -35,23 +42,7 @@ function forBooksAndMore(searchString) {
       isPhysical,
       isElectronic,
       screenCap,
-      mms,
-      holdings {
-        ilsId,
-        libraryCode,
-        locationDisplay,
-        locationCode,
-        availabilityStatus,
-        callNumber,
-        items {
-          availability,
-          locationCode,
-          location,
-          libraryDisplay,
-          library,
-          callNumber
-          }
-        }
+      mms
     },   
     searchUrl,
     didUMean,

@@ -37,22 +37,13 @@ function forVideos(searchString) {
       screenCap,
       format,
       mms,
-      holdings {
-        ilsId,
-        libraryCode,
-        locationDisplay,
-        locationCode,
-        availabilityStatus,
+      availability {
+        libraryName,
+        locationName,
+        totalCount,
         callNumber,
-        items {
-          availability,
-          locationCode,
-          location,
-          libraryDisplay,
-          library,
-          callNumber
-          }
-        }
+        otherAvailabilities
+      }
     },   
     searchUrl,
     didUMean,

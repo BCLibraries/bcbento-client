@@ -2,7 +2,6 @@ import React from 'react';
 import FixBrokenImage from "../../FixBrokenImage";
 import {PrimoRecordLink} from "../PrimoRecordLink";
 import {getDisplayCreator} from "../getDisplayCreator";
-import Availability from "../availability/Availability";
 import AvailabilityContainer from "../availability/AvailabilityContainer";
 
 const blankScreen = 'https://library.bc.edu/images/blank-screen.svg';
