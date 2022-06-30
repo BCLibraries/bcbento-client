@@ -1,6 +1,7 @@
 import React from 'react';
 import NotAvailableMessage from "./NotAvailableMessage";
 import Availability from "./Availability";
+import CheckHoldingsMessage from "./CheckHoldingsMessage";
 
 /**
  * Display an item's available holdings
@@ -10,8 +11,11 @@ import Availability from "./Availability";
  * @constructor
  */
 function AvailabilityContainer({item}) {
-    if(item.availability) {
-        return <Availability firstHolding={item.availability} inOtherLibraries={item.availability.otherAvailabilities} />
+    if (item.availability) {
+        return <Availability firstHolding={item.availability} inOtherLibraries={item.availability.otherAvailabilities}/>
+    } else if (item.available === true) {
+        // If we've gotten here, something is wrong.
+        return <CheckHoldingsMessage item={item} />
     } else {
         return <NotAvailableMessage item={item}/>;
     }
