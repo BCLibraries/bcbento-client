@@ -13,8 +13,9 @@ function PrimoRecordLink(item, isPci) {
     const tab = isPci ? 'pci_only' : 'bcl_only';
     const scope = isPci ? 'pci' : 'bcl';
     const context = isPci ? 'PC' : 'L';
+    const id = isPci ? item.id : item.linkableId
 
-    return `https://bc-primo.hosted.exlibrisgroup.com/primo-explore/fulldisplay?docid=${item.id}&context=${context}&tab=${tab}&search_scope=${scope}&vid=bclib_new&lang=en_US`;
+    return `https://bc-primo.hosted.exlibrisgroup.com/primo-explore/fulldisplay?docid=${id}&context=${context}&tab=${tab}&search_scope=${scope}&vid=bclib_new&lang=en_US`;
 }
 
 export {PrimoRecordLink};

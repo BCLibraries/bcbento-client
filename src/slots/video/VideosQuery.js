@@ -34,6 +34,7 @@ function forVideos(searchString) {
       available,
       isPhysical,
       isElectronic,
+      linkableId,
       screenCap,
       format,
       mms,

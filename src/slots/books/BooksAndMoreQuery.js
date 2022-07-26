@@ -24,6 +24,7 @@ function forBooksAndMore(searchString) {
       type,
       creator,
       contributors,
+      linkableId,
       coverImages { 
         url
       },
