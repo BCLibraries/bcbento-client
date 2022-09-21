@@ -13,7 +13,7 @@ import CheckHoldingsMessage from "./CheckHoldingsMessage";
 function AvailabilityContainer({item}) {
     if (item.availability) {
         return <Availability firstHolding={item.availability} inOtherLibraries={item.availability.otherAvailabilities}/>
-    } else if (item.available === true) {
+    } else if (item.available === true || item.holdings[0].availabilityStatus === 'check_holdings') {
         // If we've gotten here, something is wrong.
         return <CheckHoldingsMessage item={item} />
     } else {

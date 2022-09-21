@@ -36,6 +36,14 @@ function forBooksAndMore(searchString) {
         callNumber,
         otherAvailabilities
       },
+      holdings {
+		availabilityStatus,
+		availabilityStatus,
+		libraryCode,
+	    libraryDisplay,
+		locationDisplay,
+		callNumber,
+	  },
       hathitrustUrl,
       linkToFindingAid {
         url
