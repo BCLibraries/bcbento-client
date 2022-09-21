@@ -17,14 +17,18 @@ function checkHoldingsMessage({item, library, location}) {
     );
 }
 
-function buildHoldingDisplay(firstHolding) {
-    const libraryName = lookupLibraryName(firstHolding.libraryCode);
+function buildHoldingDisplay(holding) {
+    const libraryName = lookupLibraryName(holding.libraryCode);
+    const callNo = holding.callNumber.startsWith('(') ? holding.callNumber : `(${holding.callNumber})`;
+
+    // Remove extra spaces from some call numbers
+    const filteredCallNo = callNo.replace(' )', ')');
 
     return (
         <span>
             <span className="item-info__location"> {libraryName}</span>
-            <span className="item-info__location"> {firstHolding.locationDisplay}</span>
-            <span className="item-info__callno"> ({firstHolding.callNumber})</span>
+            <span className="item-info__location"> {holding.locationDisplay}</span>
+            <span className="item-info__callno">{filteredCallNo}</span>
         </span>
     );
 }
