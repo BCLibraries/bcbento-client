@@ -2,10 +2,6 @@ import React, {useState} from 'react';
 import SearchBox from './SearchBox';
 import LargeSearchBox from "./LargeSearchBox";
 import {CSSTransition} from "react-transition-group";
-import {Logger} from "../Logger";
-
-// Minimum length of input string before typeahead is activated.
-const minTypeaheadLength = 3;
 
 // How big should a text input be before enlarging the search box?
 const minLargeSearchBoxLength = 50;
@@ -67,27 +63,8 @@ function SearchBoxContainer({handleTyping, searchString, onSubmit}) {
 
     // Called to fetch suggestions from server.
     async function fetchSuggestions({value, reason}) {
-
-        // Don't fetch suggestions if there isn't enough input or if the input action was not
-        // actually typing.
-        if (value.length < minTypeaheadLength || reason === 'input-focused') {
-            return;
-        }
-
-        // Fetch.
-        const url = `https://library.bc.edu/search-services/typeahead?any=${value}`;
-        let json = [];
-
-        try {
-            const response = await fetch(url);
-            json = await response.json();
-        } catch (err) {
-            Logger.error(`Error fetching suggestions for ${value}`);
-
-            // Don't fail on error, just don't return a suggestions.
-            json = []
-        }
-        setSuggestions(json);
+        // Disable typeahead when suggester is down.
+        return;
     }
 
     // Called to empty suggestions (e.g. after pressing escape).
