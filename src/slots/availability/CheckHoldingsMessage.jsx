@@ -5,8 +5,6 @@ import {lookupLibraryName} from "../../LibraryNames";
 function checkHoldingsMessage({item, library, location}) {
     const holdingDisplay = item.holdings.length > 0 ? buildHoldingDisplay(item.holdings[0]) : '';
 
-    console.log(item);
-    console.log(item.holdings);
     return (
         <div className="item-info item-info--check-holdings">
             <span className="item-info__instructions">

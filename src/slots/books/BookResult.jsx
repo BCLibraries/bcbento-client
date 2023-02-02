@@ -16,8 +16,6 @@ function BookResult({item}) {
 
     const link = PrimoRecordLink(item);
 
-    console.log(item);
-
     return <li className="catalog-result-item media">
 
         <div className="media-body">
