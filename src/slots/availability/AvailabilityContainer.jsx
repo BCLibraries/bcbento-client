@@ -11,10 +11,11 @@ import CheckHoldingsMessage from "./CheckHoldingsMessage";
  * @constructor
  */
 function AvailabilityContainer({item}) {
-    if (item.availability && item.availability.otherAvailabilities) {
+    if (item.availability) {
         return <Availability firstHolding={item.availability} inOtherLibraries={item.availability.otherAvailabilities}/>
     } else if (item.available === true || isCheckHoldingsResult(item)) {
         // If we've gotten here, something is wrong.
+        console.log(item);
         return <CheckHoldingsMessage item={item} />
     } else {
         return <NotAvailableMessage item={item}/>;
@@ -33,21 +34,26 @@ function AvailabilityContainer({item}) {
  */
 function isCheckHoldingsResult(item) {
     if (! item.holdings) {
-        return true;
+        console.log('no holdings');
+        return false;
     }
 
     if (! Array.isArray(item.holdings)) {
-        return true;
+        console.log('no holdings array');
+        return false;
     }
 
     if (item.holdings.length === 0) {
-        return true;
+        console.log('no array members');
+        return false;
     }
 
     if (!item.holdings[0].availabilityStatus ) {
-        return true;
+        console.log('no availability status');
+        return false;
     }
 
+    console.log(item.holdings[0].availabilityStatus);
     return item.holdings[0].availabilityStatus === 'check_holdings';
 }
 
