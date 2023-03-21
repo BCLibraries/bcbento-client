@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import SearchBox from './SearchBox';
 import LargeSearchBox from "./LargeSearchBox";
+import SmallSearchBox from "./SmallSearchBox";
 import {CSSTransition} from "react-transition-group";
 
 // How big should a text input be before enlarging the search box?
@@ -100,7 +101,7 @@ function SearchBoxContainer({handleTyping, searchString, onSubmit}) {
         setHasFocus
     };
 
-    const searchBox = useTextArea ? <LargeSearchBox {...largeBoxProps}/> : <SearchBox {...smallBoxProps} />;
+    const searchBox = useTextArea ? <LargeSearchBox {...largeBoxProps}/> : <SmallSearchBox {...largeBoxProps}/>;
 
     return <CSSTransition
         in={useLarge}
