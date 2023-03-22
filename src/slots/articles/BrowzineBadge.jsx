@@ -21,7 +21,7 @@ function BrowzineBadge({libkeyAvailability}) {
             }
 
             {libkeyAvailability.browzineWebLink &&
-            <a className="browzine-badge__view-issue" href={libkeyAvailability.browzineWebLink}  aria-hidden="true" target="_blank" rel="noopener noreferrer">
+            <a className="browzine-badge__view-issue" href={libkeyAvailability.browzineWebLink}  target="_blank" rel="noopener noreferrer">
                 <img src="https://assets.thirdiron.com/images/integrations/browzine-open-book-icon.svg" className="browzine-book-icon" aria-hidden="true" width="15" height="15" alt=""/>
                 <span className="browzine-web-link-text">View Issue Contents</span>
             </a>
