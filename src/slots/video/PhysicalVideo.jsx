@@ -26,7 +26,7 @@ function PhysicalVideo({video}) {
     const recordLink = PrimoRecordLink(video, false);
 
     return <div className="physical-video">
-        <a href={recordLink} aria-hidden="true">
+        <a href={recordLink} aria-hidden="true" tabIndex={-1}>
             <img src={cover}
                  onLoad={onImageLoad}
                  onError={FixBrokenImage(defaultIcon, `OPER physical-video__default_cover ${iconClass}`)}
