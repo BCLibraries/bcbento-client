@@ -54,29 +54,6 @@ function forBestBets(searchString) {
       displayText
       link
     }
-    ...on CitationBestBet {
-      fullText {
-        libKeyData {
-          fullTextFile,
-          browzineWebLink
-          contentLocation
-        }
-        crossRefData {
-          titles
-          DOI
-          authors {
-            givenName
-            familyName
-            sequence
-          }
-          containerTitles
-          volume
-          issue
-          page
-          publishedPrintDate
-        }
-      }
-    }
   }
 }`
 }
