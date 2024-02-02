@@ -34,11 +34,14 @@ function PhysicalVideo({video}) {
                  className={coverClass(video)}/>
         </a>
 
-        <h3 className="physical-video__media-heading media-heading">
-            <a href={recordLink} className="physical-video__title">
-                {video.title}
-            </a>
-        </h3>
+        <div>
+            <div className="catalog-result-item__type">{video.type}</div>
+            <h3 className="physical-video__media-heading media-heading">
+                <a href={recordLink} className="physical-video__title">
+                    {video.title}
+                </a>
+            </h3>
+        </div>
 
         {video.date}
 

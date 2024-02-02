@@ -8,17 +8,21 @@ import FindingAidIcon from "./icon_archives.svg";
 import CoverImage from "../CoverImage";
 import GetItLink from "../GetItLink";
 import {getDisplayCreator} from "../getDisplayCreator";
+import {lookupTypeName} from "../../ResourceTypeMap";
 
 function BookResult({item}) {
     if (item.isElectronic && item.type === 'Video') {
         return <VideoResult item={item} inCatalogResult={true}/>;
     }
 
+    const resource_type = lookupTypeName(item.type);
+
     const link = PrimoRecordLink(item);
 
     return <li className="catalog-result-item media">
 
         <div className="media-body">
+            <div className="catalog-result-item__type">{resource_type}</div>
             <h3 className="catalog-result-item__media-heading media-heading">
                 <a href={link} className="catalog-result-item__title">
                     {item.title}
@@ -30,8 +34,6 @@ function BookResult({item}) {
             <div className="catalog-result-item__publisher">
                 {item.publisher} {item.date}
             </div>
-
-            <div className="catalog-result-item__type">{item.type}</div>
 
             {item.isElectronic && <GetItLink url={link}/>}
 

@@ -17,6 +17,7 @@ function OnlineResult({item}) {
     return <li className="catalog-result-item media">
 
         <div className="media-body">
+            <div className="catalog-result-item__type">{item.type}</div>
             <h3 className="catalog-result-item__media-heading media-heading">
                 <a href={link} className="catalog-result-item__title">
                     {item.title}
@@ -28,8 +29,6 @@ function OnlineResult({item}) {
             <div className="catalog-result-item__publisher">
                 {item.publisher} {item.date}
             </div>
-
-            <div className="catalog-result-item__type">{item.type}</div>
 
             {item.isElectronic && <GetItLink url={link}/>}
 

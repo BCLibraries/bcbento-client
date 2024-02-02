@@ -31,6 +31,8 @@ function forArticles(searchString) {
         url
       },
       isPartOf,
+      isPeerReviewed,
+      isOpenAccess,
       journalTitle
             libkeyAvailability {
         fullTextFile

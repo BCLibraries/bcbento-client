@@ -28,7 +28,7 @@ function decideBestBet(bestBet, articles, searchString) {
     // If there is an article from PCI that has fulltext and appears to be a match, display that.
     if (articles) {
     const articleHits = findArticleMatches(searchString, articles);
-    if (articleHits.length > 0) {
+    if (articleHits.length > 0 && articleHits[0].type !== "review") {
         const fullTextItem = buildFulltextFromPCI(articleHits[0]);
         const libKey = articleHits[0].libkeyAvailability;
         fullTextItem.link = libKey.fullTextFile ? libKey.fullTextFile : libKey.contentLocation;

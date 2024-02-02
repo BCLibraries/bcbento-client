@@ -15,13 +15,17 @@ function OnlineVideo({video}) {
     return <div className="online-video">
         <a href={watchLink}>
             <div className="online_video__thumb">
-                <img src={screen} alt={`Watch ${video.title} online`} onError={FixBrokenImage(blankScreen)} className={screenClass}/>
+                <img src={screen} alt={`Watch ${video.title} online`} onError={FixBrokenImage(blankScreen)}
+                     className={screenClass}/>
             </div>
         </a>
 
-        <h3 className="online-video__media-heading media-heading">
-            <a href={recordLink} className="online-video__title">{video.title}</a>
-        </h3>
+        <div>
+            <div className="catalog-result-item__type">{video.type}</div>
+            <h3 className="online-video__media-heading media-heading">
+                <a href={recordLink} className="online-video__title">{video.title}</a>
+            </h3>
+        </div>
 
         {video.date}
 
