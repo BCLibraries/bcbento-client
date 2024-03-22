@@ -32,8 +32,8 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "@graphql-codegen/cli": "^1.8.0",
-    "@graphql-codegen/fragment-matcher": "^1.8.0",
+    "@graphql-codegen/cli": "^5.0.2",
+    "@graphql-codegen/fragment-matcher": "^5.0.2",
     "eslint-plugin-react-hooks": "^1.6.0"
   },
   "homepage": "../theme/bcbento"
