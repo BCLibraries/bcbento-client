@@ -13,6 +13,12 @@ function getDisplayCreator(item) {
     return truncateField(getBaseString(item), truncationLength );
 }
 
+/**
+ * Figure out a good name to put in the creator field
+ *
+ * @param item
+ * @returns {string}
+ */
 function getBaseString(item) {
 
     // Prefer the creator field.

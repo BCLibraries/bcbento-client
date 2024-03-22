@@ -7,6 +7,9 @@ import {Logger} from '../Logger';
  *
  * If an individual result box errors out, do not let the entire application
  * die. Just display an error for that box.
+ *
+ * Error boundaries work better as class components than functional components
+ * for now. Hopefully this will one day be replaced with a function.
  */
 class ResultBoxErrorBoundary extends Component {
 

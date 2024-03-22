@@ -3,10 +3,10 @@ import React from 'react';
 /**
  * List of result from search
  *
- * @param docs array Docs array from GraphQL result
- * @param classPrefix string Prefix for element class
- * @param renderResult function Function that maps a GraphQL doc to a single JSX result entry
- * @return {*}
+ * @param docs Docs array from GraphQL result
+ * @param {string} classPrefix Prefix for element class
+ * @param {function} renderResult maps a GraphQL doc to a single JSX result entry
+ * @return {JSX.Element}
  * @constructor
  */
 function ResultList({docs, classPrefix, renderResult}) {

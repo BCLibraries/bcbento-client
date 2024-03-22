@@ -5,7 +5,7 @@ import ResultsBox from './ResultsBox';
  * Contents of result box after error
  *
  * @param heading string Heading for the box (e.g. "Books & more")
- * @return {*}
+ * @return {JSX.Element}
  * @constructor
  */
 function ErrorBox({heading}) {

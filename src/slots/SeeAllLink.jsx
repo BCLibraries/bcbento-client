@@ -1,5 +1,15 @@
 import React from 'react';
 
+/**
+ * Link to
+ *
+ * @param {number} total the total number of results
+ * @param {} found
+ * @param term
+ * @param url
+ * @returns {JSX.Element}
+ * @constructor
+ */
 function SeeAllLink({total, found, term, url}) {
     if(!total) {
         total = 0;

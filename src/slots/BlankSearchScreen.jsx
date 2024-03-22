@@ -1,5 +1,11 @@
 import React from 'react';
 
+/**
+ * Screen that appears before a search is performed
+ *
+ * @returns {JSX.Element}
+ * @constructor
+ */
 function BlankSearchScreen() {
     return (
         <div className="blank-search-screen">

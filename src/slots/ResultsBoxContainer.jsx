@@ -11,12 +11,12 @@ import ResultBoxErrorBoundary from "./ResultBoxErrorBoundary";
 /**
  * Fetch data from GraphQL and render result box
  *
- * @param client object GraphQL client
- * @param heading string Heading for the box (e.g. "Books & more")
- * @param term string Term for result (e.g. "articles")
- * @param classPrefix string Prefix for element class
- * @param renderResult function Function that maps a GraphQL doc to a single JSX result entry
- * @param query object The GraphQL query to execute.
+ * @param client GraphQL client
+ * @param {string} heading Heading for the box (e.g. "Books & more")
+ * @param {string} term Term for result (e.g. "articles")
+ * @param {string} classPrefix Prefix for element class
+ * @param renderResult Maps a GraphQL doc to a single JSX result entry
+ * @param query The GraphQL query to execute.
  * @return {*}
  * @constructor
  */
@@ -47,7 +47,7 @@ function ResultsBoxContainer({client, heading, term, classPrefix, renderResult, 
 
     return (
         <ResultBoxErrorBoundary heading={heading}>
-            <ResultsBox heading={heading} seeAll={seeAll} searchUrl={searchUrl}>
+            <ResultsBox heading={heading} seeAllLink={seeAll} searchUrl={searchUrl}>
                 {modifier}
                 <ResultList classPrefix={classPrefix} docs={docs} renderResult={renderResult}/>
             </ResultsBox>

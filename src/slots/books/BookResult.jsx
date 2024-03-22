@@ -10,6 +10,13 @@ import GetItLink from "../GetItLink";
 import {getDisplayCreator} from "../getDisplayCreator";
 import {lookupTypeName} from "../../ResourceTypeMap";
 
+/**
+ * Result for single item in "Books & more" search
+ *
+ * @param item
+ * @returns {JSX.Element}
+ * @constructor
+ */
 function BookResult({item}) {
     if (item.isElectronic && item.type === 'Video') {
         return <VideoResult item={item} inCatalogResult={true}/>;

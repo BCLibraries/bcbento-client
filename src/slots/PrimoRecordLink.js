@@ -2,6 +2,7 @@
  * Return a link to a record in Primo
  *
  * @param item
+ * @param {boolean} isPci
  * @return {string}
  * @constructor
  */

@@ -1,9 +1,16 @@
 import React, {useState} from 'react';
 
+/**
+ * Toggle for selecting only online items
+ *
+ * @param {boolean} isChecked is the toggle value selected?
+ * @param {function} handleToggle function called when select value is toggled
+ * @returns {JSX.Element}
+ * @constructor
+ */
 function CatalogToggle({isChecked, handleToggle}) {
 
     const [isDisplayed, setIsDisplayed] = useState(false);
-
     function toggleDisplay() {
         setIsDisplayed(!isDisplayed);
     }

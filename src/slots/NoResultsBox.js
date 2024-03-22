@@ -6,7 +6,7 @@ import ResultsBox from './ResultsBox';
  *
  * @param heading string Heading for the box (e.g. "Books & more")
  * @param content
- * @return {*}
+ * @return {JSX.Element}
  * @constructor
  */
 function NoResultsBox({heading, content}) {

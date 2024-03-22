@@ -2,10 +2,10 @@ import React from 'react';
 import ResultsBox from './ResultsBox';
 
 /**
- * Contents of result box when waiting for results
+ * What's in the result box when we're waiting for results
  *
  * @param heading string Heading for the box (e.g. "Books & more")
- * @return {*}
+ * @return {JSX.Element}
  * @constructor
  */
 function LoadingBox({heading}) {
