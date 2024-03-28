@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<li
+  className="media"
+>
+  <div
+    className="media-left"
+  >
+    <a
+      href="http://libguides.bc.edu/prf.php?account_id=261"
+    >
+      <img
+        alt="picture of Steve Runge"
+        src="//library.bc.edu/staff-portraits/steve-runge.jpg"
+      />
+    </a>
+  </div>
+  <div
+    className="media-body"
+  >
+    <h3
+      className="media-heading"
+    >
+      <a
+        href="http://libguides.bc.edu/prf.php?account_id=261"
+      >
+        Steve Runge
+      </a>
+    </h3>
+    <p
+      className="guide-description"
+    >
+      English Language and Literature
+    </p>
+  </div>
+</li>
+`;
