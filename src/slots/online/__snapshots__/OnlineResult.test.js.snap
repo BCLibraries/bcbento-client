@@ -1,0 +1,58 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<li
+  className="catalog-result-item"
+>
+  <div
+    className="online-video"
+  >
+    <a
+      href="https://mlib.bc.edu/reserves-api/items/99131628470001021"
+    >
+      <div
+        className="online_video__thumb"
+      >
+        <img
+          alt="Watch English online"
+          className="online-video-thumb__blank_screen"
+          onError={[Function]}
+          src="https://library.bc.edu/images/blank-screen.svg"
+        />
+      </div>
+    </a>
+    <div>
+      <div
+        className="catalog-result-item__type"
+      >
+        Video
+      </div>
+      <h3
+        className="online-video__media-heading media-heading"
+      >
+        <a
+          className="online-video__title"
+          href="https://bc-primo.hosted.exlibrisgroup.com/primo-explore/fulldisplay?docid=ALMA-BC51420267560001021&context=L&tab=bcl_only&search_scope=bcl&vid=bclib_new&lang=en_US"
+        >
+          English
+        </a>
+      </h3>
+    </div>
+    2008
+    <div
+      className="online-video__creator"
+    >
+      Available Light Productions
+    </div>
+    <div
+      className="online-video__watch-link"
+    >
+      <a
+        href="https://mlib.bc.edu/reserves-api/items/99131628470001021"
+      >
+        Watch online
+      </a>
+    </div>
+  </div>
+</li>
+`;

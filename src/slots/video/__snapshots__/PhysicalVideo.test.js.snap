@@ -1,0 +1,76 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className="physical-video"
+>
+  <a
+    aria-hidden="true"
+    href="https://bc-primo.hosted.exlibrisgroup.com/primo-explore/fulldisplay?docid=ALMA-BC21386241170001021&context=L&tab=bcl_only&search_scope=bcl&vid=bclib_new&lang=en_US"
+    tabIndex={-1}
+  >
+    <img
+      alt="Catalog record for Casablanca"
+      className="physical-video__box_cover"
+      onError={[Function]}
+      onLoad={[Function]}
+      src="https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.aspx?isbn=0790743132&issn=/MC.JPG&client=primo"
+    />
+  </a>
+  <div>
+    <div
+      className="catalog-result-item__type"
+    >
+      Video
+    </div>
+    <h3
+      className="physical-video__media-heading media-heading"
+    >
+      <a
+        className="physical-video__title"
+        href="https://bc-primo.hosted.exlibrisgroup.com/primo-explore/fulldisplay?docid=ALMA-BC21386241170001021&context=L&tab=bcl_only&search_scope=bcl&vid=bclib_new&lang=en_US"
+      >
+        Casablanca
+      </a>
+    </h3>
+  </div>
+  1999
+  <div
+    className="physical-video__creator"
+  >
+    Michael Curtiz 1886-1962
+  </div>
+  1 videodisc (103 min.) : sd., b&w ; 4 3/4 in.
+  <ul
+    className="available-items-list"
+  >
+    <li
+      className="item-info item-info--available"
+    >
+      <a>
+        <span
+          className="item-info__library"
+        >
+          Find in 
+          O'Neill
+        </span>
+        <span
+          className="item-info__location"
+        >
+          3rd Floor Course Reserves -3 Hour Loan
+        </span>
+        <span
+          className="item-info__callno"
+        >
+          (
+          PN1997 .C38 1999
+          )
+        </span>
+        <span
+          className="item-info__other-libraries"
+        />
+      </a>
+    </li>
+  </ul>
+</div>
+`;
