@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className="hathi-trust-link"
+>
+  <div
+    className="hathi-trust-link__icon"
+  />
+  <a
+    href="https://library.bc.edu"
+    rel="noopener noreferrer"
+    target="_blank"
+  >
+    Full Text Available at HathiTrust
+    <i
+      aria-hidden="true"
+      className="fa fa-external-link"
+    />
+  </a>
+</div>
+`;

@@ -1,0 +1,84 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<li
+  className="catalog-result-item media"
+>
+  <div
+    className="media-body"
+  >
+    <div
+      className="catalog-result-item__type"
+    >
+      Book
+    </div>
+    <h3
+      className="catalog-result-item__media-heading media-heading"
+    >
+      <a
+        className="catalog-result-item__title"
+        href="https://bc-primo.hosted.exlibrisgroup.com/primo-explore/fulldisplay?docid=ALMA-BC21495170660001021&context=L&tab=bcl_only&search_scope=bcl&vid=bclib_new&lang=en_US"
+      >
+        Otters : tool users
+      </a>
+    </h3>
+    <div
+      className="catalog-result-item__creator"
+    >
+      Katie Lajiness
+    </div>
+    <div
+      className="catalog-result-item__publisher"
+    >
+       
+      [2019]
+    </div>
+    <ul
+      className="available-items-list"
+    >
+      <li
+        className="item-info item-info--available"
+      >
+        <a>
+          <span
+            className="item-info__library"
+          >
+            Find in 
+            Educational Resource Center
+          </span>
+          <span
+            className="item-info__location"
+          >
+            Stacks
+          </span>
+          <span
+            className="item-info__callno"
+          >
+            (
+            QL737.C25 L35 2019
+            )
+          </span>
+          <span
+            className="item-info__other-libraries"
+          />
+        </a>
+      </li>
+    </ul>
+  </div>
+  <div
+    className="media-right"
+  >
+    <a
+      aria-hidden="true"
+      href="https://bc-primo.hosted.exlibrisgroup.com/primo-explore/fulldisplay?docid=ALMA-BC21495170660001021&context=L&tab=bcl_only&search_scope=bcl&vid=bclib_new&lang=en_US"
+      tabIndex={-1}
+    >
+      <img
+        alt=""
+        className="cover-image undefined"
+        src="https://proxy-na.hosted.exlibrisgroup.com/exl_rewrite/syndetics.com/index.aspx?isbn=9781532115028&issn=/MC.JPG&client=primo"
+      />
+    </a>
+  </div>
+</li>
+`;

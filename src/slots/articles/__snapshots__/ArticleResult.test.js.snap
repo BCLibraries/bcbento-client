@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<li
+  className="article-result-item media"
+>
+  <div
+    className="media-body"
+  >
+    <div
+      className="article-result-item__type"
+    >
+      article
+    </div>
+    <h3
+      className="article-result-item__media-heading media-heading"
+    >
+      <a
+        className="article-result-item__title"
+        href="https://bc-primo.hosted.exlibrisgroup.com/primo-explore/fulldisplay?docid=TN_cdi_proquest_journals_1656063155&context=PC&tab=pci_only&search_scope=pci&vid=bclib_new&lang=en_US"
+        rel="noreferrer noopener"
+        target="_blank"
+      >
+        Otters
+      </a>
+    </h3>
+    <div
+      className="article-result-item__creator"
+    >
+      Hart, Mark D
+    </div>
+    <div
+      className="article-result-item__publisher"
+    >
+      <span
+        className="article-result-item__journal-title"
+      >
+        
+        <cite>
+          The Midwest quarterly (Pittsburg)
+        </cite>
+        , 2014-06, Vol.55 (4), p.40
+      </span>
+    </div>
+    <div
+      className="article-result-item__peer_reviewed"
+    >
+      Peer Reviewed
+    </div>
+  </div>
+</li>
+`;

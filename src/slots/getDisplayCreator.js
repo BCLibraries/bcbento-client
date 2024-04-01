@@ -27,7 +27,7 @@ function getBaseString(item) {
     }
 
     // If no creator, take the first contributor.
-    if (item.contributors[0]) {
+    if (item.contributors && item.contributors[0]) {
         return item.contributors[0];
     }
 

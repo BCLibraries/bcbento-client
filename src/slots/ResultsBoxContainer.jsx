@@ -9,13 +9,20 @@ import ResultsBox from "./ResultsBox";
 import ResultBoxErrorBoundary from "./ResultBoxErrorBoundary";
 
 /**
+ * Callback to render a single result
+ * @callback renderResultCallback
+ * @param doc
+ * @return {JSX.Element}
+ */
+
+/**
  * Fetch data from GraphQL and render result box
  *
  * @param client GraphQL client
  * @param {string} heading Heading for the box (e.g. "Books & more")
  * @param {string} term Term for result (e.g. "articles")
  * @param {string} classPrefix Prefix for element class
- * @param renderResult Maps a GraphQL doc to a single JSX result entry
+ * @param {renderResultCallback} renderResult Maps a GraphQL doc to a single JSX result entry
  * @param query The GraphQL query to execute.
  * @return {*}
  * @constructor

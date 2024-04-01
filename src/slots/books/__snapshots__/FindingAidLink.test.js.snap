@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className="finding-aid-link"
+>
+  <img
+    alt=""
+    className="finding-aid-link__icon"
+    src="icon_archives.svg"
+  />
+  <a
+    href="https://library.bc.edu"
+    rel="noopener noreferrer"
+    target="_blank"
+  >
+    Finding aid
+    <i
+      aria-hidden="true"
+      className="fa fa-external-link"
+    />
+  </a>
+</div>
+`;

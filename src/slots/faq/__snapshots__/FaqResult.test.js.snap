@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<li>
+  <a
+    href="https://answers.bc.edu/faq/136455"
+  >
+    How do I get free passes to the MFA, the Gardner, and other museums?
+  </a>
+</li>
+`;

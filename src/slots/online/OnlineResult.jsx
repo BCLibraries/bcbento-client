@@ -12,7 +12,7 @@ function OnlineResult({item}) {
         return <VideoResult item={item} inCatalogResult={true}/>;
     }
 
-    const link = PrimoRecordLink(item);
+    const link = PrimoRecordLink(item, false);
 
     return <li className="catalog-result-item media">
 

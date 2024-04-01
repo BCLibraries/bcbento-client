@@ -1,0 +1,54 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className="online-video"
+>
+  <a
+    href="https://mlib.bc.edu/reserves-api/items/99137930178901021"
+  >
+    <div
+      className="online_video__thumb"
+    >
+      <img
+        alt="Watch Do unto otters online"
+        className="online-video-thumb__blank_screen"
+        onError={[Function]}
+        src="https://library.bc.edu/images/blank-screen.svg"
+      />
+    </div>
+  </a>
+  <div>
+    <div
+      className="catalog-result-item__type"
+    >
+      Video
+    </div>
+    <h3
+      className="online-video__media-heading media-heading"
+    >
+      <a
+        className="online-video__title"
+        href="https://bc-primo.hosted.exlibrisgroup.com/primo-explore/fulldisplay?docid=ALMA-BC51493661490001021&context=L&tab=bcl_only&search_scope=bcl&vid=bclib_new&lang=en_US"
+      >
+        Do unto otters
+      </a>
+    </h3>
+  </div>
+  [2012]
+  <div
+    className="online-video__creator"
+  >
+    Paul R. Gagne 1956- film producer
+  </div>
+  <div
+    className="online-video__watch-link"
+  >
+    <a
+      href="https://mlib.bc.edu/reserves-api/items/99137930178901021"
+    >
+      Watch online
+    </a>
+  </div>
+</div>
+`;

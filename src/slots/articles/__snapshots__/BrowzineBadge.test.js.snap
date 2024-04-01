@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className="browzine-badge"
+>
+  <a
+    className="browzine-badge__download-now"
+    href="https://libkey.io/libraries/431/articles/4749574/full-text-file?utm_source=api_536"
+    rel="noopener noreferrer"
+    target="_blank"
+  >
+    <img
+      alt=""
+      aria-hidden="true"
+      className="browzine-pdf-icon"
+      height="16"
+      src="https://assets.thirdiron.com/images/integrations/browzine-pdf-download-icon.svg"
+      width="12"
+    />
+    <span
+      className="browzine-web-link-text"
+    >
+      Download Now
+      <span
+        className="browzine-badge__pdf_notice"
+      >
+         (PDF)
+      </span>
+    </span>
+  </a>
+</div>
+`;
