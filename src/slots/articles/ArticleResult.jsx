@@ -3,7 +3,6 @@ import {PrimoRecordLink} from "../PrimoRecordLink";
 import BrowzineBadge from './BrowzineBadge';
 import {getDisplayCreator} from "../getDisplayCreator"
 import {lookupTypeName} from "../../ResourceTypeMap";
-import styles from "../../styles.css";
 
 function ArticleResult({article}) {
 

@@ -13,7 +13,7 @@ const cache = new InMemoryCache({ fragmentMatcher });
 
 const apolloClient = new ApolloClient({
     cache,
-    uri: process.env.REACT_APP_GRAPHQL_ENDPOINT,
+    uri: import.meta.env.VITE_GRAPHQL_ENDPOINT,
     link: new HttpLink()
 });
 

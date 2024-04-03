@@ -27,7 +27,7 @@ function SeeAllLink({total, found, term, url}) {
 
     return (
         <div className="see-all-link">
-            <span className="see-all-link__prefix">></span> <a href={url}>See all {total.toLocaleString()} {term}</a>
+            <span className="see-all-link__prefix"></span> <a href={url}>See all {total.toLocaleString()} {term}</a>
         </div>
     );
 }
