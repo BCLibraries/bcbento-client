@@ -56,5 +56,6 @@
     "setupFilesAfterEnv": [
       "<rootDir>/setupTests.js"
     ]
-  }
+  },
+  "type": "module"
 }
