@@ -105,7 +105,7 @@ function sendEntries() {
     const data = JSON.stringify({
         events: events
     });
-    navigator.sendBeacon(process.env.REACT_APP_LOGGING_ENDPOINT, data);
+    navigator.sendBeacon(process.env.VITE_LOGGING_ENDPOINT, data);
 }
 
 // Send entries and zero-out the list.

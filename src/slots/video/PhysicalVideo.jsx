@@ -14,8 +14,6 @@ let defaultIcon = defaultVHSIcon;
 let iconClass = vhsClass;
 
 function PhysicalVideo({video}) {
-    console.log('is Physical');
-    console.log(video);
     if (video.format.includes('disc')) {
         defaultIcon = defaultDVDIcon;
         iconClass = dvdClass;

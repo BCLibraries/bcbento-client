@@ -35,7 +35,6 @@ exports[`renders correctly 1`] = `
       <span
         className="article-result-item__journal-title"
       >
-        
         <cite>
           The Midwest quarterly (Pittsburg)
         </cite>

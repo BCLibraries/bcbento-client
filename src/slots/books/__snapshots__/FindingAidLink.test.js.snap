@@ -7,7 +7,6 @@ exports[`renders correctly 1`] = `
   <img
     alt=""
     className="finding-aid-link__icon"
-    src="icon_archives.svg"
   />
   <a
     href="https://library.bc.edu"
