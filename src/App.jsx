@@ -1,6 +1,7 @@
 import React from 'react';
 import SearchResults from "./SearchResults";
 import BlankSearchScreen from "./slots/BlankSearchScreen";
+import './styles.css';
 
 const Results = props => {
     return <SearchResults searchString={props.searchString}/>;
