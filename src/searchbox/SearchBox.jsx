@@ -1,5 +1,4 @@
 import React from 'react';
-import Autosuggest from "react-autosuggest";
 
 /**
  * Render the search box and the  list of typeahead suggestions
@@ -27,14 +26,6 @@ function SearchBox({searchBoxId, suggestions, fetchSuggestions, clearSuggestions
             <label htmlFor={searchBoxId} className="bcbento-search-box__input-label sr-only">
                 Enter a search term please
             </label>
-            <Autosuggest suggestions={suggestions}
-                         getSuggestionValue={suggestion => suggestion.value}
-                         onSuggestionsFetchRequested={fetchSuggestions}
-                         onSuggestionsClearRequested={clearSuggestions}
-                         renderSuggestion={renderSuggestion}
-                         onSuggestionSelected={onSuggestionSelected}
-                         inputProps={inputProps}
-            />
         </div>
     );
 }
