@@ -38,6 +38,7 @@ function forVideos(searchString) {
       screenCap,
       format,
       mms,
+      isbn,
       availability {
         libraryName,
         locationName,

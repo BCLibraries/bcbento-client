@@ -23,6 +23,7 @@ function forBooksAndMore(searchString) {
       date,
       type,
       creator,
+      isbn,
       contributors,
       linkableId,
       coverImages { 

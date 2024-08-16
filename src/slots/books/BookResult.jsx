@@ -9,6 +9,7 @@ import CoverImage from "../CoverImage";
 import GetItLink from "../GetItLink";
 import {getDisplayCreator} from "../getDisplayCreator";
 import {lookupTypeName} from "../../ResourceTypeMap";
+import buildSyndeticCoverImageURL from "../buildSyndeticCoverImageURL.js";
 
 /**
  * Result for single item in "Books & more" search
@@ -68,6 +69,11 @@ function getThumbnail(item, link) {
     // Is there a cover image? Use that.
     if (item.coverImages.length > 1) {
         return <CoverImage imageUrl={item.coverImages[0].url} itemUrl={link}/>;
+    }
+
+    if (item.isbn) {
+        const thumbnail = buildSyndeticCoverImageURL(item);
+        return <CoverImage imageUrl={thumbnail} itemUrl={link}/>;
     }
 
     // If it's a finding aid, use the finding aid icon.

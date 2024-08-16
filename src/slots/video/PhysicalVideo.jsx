@@ -3,6 +3,7 @@ import FixBrokenImage from "../../FixBrokenImage";
 import {PrimoRecordLink} from "../PrimoRecordLink";
 import AvailabilityContainer from "../availability/AvailabilityContainer";
 import {getDisplayCreator} from "../getDisplayCreator";
+import buildSyndeticCoverImageURL from "../buildSyndeticCoverImageURL.js";
 
 const defaultVHSIcon = 'https://library.bc.edu/images/video-tape.svg';
 const defaultDVDIcon = 'https://library.bc.edu/images/mono-dvd-mount.svg';
@@ -61,6 +62,10 @@ function coverClass(video) {
 function getCover(video) {
     if (video.coverImages.length > 0 && video.coverImages[0]) {
         return String(video.coverImages[0].url);
+    }
+
+    if (video.isbn) {
+        return buildSyndeticCoverImageURL(video);
     }
 
     return defaultIcon;
