@@ -11,15 +11,27 @@ function PrimoRecordLink(item, isPci) {
         isPci = false;
     }
 
-    const tab = isPci ? 'pci_only' : 'bcl_only';
-    const scope = isPci ? 'pci' : 'bcl';
+    const tab = isPci ? 'CentralIndex' : 'LibraryCatalog';
+    const scope = isPci ? 'CentralIndex' : 'MyInstitution';
     const context = isPci ? 'PC' : 'L';
+    const adaptor  = isPci ? 'Primo%20Central' : 'Local%20Search%20Engine';
     let id = item.id;
     if (isPci && item.linkableId) {
         id = item.linkableId;
     }
 
-    return `https://bc-primo.hosted.exlibrisgroup.com/primo-explore/fulldisplay?docid=${id}&context=${context}&tab=${tab}&search_scope=${scope}&vid=bclib_new&lang=en_US`;
+    const queryString = [
+        `docid=${id}`,
+        `context=${context}`,
+        'vid=01BC_INST:bclib',
+        'lang=en',
+        `search_scope=${scope}`,
+        `adaptor=${adaptor}`,
+        `tab=${tab}`,
+        // `query=any,contains,jstor` @todo add search query to item Deep Links
+    ].join('&');
+
+    return `https://bc.primo.exlibrisgroup.com/discovery/fulldisplay?${queryString}`;
 }
 
 export {PrimoRecordLink};
