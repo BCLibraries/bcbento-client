@@ -9,7 +9,7 @@ const blankScreen = 'https://library.bc.edu/images/blank-screen.svg';
 function OnlineVideo({video}) {
     const screen = video.screenCap ? video.screenCap : blankScreen;
     const screenClass = video.screenCap ? 'online-video-thumb__screenshot' : 'online-video-thumb__blank_screen';
-    const watchLink = `https://mlib.bc.edu/reserves-api/items/${video.mms}`;
+    const watchLink = `https://library.bc.edu/bcbento-server/direct-link/${video.mms}`;
     const recordLink = PrimoRecordLink(video);
 
     return <div className="online-video">
